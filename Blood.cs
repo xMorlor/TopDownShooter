@@ -16,20 +16,15 @@ namespace TopDownShooterFinal
     class Blood : MotherClass
     {
         private int num;
-        Color color;
-        Random rnd;
-        int randomNum;
+        private Color color;
+        private Random rnd;
+        private int randomNum;
         private bool justHit;
         private int randomAngle;
         public Texture2D texture;
-        //private Circle circle;
         private Vector2 origin;
         private Rectangle destRectangle;
         private int maxCircleRange;
-
-        //private List<Point> points = new List<Point>();
-        //public List<Color> colors;
-
         private Color[] colors1D;
         private Color[] defaultColors;
         private int range;
@@ -38,8 +33,6 @@ namespace TopDownShooterFinal
         private int fadeOutNum;
         private bool fadeOut;
         private int increaseRange;
-        //int dNum;
-        //Vector2 dir;
 
         public Blood(bool justHit, Vector2 position, Zombie zombie, int num, GraphicsDevice graphicsDevice)
         {
@@ -198,7 +191,6 @@ namespace TopDownShooterFinal
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, destRectangle, null, color, randomAngle, origin, SpriteEffects.None, 1);
-            //if(update)spriteBatch.Draw(Textures.exp, this.position, color);
         }
     }
 }
