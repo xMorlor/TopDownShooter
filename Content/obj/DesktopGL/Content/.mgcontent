@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/1x1pixels.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/ball3.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/ball4.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Fonts/debug.spritefont</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/idle2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/idle3.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/image.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Logos/akLogo.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Logos/akLogo1.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Logos/handgunLogo.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Logos/handgunLogo1.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Logos/knifeLogo.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Logos/knifeLogo1.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Logos/shotgunLogo.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Logos/shotgunLogo1.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/move2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/move3.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/RifleFolder/rifle_idle.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/RifleFolder/rifle_meleeattack.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/RifleFolder/rifle_move.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/RifleFolder/rifle_reload.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/RifleFolder/rifle_shoot.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Shot.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Shot2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Shot3.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Shot4.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/shotgunMove2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/200x177.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/ball.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/ball2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/bloodLarge.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/bloodMedium.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/bloodSmall.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/bul5.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/experience.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/handgun_idle.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/handgun_melee_attack.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/handgun_move.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/handgun_reload.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/handgun_shoot.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/knife_idle.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/knife_melee_attack.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/knife_move.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/laser.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/laserReal.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/melee_attack3.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/muzzleFlash.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/muzzleFlash1.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/muzzleFlash2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/muzzleFlash3.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/rifle_idle.jpeg</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/rifle_idle2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/rifle_meleeattack.jpeg</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/rifle_meleeattack2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/rifle_move.jpeg</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/rifle_move2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/rifle_reload.jpeg</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/rifle_reload2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/rifle_shoot.jpeg</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/rifle_shoot2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/shotgunIdle.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/shotgunMeleeattack.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/shotgunMove.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/shotgunReload.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/shotgunShoot.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/usedForBloodOnly.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run0.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run1.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run10.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run11.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run12.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run13.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run14.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run15.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run16.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run17.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run18.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run19.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run3.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run4.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run5.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run6.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run7.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run8.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run9.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Zombie/attack1.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Zombie/attack2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Zombie/attack3.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Zombie/death1.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Zombie/death2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Zombie/eating.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Zombie/idle.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Zombie/run.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Zombie/saunter.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Zombie/walk.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
