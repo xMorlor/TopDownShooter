@@ -15,24 +15,16 @@ namespace TopDownShooterFinal
     //internal class Blood
     class Blood : MotherClass
     {
-        private int num;
+        private int num, randomNum, randomAngle, maxCircleRange, range, fadeOutNum, increaseRange;
+        private Color[] colors1D, defaultColors;
         private Color color;
         private Random rnd;
-        private int randomNum;
-        private bool justHit;
-        private int randomAngle;
         public Texture2D texture;
         private Vector2 origin;
         private Rectangle destRectangle;
-        private int maxCircleRange;
-        private Color[] colors1D;
-        private Color[] defaultColors;
-        private int range;
-        public bool update;
         private Zombie zombie;
-        private int fadeOutNum;
-        private bool fadeOut;
-        private int increaseRange;
+        private bool fadeOut, justHit;
+        public bool update;
 
         public Blood(bool justHit, Vector2 position, Zombie zombie, int num, GraphicsDevice graphicsDevice)
         {
