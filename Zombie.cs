@@ -10,50 +10,33 @@ namespace TopDownShooterFinal
 {
     enum NotLuredBehavior
     {
-        //attack,
-        //death,
         eating,
         idle,
-        //run,
         saunter,
-        //walk
     }
 
     class Zombie : MotherClass
     {
+        private int numberToNextChangeOfBehavior, indexToNearestBody;
+        public int health;
+        private float movementSpeed;
+        private double radian;
+        public double angle, randomAngle;
         private Array behaviors;
         public NotLuredBehavior behavior;
-        Texture2D texture;
-        //public Vector2 position;
-        public Vector2 direction;
-        double radian;
-        public Vector2 speed;
-        public double angle;
-        public double randomAngle;
-        public int health;
-        private bool isDead;
-        private int indexToNearestBody;
-
-        Random rnd1 = new Random();
-        Random rnd2 = new Random();
-
+        public Texture2D texture;
+        public Vector2 direction, speed;
+        private Random rnd1, rnd2;
         public ZombieAnimation zombieAnimation;
-        public Circle hitboxCircle;
-        public Circle lureCircle;
-        private float movementSpeed;
-        public bool lured;
-        public bool attacking;
-        public bool running;
-        public bool walking;
-        private int deadNum;
-        public bool meleeAttacked;
-
-        private int numberToNextChangeOfBehavior;
+        public Circle hitboxCircle, lureCircle;
+        private bool isDead;
+        public bool lured, attacking, running, walking, meleeAttacked;
 
         public Zombie()
         {
+            rnd1 = new Random();
+            rnd2 = new Random();
             meleeAttacked = false;
-            deadNum = 0;
             running = false;
             walking = false;
             attacking = false;
@@ -77,7 +60,6 @@ namespace TopDownShooterFinal
         {
             if (health < 1 && (zombieAnimation.Texture != Textures.ZombieDeath1 && zombieAnimation.Texture != Textures.ZombieDeath2))
             {
-                deadNum++;
                 hitboxCircle.Radius += 7;
                 MakeZombieDie(graphicsDevice);
             }
@@ -117,11 +99,7 @@ namespace TopDownShooterFinal
                 }
             }
         }
-        /*
-         
-         UDĚLAT DELAY NA MELEEATTACKY
-         
-         */
+
         private void UpdateLiveZombie(GameTime gameTime, int posX, int posY)
         {
             if (lured) //běh za hráčem
@@ -339,7 +317,6 @@ namespace TopDownShooterFinal
             direction.Normalize();
             position += direction * movementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             position += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-            //speed = speed * 0.9f;
         }
 
         public void MakeZombieDie(GraphicsDevice graphicsDevice)
@@ -350,15 +327,14 @@ namespace TopDownShooterFinal
             if(random.Next(1, 3) == 1)
             {
                 zombieAnimation.Texture = Textures.ZombieDeath1;
-                Utils.CreateBlood(this, 65, graphicsDevice);
+                Utils.CreateBlood(this, 75, graphicsDevice);
             } 
             else
             {
                 zombieAnimation.Texture = Textures.ZombieDeath2;
-                Utils.CreateBlood(this, -65, graphicsDevice);
+                Utils.CreateBlood(this, -75, graphicsDevice);
             }
                 
-
             zombieAnimation.Rows = 3;
             zombieAnimation.Columns = 6;
             zombieAnimation.currentFrame = 0;
