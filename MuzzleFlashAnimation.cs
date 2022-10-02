@@ -29,21 +29,30 @@ namespace TopDownShooterFinal
                 num++;
                 if(Player.rifleEquiped ||Player.shotgunEquiped) spriteBatch.Draw(texture, destinationRectangle, null, Color.White, MathHelper.ToRadians((float)Player.playerAnimation.angle2), new Vector2(texture.Width / 3.8f, texture.Height / 1.9f), SpriteEffects.None, 1);
                 else spriteBatch.Draw(texture, destinationRectangle, null, Color.White, MathHelper.ToRadians((float)Player.playerAnimation.angle2), new Vector2(texture.Width / 3.8f, texture.Height / 2.2f), SpriteEffects.None, 1);
-                if (texture == Textures.MuzzleFlash1 && num == 2)
+                if (!Player.handgunEquiped)
                 {
-                    num = 0;
-                    texture = Textures.MuzzleFlash2;
+                    if (texture == Textures.MuzzleFlash1 && num == 2)
+                    {
+                        num = 0;
+                        texture = Textures.MuzzleFlash2;
+                    }
+                    else if (texture == Textures.MuzzleFlash2 && num == 2)
+                    {
+                        num = 0;
+                        texture = Textures.MuzzleFlash3;
+                    }
+                    else if (texture == Textures.MuzzleFlash3 && num == 2)
+                    {
+                        num = 0;
+                        texture = Textures.MuzzleFlash1;
+                        draw = false;
+                    }
                 }
-                else if (texture == Textures.MuzzleFlash2 && num == 2)
+                else
                 {
-                    num = 0;
-                    texture = Textures.MuzzleFlash3;
-                }
-                else if (texture == Textures.MuzzleFlash3 && num == 2)
-                {
-                    num = 0;
-                    texture = Textures.MuzzleFlash1;
                     draw = false;
+                    texture = Textures.MuzzleFlash1;
+                    num = 0;
                 }
             }
         }
