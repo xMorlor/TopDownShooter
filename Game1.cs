@@ -12,7 +12,17 @@ namespace TopDownShooterFinal
         private SpriteBatch _spriteBatch;
 
         Camera2D camera;
-        Shader shader;
+
+        /*
+         A * algo
+        https://www.youtube.com/watch?v=FflEY83irJo
+        https://www.youtube.com/watch?v=j3iNy36dKxY
+        https://www.youtube.com/watch?v=dlVwzKnV6FM
+
+         
+         
+         */
+        //checknout https://www.youtube.com/watch?v=aRInA1P4-fc a jeho kanál pro další užitečný tipy
 
         //cíl hry -> najít na mapě 10 itemů (jako ve slendermanovi), po zabití zombie se charguje bar a můžeš pak použít nápovědu na to, kde se itemy nachází, v multiplayeru padnou z enemy playera když ho zabiješ + jinak barevná šipka při nápovědě
         //výpočty úhlů ve funkcni v utils
@@ -71,7 +81,6 @@ namespace TopDownShooterFinal
             Utils.SetUpScreen(_graphics);
             
             camera = new Camera2D();
-            shader = new Shader(GraphicsDevice);
         }
 
         protected override void LoadContent()
@@ -130,7 +139,7 @@ namespace TopDownShooterFinal
             Manager.RemoveBlood();
             Utils.ScreenFlashOnHit();
             MuzzleFlashAnimation.Update();
-            shader.Update();
+
 
             camera.Follow();
         }
@@ -190,20 +199,14 @@ namespace TopDownShooterFinal
             DayNight.Draw(_spriteBatch);            //pak odstranit
             Player.Draw(_spriteBatch, gameTime); //aby byl poslední (kvůli vrstvám)
             MuzzleFlashAnimation.Draw(_spriteBatch);
-            shader.Draw(_spriteBatch);
+
             
             //zčervenání obrazovky při hitu hráče
             _spriteBatch.Draw(Textures._1x1, new Rectangle(-495, -280, Utils.screenWidth + 990, Utils.screenHeigth + 560), null, DayNight.flashColor, 0, Vector2.Zero, SpriteEffects.None, 1);
-
-            //_spriteBatch.DrawString(Textures.debug, Manager.bloodList.Count + "", new Vector2(400, 400), Color.White);
-            //_spriteBatch.DrawString(Textures.debug, Manager.tracks.Count + "", new Vector2(220, 220), Color.White);
-            //Manager.Test(_spriteBatch);
-            //debug
-            //_spriteBatch.Draw(Textures.exp, new Vector2(Player.position.X + 40, Player.position.Y + 35), Color.White);
-            //_spriteBatch.Draw(Textures.exp, Player.center, Color.White);
-            //_spriteBatch.Draw(Textures.exp, new Vector2(Utils.screenWidth / 2, Utils.screenHeigth / 2), Color.White);
+            
+            
             _spriteBatch.End();
-
+            
             _spriteBatch.Begin();
             WeaponIcons.Draw(_spriteBatch);
             _spriteBatch.End();

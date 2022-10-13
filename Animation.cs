@@ -27,6 +27,8 @@ namespace TopDownShooterFinal
         private int number = 0;
 
         public double angle2;
+        public float posX;
+        public float posY;
 
         //test
         List<Circle> circlesToDeleteAFter = new List<Circle>();
@@ -404,7 +406,6 @@ namespace TopDownShooterFinal
         {
             float dist = 0;
             bool con = true;
-
             collisionCircle = new Circle(originBullet + Player.position, 1);
             
             List<Circle> listOfCircles = new List<Circle>();
@@ -462,8 +463,6 @@ namespace TopDownShooterFinal
                 destinationRectangleLaser = new Rectangle((int)originBullet.X + (int)Player.position.X, (int)originBullet.Y + (int)Player.position.Y, (int)dist + 3, 1);
             }
         }
-
-
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location, GameTime gameTime)
         {
@@ -659,7 +658,6 @@ namespace TopDownShooterFinal
                     }
 
                     HandleLaser(posX, posY);
-
                     /*originLaser.X = (float)((Math.Cos(angle) * (Player.texture.Height / Rows) / 2) - (Math.Sin(angle) * 18));
                     originLaser.Y = (float)((Math.Sin(angle) * (Player.texture.Height / Rows) / 2) + (Math.Cos(angle) * 18));
                     originLaser.Normalize();
