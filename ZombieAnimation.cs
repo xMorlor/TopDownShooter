@@ -15,19 +15,14 @@ namespace TopDownShooterFinal
         public int Columns { get; set; }
         public int currentFrame;
         public int totalFrames;
-
-        //int alphaValue;
-        //int fadeIncrement;
-        //double fadeDelay;
         Color fadeColor;
         public bool fadeOut;
+        bool bFade;
 
         public ZombieAnimation(Texture2D texture, int rows, int columns)
         {
+            bFade = false;
             fadeOut = false;
-            //fadeDelay = 10;
-            //alphaValue = 1;
-            //fadeIncrement = 3;
             Texture = texture;
             Rows = rows;
             Columns = columns;
@@ -74,16 +69,34 @@ namespace TopDownShooterFinal
             }
             else
             {
-                //protože se to buguje (když se nastaví fade out true, tak nestíhá dojet animace
-                if (currentFrame < totalFrames - 2)
+                
+                if (!bFade)
                 {
-                    currentFrame++;
+                    foreach (var k in Manager.bloodList)
+                    {
+                        if (k.zombie == zombie && k.update == false && k.texture != Textures.BloodSmall)
+                        {
+                            bFade = true;
+                        }
+                    }
                 }
-                if (fadeColor.R > 0) fadeColor.R--;
-                if (fadeColor.G > 0) fadeColor.G--;
-                if (fadeColor.B > 0) fadeColor.B--;
-                if (fadeColor.A > 0) fadeColor.A--;
-                if (fadeColor == new Color(0, 0, 0, 0)) Manager.deadZombieBodiesToDelete.Add(zombie);
+                
+                if(fadeOut)
+                {
+                    //protože se to buguje (když se nastaví fade out true, tak nestíhá dojet animace
+                    if (currentFrame < totalFrames - 2)
+                    {
+                        currentFrame++;
+                    }
+                }
+                if (bFade)
+                {
+                    if (fadeColor.R > 0) fadeColor.R--;
+                    if (fadeColor.G > 0) fadeColor.G--;
+                    if (fadeColor.B > 0) fadeColor.B--;
+                    if (fadeColor.A > 0) fadeColor.A--;
+                    if (fadeColor == new Color(0, 0, 0, 0)) Manager.deadZombieBodiesToDelete.Add(zombie);
+                }
             }
         }
 

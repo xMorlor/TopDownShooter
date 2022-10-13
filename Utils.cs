@@ -242,7 +242,7 @@ namespace TopDownShooterFinal
 
                             if(k.health > 0)
                             {
-                                Blood b = new Blood(true, k.position, k, 0, graphicsDevice); //tady se doplňovat num na konci nemusí
+                                Blood b = new Blood(true, k.position, k, 0, graphicsDevice); //tady se doplňovat num na konci nemusí, proto 0
                                 Manager.bloodList.Add(b);
                             }
                         }
@@ -272,7 +272,7 @@ namespace TopDownShooterFinal
             }
         }
 
-        public static void CreateBulletHandgun(GameTime gameTime)//zkusit udělat private
+        public static void CreateBulletHandgun(GameTime gameTime)//udělat private kde to půjde
         {
             var angle = Player.playerAnimation.angle;
             Vector2 bulletOrigin = Player.playerAnimation.originBullet;

@@ -21,7 +21,7 @@ namespace TopDownShooterFinal
         public Texture2D texture;
         private Vector2 origin;
         private Rectangle destRectangle;
-        private Zombie zombie;
+        public Zombie zombie;
         private bool fadeOut, justHit;
         public bool update;
 
@@ -36,6 +36,7 @@ namespace TopDownShooterFinal
             rnd = new Random();
             randomNum = rnd.Next(1, 3);
             this.justHit = justHit;
+            if (justHit) update = false;
             randomAngle = rnd.Next(1, 361);
             this.position = position;
             color = DayNight.color;
@@ -81,7 +82,7 @@ namespace TopDownShooterFinal
                     colors1D[x].G = 0;
                     colors1D[x].B = 0;
                 }
-                //this.texture.SetData<Color>(this.colors1D);
+
                 int width = texture.Width;
                 int height = texture.Height;
                 texture = new Texture2D(graphicsDevice, width, height); 

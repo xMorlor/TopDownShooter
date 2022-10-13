@@ -13,12 +13,15 @@ namespace TopDownShooterFinal
 
         Camera2D camera;
 
+
+
+
         /*
          A * algo
         https://www.youtube.com/watch?v=FflEY83irJo
         https://www.youtube.com/watch?v=j3iNy36dKxY
         https://www.youtube.com/watch?v=dlVwzKnV6FM
-
+         
          
          
          */
@@ -52,16 +55,15 @@ namespace TopDownShooterFinal
         //zvuky
         //bullet náraz do objektu
         //gametime přidat do pohybu
-        //multiplayer, tiles, noc, drop ammunitionu při zabití enemy
+        //multiplayer, tiles, drop ammunitionu při zabití enemy
         //při nárazu bullet do něčeho jiskry, itemy různý
         //vlastní buttony, highscore tabulka (v multiplayeru)
         //empty chambers (od bullet na zemi) (fade všech po nějaký době)
         //světlo (lampy, světlo na zbrani)
         //stavění barikád
         //open world
-        //inventář
         //GameTime poštelovat pro zastavení hry
-        //multiplayer(drop itemů pro druhýho hráče,...) udělat možnost pvp i
+        //multiplayer pvp 
         //tiles
         //fade na konci hry
         //dialog na začátku hry se zombie (ikona), písmo se postupně píše na obrazovku (font je jako hodiny (to zelený))
@@ -151,7 +153,7 @@ namespace TopDownShooterFinal
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Gray); //pak odstranit až bude hotový tiles
+            GraphicsDevice.Clear(Color.Gray);
             
             switch (Manager.gameState)
             {
@@ -183,14 +185,8 @@ namespace TopDownShooterFinal
 
             _spriteBatch.Begin(transformMatrix: camera.Transform);
 
-            //flashnout když něco hitne playera (udělat, a pak udělat "fog of war" -> http://www.catalinzima.com/2010/07/my-technique-for-the-shader-based-dynamic-2d-shadows/)
-            
-            
 
-            //_spriteBatch.DrawString(Textures.debug, DayNight.color + "", new Vector2(800, 800), Color.Black);
-            
-            //_spriteBatch.Begin();
-            //tiles první (kvůli vrstvám)
+            //tiles první (kvůli vrstvám) -> pak vše ostatní -> pak shadows -> pak zdi a věci co dělaj stíny
             Manager.DrawTracks(_spriteBatch);
             Manager.DrawBlood(_spriteBatch);
             Manager.DrawDeadZombies(_spriteBatch);

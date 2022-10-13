@@ -10,7 +10,6 @@ namespace TopDownShooterFinal
     public class Camera2D
     {
         public Matrix Transform { get; private set; }
-        public Matrix TransformForShader { get; private set; }
 
         public void Follow()
         {
@@ -22,11 +21,6 @@ namespace TopDownShooterFinal
             var offset = Matrix.CreateTranslation(Utils.screenWidth / 2, Utils.screenHeigth / 2, 0);
 
             Transform = position + offset;
-
-            //odstranit pokud se nebude používat
-            /*var offsetForShader = Matrix.CreateTranslation(Utils.screenWidth / 2, Utils.screenHeigth / 2, 1);
-
-            TransformForShader = position + offsetForShader;*/
         }
     }
 }

@@ -190,7 +190,7 @@ namespace TopDownShooterFinal
             {
                 if (!Manager.deadZombieBodies.Contains(this))
                 {
-                    if(rnd1.Next(1, 4) == 1)
+                    if(rnd1.Next(1, 3) == 1)
                     {
                         //fade out
                         zombieAnimation.fadeOut = true;

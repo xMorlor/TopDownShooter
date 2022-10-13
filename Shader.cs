@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace TopDownShooterFinal
 {
     //internal class Shader
-    class Shader
+    static class Shader
     {
         //https://www.youtube.com/watch?v=SrhbYNlXbZk       SOLUTION
         
@@ -18,23 +18,16 @@ namespace TopDownShooterFinal
          
          
          */
-      
-
-
-
-      
-
-        public Shader(GraphicsDevice graphicsDevice)
+         
+          
+         
+         
+        public static void Update(Camera2D camera)
         {
             
         }
 
-        public void Update(Camera2D camera)
-        {
-            
-        }
-
-        public void Draw(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
+        public static void Draw(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
         {
             
         }
