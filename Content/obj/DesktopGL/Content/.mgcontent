@@ -31,6 +31,7 @@
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Shot3.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Shot4.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/shotgunMove2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/testTile.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/200x177.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/ball.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/ball2.png</File>
@@ -102,6 +103,7 @@
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Zombie/walk.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

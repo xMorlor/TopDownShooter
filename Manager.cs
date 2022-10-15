@@ -145,6 +145,7 @@ namespace TopDownShooterFinal
             allObjects.Clear();
             foreach (var k in tracks)
             {
+                //k.position = new Vector2((int)k.position.X, (int)k.position.Y);
                 allObjects.Add(k);
             }
             foreach (var k in zombieList)
@@ -157,12 +158,17 @@ namespace TopDownShooterFinal
             }
             foreach(var k in deadZombieBodies)
             {
+                //k.position = new Vector2((int)k.position.X, (int)k.position.Y);
                 allObjects.Add(k);
+
             }
             foreach(var k in bloodList)
             {
+                //k.position = new Vector2((int)k.position.X, (int)k.position.Y);
                 allObjects.Add(k);
             }
+
+            
         }
 
         public static void UpdateBullets(GameTime gameTime)

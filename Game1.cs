@@ -13,8 +13,15 @@ namespace TopDownShooterFinal
 
         Camera2D camera;
 
+        /*
+        MAP
+        https://www.gamedeveloper.com/programming/procedural-dungeon-generation-algorithm
 
+         
 
+         
+         */
+        //předělat cameru... místo hejbání všeho se hejbe jen player... kamera vycentrovaná na něj
 
         /*
          A * algo
@@ -50,7 +57,6 @@ namespace TopDownShooterFinal
 
 
         //vrstvy pro draw (jen jeden spritebatch begin a end)
-        //udělat ovládání na ovladač
         //shake obrazovky při výbuchu (udělat v camera2D)
         //zvuky
         //bullet náraz do objektu
@@ -81,7 +87,7 @@ namespace TopDownShooterFinal
             base.Initialize();
             
             Utils.SetUpScreen(_graphics);
-            
+
             camera = new Camera2D();
         }
 
@@ -142,7 +148,6 @@ namespace TopDownShooterFinal
             Utils.ScreenFlashOnHit();
             MuzzleFlashAnimation.Update();
 
-
             camera.Follow();
         }
 
@@ -185,7 +190,7 @@ namespace TopDownShooterFinal
 
             _spriteBatch.Begin(transformMatrix: camera.Transform);
 
-
+            
             //tiles první (kvůli vrstvám) -> pak vše ostatní -> pak shadows -> pak zdi a věci co dělaj stíny
             Manager.DrawTracks(_spriteBatch);
             Manager.DrawBlood(_spriteBatch);
@@ -199,7 +204,6 @@ namespace TopDownShooterFinal
             
             //zčervenání obrazovky při hitu hráče
             _spriteBatch.Draw(Textures._1x1, new Rectangle(-495, -280, Utils.screenWidth + 990, Utils.screenHeigth + 560), null, DayNight.flashColor, 0, Vector2.Zero, SpriteEffects.None, 1);
-            
             
             _spriteBatch.End();
             

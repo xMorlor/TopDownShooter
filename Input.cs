@@ -108,7 +108,7 @@ namespace TopDownShooterFinal
                         }
                     }
                 }
-                if (kstate.IsKeyDown(Keys.W) && kstate.IsKeyDown(Keys.D))
+                else if (kstate.IsKeyDown(Keys.W) && kstate.IsKeyDown(Keys.D))
                 {
                     foreach (var k in Manager.allObjects)
                     {
@@ -129,7 +129,7 @@ namespace TopDownShooterFinal
                         }
                     }
                 }
-                if (kstate.IsKeyDown(Keys.S) && kstate.IsKeyDown(Keys.A))
+                else if (kstate.IsKeyDown(Keys.S) && kstate.IsKeyDown(Keys.A))
                 {
                     foreach (var k in Manager.allObjects)
                     {
@@ -150,7 +150,7 @@ namespace TopDownShooterFinal
                         }
                     }
                 }
-                if (kstate.IsKeyDown(Keys.S) && kstate.IsKeyDown(Keys.D))
+                else if (kstate.IsKeyDown(Keys.S) && kstate.IsKeyDown(Keys.D))
                 {
                     foreach (var k in Manager.allObjects)
                     {
@@ -193,7 +193,7 @@ namespace TopDownShooterFinal
                         }
                     }
                 }
-                if (kstate.IsKeyDown(Keys.A))
+                else if (kstate.IsKeyDown(Keys.A))
                 {
                     Player.moving = true;
                     foreach (var k in Manager.allObjects)
@@ -212,7 +212,7 @@ namespace TopDownShooterFinal
                         }
                     }
                 }
-                if (kstate.IsKeyDown(Keys.S))
+                else if (kstate.IsKeyDown(Keys.S))
                 {
                     Player.moving = true;
                     foreach (var k in Manager.allObjects)
@@ -231,7 +231,7 @@ namespace TopDownShooterFinal
                         }
                     }
                 }
-                if (kstate.IsKeyDown(Keys.D))
+                else if (kstate.IsKeyDown(Keys.D))
                 {
                     Player.moving = true;
                     foreach (var k in Manager.allObjects)

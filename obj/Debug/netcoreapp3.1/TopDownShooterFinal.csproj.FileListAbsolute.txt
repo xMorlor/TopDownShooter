@@ -118,3 +118,4 @@ C:\Users\stepa\source\repos\TopDownShooterFinal\bin\Debug\netcoreapp3.1\Content\
 C:\Users\stepa\source\repos\TopDownShooterFinal\bin\Debug\netcoreapp3.1\Content\Textures\muzzleFlash1.xnb
 C:\Users\stepa\source\repos\TopDownShooterFinal\bin\Debug\netcoreapp3.1\Content\Textures\muzzleFlash2.xnb
 C:\Users\stepa\source\repos\TopDownShooterFinal\bin\Debug\netcoreapp3.1\Content\Textures\muzzleFlash3.xnb
+C:\Users\stepa\source\repos\TopDownShooterFinal\bin\Debug\netcoreapp3.1\Content\testTile.xnb

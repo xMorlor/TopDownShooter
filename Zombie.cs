@@ -396,7 +396,7 @@ namespace TopDownShooterFinal
         public void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(Textures.ball2, hitboxCircle.Center - new Vector2(25, 25), Color.White);
-            zombieAnimation.Draw(spriteBatch, position, angle);
+            zombieAnimation.Draw(spriteBatch, position, angle, this);
             //spriteBatch.DrawString(Textures.debug, Vector2.Distance(position, Player.position + Player.playerAnimation.originPlayer) + "", new Vector2(position.X + 50, position.Y + 50), Color.White);
             /*spriteBatch.DrawString(Textures.debug, running + "", new Vector2(position.X, position.Y + 60),Color.White);
             spriteBatch.DrawString(Textures.debug, walking + "", new Vector2(position.X, position.Y + 80), Color.White);

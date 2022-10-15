@@ -58,7 +58,7 @@ namespace TopDownShooterFinal
 
         public void Draw(SpriteBatch spriteBatch)
         {                                                         //otočená textura
-            spriteBatch.Draw(texture, destRectangle, null, color, angle - 270, new Vector2(texture.Width / 2, texture.Height / 2), SpriteEffects.None, 1);
+            spriteBatch.Draw(texture, position, null, color, angle - 270, new Vector2(texture.Width / 2, texture.Height / 2), 1, SpriteEffects.None, 1);
         }
     }
 }

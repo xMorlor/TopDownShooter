@@ -92,7 +92,7 @@ namespace TopDownShooterFinal
         public void Update()
         {
             if(!fadeOut)color = DayNight.color;
-            if (randomNum == 1 && !justHit)
+            /*if (randomNum == 1 && !justHit)
             {
                 destRectangle = new Rectangle((int)this.position.X, (int)this.position.Y, Textures.BloodMedium.Width, Textures.BloodMedium.Height);
             }
@@ -103,7 +103,7 @@ namespace TopDownShooterFinal
             else if (justHit)
             {
                 destRectangle = new Rectangle((int)this.position.X, (int)this.position.Y, Textures.BloodSmall.Width, Textures.BloodSmall.Height);
-            }
+            }*/
 
             if (zombie.zombieAnimation.fadeOut || texture == Textures.BloodSmall)
             {
@@ -182,7 +182,7 @@ namespace TopDownShooterFinal
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, destRectangle, null, color, randomAngle, origin, SpriteEffects.None, 1);
+            spriteBatch.Draw(texture, position, null, color, randomAngle, origin, 1, SpriteEffects.None, 1);
         }
     }
 }

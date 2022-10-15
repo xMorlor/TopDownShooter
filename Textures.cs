@@ -90,6 +90,8 @@ namespace TopDownShooterFinal
         public static Texture2D ball280;
         public static Texture2D _1x1;
 
+        public static Texture2D testTile;
+
         //zkusit pak všechny udělat takhle
         //public static Texture2D tex { get; private set;  }
 
@@ -183,6 +185,7 @@ namespace TopDownShooterFinal
             ball280 = manager.Load<Texture2D>("ball4");
             _1x1 = manager.Load<Texture2D>("1x1pixels");
 
+            testTile = manager.Load<Texture2D>("testTile");
             //playerKnifeAttack = manager.Load<Texture2D>("Textures\\melee_attack3");
         }
 
