@@ -21,7 +21,7 @@ namespace TopDownShooterFinal
         public Rectangle destinationRectangleLaser;
         Circle collisionCircle = new Circle(Player.position, 1); //tady jsou hodnoty jedno
 
-        
+
         public Circle meleeattackCircle;
 
         private int number = 0;
@@ -123,7 +123,7 @@ namespace TopDownShooterFinal
                 }
             }
 
-            else if(Player.texture == Textures.PlayerHandgunMove)
+            else if (Player.texture == Textures.PlayerHandgunMove)
             {
                 if (!reversed && currentFrame < totalFrames - 1)
                 {
@@ -146,7 +146,7 @@ namespace TopDownShooterFinal
                 }
             }
 
-            else if(Player.texture == Textures.PlayerHandgunMeleeattack)
+            else if (Player.texture == Textures.PlayerHandgunMeleeattack)
             {
                 currentFrame++;
                 if (currentFrame == totalFrames)
@@ -162,7 +162,7 @@ namespace TopDownShooterFinal
                 }
             }
 
-            else if(Player.texture == Textures.PlayerHandgunReload)
+            else if (Player.texture == Textures.PlayerHandgunReload)
             {
                 currentFrame++;
                 if (currentFrame == totalFrames)
@@ -197,7 +197,7 @@ namespace TopDownShooterFinal
                 }
             }
 
-            else if(Player.texture == Textures.PlayerRifleIdle)
+            else if (Player.texture == Textures.PlayerRifleIdle)
             {
                 if (!reversed && currentFrame < totalFrames - 1)
                 {
@@ -220,7 +220,7 @@ namespace TopDownShooterFinal
                 }
             }
 
-            else if(Player.texture == Textures.PlayerRifleMeleeattack)
+            else if (Player.texture == Textures.PlayerRifleMeleeattack)
             {
                 currentFrame++;
                 if (currentFrame == totalFrames)
@@ -236,7 +236,7 @@ namespace TopDownShooterFinal
                 }
             }
 
-            else if(Player.texture == Textures.PlayerRifleMove)
+            else if (Player.texture == Textures.PlayerRifleMove)
             {
                 currentFrame++;
                 if (currentFrame == totalFrames)
@@ -245,7 +245,7 @@ namespace TopDownShooterFinal
                 }
             }
 
-            else if(Player.texture == Textures.PlayerRifleReload)
+            else if (Player.texture == Textures.PlayerRifleReload)
             {
                 currentFrame++;
                 if (currentFrame == totalFrames)
@@ -266,15 +266,15 @@ namespace TopDownShooterFinal
 
             else if (Player.texture == Textures.PlayerRifleShoot)
             {
-                if(number == 0) currentFrame++;
+                if (number == 0) currentFrame++;
 
                 if ((currentFrame == totalFrames && number == 0) || (currentFrame == totalFrames - 1 && number != 0))
                 {
                     if (Input.holdingLeftButton && Player.rifleAmmoLoaded > 0)
                     {
-                        if(number == 0) currentFrame--;
+                        if (number == 0) currentFrame--;
                         number++;
-                        if(number == 3)
+                        if (number == 3)
                         {
                             Utils.MakePlayerRifleShoot(gameTime);
                             number = 0;
@@ -295,7 +295,7 @@ namespace TopDownShooterFinal
                 }
             }
 
-            else if(Player.texture == Textures.PlayerShotgunIdle)
+            else if (Player.texture == Textures.PlayerShotgunIdle)
             {
                 if (!reversed && currentFrame < totalFrames - 1)
                 {
@@ -378,28 +378,7 @@ namespace TopDownShooterFinal
                 }
             }
 
-            /*if(Player.texture == Textures.Player_handgun_idle)
-            {
-                currentFrame++;
-                if (currentFrame == totalFrames - 1)
-                {
-                    currentFrame = 0;
-                }
-            }*/
 
-            //currentFrame++;
-
-            /*if (currentFrame == totalFrames)
-            {
-                currentFrame = 0;
-            }*/
-
-
-
-            /*if(currentFrame == totalFrames - 1)
-            {
-                currentFrame = 0;
-            }*/
         }
 
         private void HandleLaser(float pX, float pY)
@@ -407,9 +386,9 @@ namespace TopDownShooterFinal
             float dist = 0;
             bool con = true;
             collisionCircle = new Circle(originBullet + Player.position, 1);
-            
+
             List<Circle> listOfCircles = new List<Circle>();
-            
+
             double radian2 = Math.Atan2((originBullet.Y + Player.position.Y - (Cursor.posY + pY * 40)), (originBullet.X + Player.position.X - (Cursor.posX + pX * 40)));
             float degrees = (float)(radian2 * 180 / Math.PI);
             float positionX = ((float)(Math.Cos(degrees / 360.0 * 2 * Math.PI) * 1000));
@@ -424,7 +403,7 @@ namespace TopDownShooterFinal
                 listOfCircles.Add(c);
             }
 
-            for(int i = 1; i <= listOfCircles.Count; i++)
+            for (int i = 1; i <= listOfCircles.Count; i++)
             {
                 listOfCircles[i - 1].Center.X += positionX * 0.99f * i;
                 listOfCircles[i - 1].Center.Y += positionY * 0.99f * i;
@@ -452,11 +431,7 @@ namespace TopDownShooterFinal
             if (con)
             {
                 destinationRectangleLaser = new Rectangle((int)originBullet.X + (int)Player.position.X, (int)originBullet.Y + (int)Player.position.Y, 2500, 1);
-                /*originLaser.X = (float)((Math.Cos(angle) * (Player.texture.Height / Rows) / 2) - (Math.Sin(angle) * 18));
-                originLaser.Y = (float)((Math.Sin(angle) * (Player.texture.Height / Rows) / 2) + (Math.Cos(angle) * 18));
-                originLaser.Normalize();
-                originLaser.Y -= 19;
-                originLaser.X -= 43;*/
+
             }
             else
             {
@@ -479,14 +454,11 @@ namespace TopDownShooterFinal
                 height = 284 / Rows;
             }
 
-            int numberX = (int)((Player.texture.Width / Columns) / 2);
-            int numberY = (int)((Player.texture.Height / Rows) / 2);
-
             if (Player.knifeEquiped)
             {
-                destinationRectanglePlayer = new Rectangle(954, 537, width, height);
+                destinationRectanglePlayer = new Rectangle((int)location.X, (int)location.Y, width, height);
 
-                destinationRectangleLaser = new Rectangle(destinationRectanglePlayer.X, destinationRectanglePlayer.Y, 1500, 1);
+                //destinationRectangleLaser = new Rectangle(destinationRectanglePlayer.X, destinationRectanglePlayer.Y, 1500, 1);
                 originPlayer = new Vector2(44, 35);
 
                 angle2 = angle;
@@ -500,11 +472,11 @@ namespace TopDownShooterFinal
 
                 originBullet.X = (float)((Math.Cos(angle) * (Player.texture.Height / Rows) / 2) - (Math.Sin(angle) * 18));
                 originBullet.Y = (float)((Math.Sin(angle) * (Player.texture.Height / Rows) / 2) + (Math.Cos(angle) * 20));
-                originBullet += originPlayer;
+                //originBullet += originPlayer;
             }
             else if (Player.handgunEquiped)
             {
-                destinationRectanglePlayer = new Rectangle(954, 537, width, height);
+                destinationRectanglePlayer = new Rectangle((int)location.X, (int)location.Y, width, height);
 
                 originPlayer = new Vector2(44, 35);
 
@@ -517,17 +489,17 @@ namespace TopDownShooterFinal
                 var diffVec = new Vector2(Cursor.posX + posX * 15, Cursor.posY + posY * 15) - diff;
                 angle = (float)Math.Atan2(diffVec.Y, diffVec.X);
 
-                if(Player.texture != Textures.PlayerHandgunMeleeattack)
+                if (Player.texture != Textures.PlayerHandgunMeleeattack)
                 {
                     originBullet.X = (float)((Math.Cos(angle) * (Player.texture.Height / Rows) / 2) - (Math.Sin(angle) * 18));
                     originBullet.Y = (float)((Math.Sin(angle) * (Player.texture.Height / Rows) / 2) + (Math.Cos(angle) * 20));
-                    originBullet += originPlayer;
+                    //originBullet += originPlayer;
                 }
                 else
                 {
                     originBullet.X = (float)((Math.Cos(angle) * (Player.texture.Height / Rows) / 2) - (Math.Sin(angle) * 30));
                     originBullet.Y = (float)((Math.Sin(angle) * (Player.texture.Height / Rows) / 2) + (Math.Cos(angle) * 20));
-                    originBullet += originPlayer;
+                    //originBullet += originPlayer;
                 }
 
                 HandleLaser(posX, posY);
@@ -535,27 +507,10 @@ namespace TopDownShooterFinal
             else if (Player.rifleEquiped)
             {
                 destinationRectanglePlayer = new Rectangle((int)location.X, (int)location.Y, width, height);
-                destinationRectanglePlayer.X += numberX;
-                destinationRectanglePlayer.Y += numberY;
-                destinationRectanglePlayer.X -= 10;
 
-                //destinationRectangleLaser = new Rectangle(destinationRectanglePlayer.X, destinationRectanglePlayer.Y, 1500, 1);
+                originPlayer = new Vector2(44, 35);
 
-                originPlayer = new Vector2((Player.texture.Width / Columns) / 2, (Player.texture.Height / Rows) / 2);
-                originPlayer.X -= 10;
-                //originPlayer = new Vector2(44, 35);
-
-                if (Player.texture == Textures.PlayerRifleMeleeattack)
-                {
-                    destinationRectanglePlayer.X -= 8;
-                    destinationRectanglePlayer.Y -= 26;
-                }
-                else if (Player.texture == Textures.PlayerRifleReload)
-                {
-                    destinationRectanglePlayer.X -= 1;
-                    destinationRectanglePlayer.Y -= 2;
-                }
-                else if (Player.texture == Textures.PlayerRifleMove)
+                if (Player.texture == Textures.PlayerRifleMove)
                 {
                     destinationRectanglePlayer.Y -= 1;
                 }
@@ -569,39 +524,35 @@ namespace TopDownShooterFinal
                 var diffVec = new Vector2(Cursor.posX + posX * 15, Cursor.posY + posY * 15) - diff;
                 angle = (float)Math.Atan2(diffVec.Y, diffVec.X);
 
-                if(Player.texture != Textures.PlayerRifleMeleeattack)
+                if (Player.texture != Textures.PlayerRifleMeleeattack)
                 {
                     originBullet.X = (float)((Math.Cos(angle) * 1.55 * (Player.texture.Height / Rows) / 2) - (Math.Sin(angle) * 18));
                     originBullet.Y = (float)((Math.Sin(angle) * 1.55 * (Player.texture.Height / Rows) / 2) + (Math.Cos(angle) * 20));
-                    originBullet += originPlayer;
+                    ///originBullet += originPlayer;
+                    /////TOHLE FIXNE ORIGIN BULLET
                 }
                 else
                 {
-                    originPlayer = new Vector2(44, 35);
+                    //originPlayer = new Vector2(44, 35);
                     originBullet.X = (float)((Math.Cos(angle) * 1.55 * (Player.texture.Height / Rows) / 2) - (Math.Sin(angle) * 30));
                     originBullet.Y = (float)((Math.Sin(angle) * 1.55 * (Player.texture.Height / Rows) / 2) + (Math.Cos(angle) * 20));
-                    originBullet += originPlayer;
+                    //originBullet += originPlayer;
                     originBullet.X -= posX * 2.8f;
                     originBullet.Y -= posY * 2.8f;
                     originPlayer = new Vector2((Player.texture.Width / Columns) / 2, (Player.texture.Height / Rows) / 2);
-                    originPlayer.X -= 10;
+                    originPlayer.X -= 8;
                 }
 
                 HandleLaser(posX, posY);
-                /*originLaser.X = (float)((Math.Cos(angle) * (Player.texture.Height / Rows) / 2) - (Math.Sin(angle) * 18));
-                originLaser.Y = (float)((Math.Sin(angle) * (Player.texture.Height / Rows) / 2) + (Math.Cos(angle) * 18));
-                originLaser.Normalize();
-                originLaser.Y -= 18;
-                originLaser.X -= 58;*/
             }
             else if (Player.shotgunEquiped)
             {
                 //musí to být na dva způsoby, kvůli třesu texture atlasu u shotgunMove
-                if(Player.texture == Textures.PlayerShotgunMove)
+                if (Player.texture == Textures.PlayerShotgunMove)
                 {
-                    destinationRectanglePlayer = new Rectangle(954, 537, width, height);
+                    destinationRectanglePlayer = new Rectangle((int)location.X, (int)location.Y, width, height);
                     originPlayer = new Vector2(44, 35);
-                    destinationRectangleLaser = new Rectangle(destinationRectanglePlayer.X, destinationRectanglePlayer.Y, 1500, 1);
+                    //destinationRectangleLaser = new Rectangle(destinationRectanglePlayer.X, destinationRectanglePlayer.Y, 1500, 1);
 
                     angle2 = angle;
                     angle2 = MathHelper.ToDegrees((float)angle2);
@@ -614,20 +565,16 @@ namespace TopDownShooterFinal
 
                     originBullet.X = (float)((Math.Cos(angle) * 1.55 * (284 / Rows) / 2) - (Math.Sin(angle) * 18));
                     originBullet.Y = (float)((Math.Sin(angle) * 1.55 * (284 / Rows) / 2) + (Math.Cos(angle) * 20));
-                    originBullet += originPlayer;
+                    //originBullet += originPlayer;
 
-                    /*originLaser.X = (float)((Math.Cos(angle) * (284 / Rows) / 2) - (Math.Sin(angle) * 18));
-                    originLaser.Y = (float)((Math.Sin(angle) * (284 / Rows) / 2) + (Math.Cos(angle) * 18));
-                    originLaser.Normalize();
-                    originLaser.Y -= 18;
-                    originLaser.X -= 58;*/
+
                     originPlayer = new Vector2(131, 100); //zaměření na střed
                 }
                 else
                 {
-                    destinationRectanglePlayer = new Rectangle(954, 537, width, height);
+                    destinationRectanglePlayer = new Rectangle((int)location.X, (int)location.Y, width, height);
                     originPlayer = new Vector2(44, 35);
-                    destinationRectangleLaser = new Rectangle(destinationRectanglePlayer.X, destinationRectanglePlayer.Y, 1500, 1);
+                    //destinationRectangleLaser = new Rectangle(destinationRectanglePlayer.X, destinationRectanglePlayer.Y, 1500, 1);
 
                     if (Player.texture == Textures.PlayerShotgunMeleeattack)
                     {
@@ -644,66 +591,30 @@ namespace TopDownShooterFinal
                     var diffVec = new Vector2(Cursor.posX + posX * 15, Cursor.posY + posY * 15) - diff;
                     angle = (float)Math.Atan2(diffVec.Y, diffVec.X);
 
-                    if(Player.texture != Textures.PlayerShotgunMeleeattack)
+
+
+                    if (Player.texture != Textures.PlayerShotgunMeleeattack)
                     {
                         originBullet.X = (float)((Math.Cos(angle) * 1.55 * (Player.texture.Height / Rows) / 2) - (Math.Sin(angle) * 18));
                         originBullet.Y = (float)((Math.Sin(angle) * 1.55 * (Player.texture.Height / Rows) / 2) + (Math.Cos(angle) * 20));
-                        originBullet += originPlayer;
+                        //originBullet += originPlayer;
                     }
                     else
                     {
                         originBullet.X = (float)((Math.Cos(angle) * (Player.texture.Height / Rows) / 2) - (Math.Sin(angle) * 30));
                         originBullet.Y = (float)((Math.Sin(angle) * (Player.texture.Height / Rows) / 2) + (Math.Cos(angle) * 20));
-                        originBullet += new Vector2(44, 35);
+                        //originBullet += new Vector2(44, 35);
                     }
 
                     HandleLaser(posX, posY);
-                    /*originLaser.X = (float)((Math.Cos(angle) * (Player.texture.Height / Rows) / 2) - (Math.Sin(angle) * 18));
-                    originLaser.Y = (float)((Math.Sin(angle) * (Player.texture.Height / Rows) / 2) + (Math.Cos(angle) * 18));
-                    originLaser.Normalize();
-                    originLaser.Y -= 18;
-                    originLaser.X -= 58;*/
-                }     
+
+                }
             }
 
             meleeattackCircle = new Circle(originBullet + Player.position, 1);
 
-            /*angle2 = angle;
-            angle2 = MathHelper.ToDegrees((float)angle2);
-            float posX = ((float)(Math.Cos(angle2 / 360.0 * 2 * Math.PI) * 13));
-            float posY = ((float)(Math.Sin(angle2 / 360.0 * 2 * Math.PI) * 13));
-
-            Vector2 diff = new Vector2(Player.position.X + originBullet.X, Player.position.Y + originBullet.Y);
-            var diffVec = new Vector2(Cursor.posX + posX * 15, Cursor.posY + posY * 15) - diff;
-            angle = (float)Math.Atan2(diffVec.Y, diffVec.X);
-            
-            originBullet.X = (float)((Math.Cos(angle) * (Player.texture.Height / Rows) / 2) - (Math.Sin(angle) * 18));
-            originBullet.Y = (float)((Math.Sin(angle) * (Player.texture.Height / Rows) / 2) + (Math.Cos(angle) * 18));
-            originBullet += originPlayer;
-
-            originLaser.X = (float)((Math.Cos(angle) * (Player.texture.Height / Rows) / 2) - (Math.Sin(angle) * 18));
-            originLaser.Y = (float)((Math.Sin(angle) * (Player.texture.Height / Rows) / 2) + (Math.Cos(angle) * 18));
-            originLaser.Normalize();
-            originLaser.Y -= 18;
-            originLaser.X -= 43;*/
-
-            /*foreach(var k in circlesToDeleteAFter)
-            {
-                spriteBatch.Draw(Textures.exp, k.Center, Color.White);
-            }*/
-
             spriteBatch.Draw(Texture, destinationRectanglePlayer, sourceRectangle, DayNight.color, (float)angle, originPlayer, SpriteEffects.None, 1);
-            
-            /*else if ()
-            {
-
-            }
-            else if ()
-            {
-
-            }*/
             //spriteBatch.Draw(Textures.exp, originBullet + Player.position, Color.White);
-            //spriteBatch.Draw(Textures.exp, originLaser + Player.position, Color.White);
 
 
             if ((Player.laserOn && !Player.handgunMeleeAttacking && Player.handgunEquiped && !Player.handgunReloading) || (Player.laserOn && Player.rifleEquiped && !Player.rifleMeleeAttacking && !Player.rifleReloading && !Player.moving) || (Player.laserOn && Player.shotgunEquiped && !Player.shotgunMeleeAttacking && !Player.shotgunReloading && !Player.moving))

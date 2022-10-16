@@ -43,11 +43,11 @@ namespace TopDownShooterFinal
         public static bool laserOn = false;
         public static bool moving = false;
 
-        public static Vector2 position = new Vector2(Utils.screenWidth / 2 - (Textures.PlayerKnifeIdle.Width / 4) / 2, Utils.screenHeigth / 2 - (Textures.PlayerKnifeIdle.Height / 3) / 2);
+        public static Vector2 position = new Vector2(Utils.screenWidth / 2, Utils.screenHeigth / 2);
         public static Texture2D texture = Textures.PlayerKnifeIdle;
 
-        public static Vector2 center = new Vector2(Utils.screenWidth / 2 - 11, position.Y + 35);
-        public static Circle hitboxCircle = new Circle(center, 35);
+        //public static Vector2 center = new Vector2(Utils.screenWidth / 2 - 11, position.Y + 35);
+        public static Circle hitboxCircle = new Circle(position, 35);
         public static Circle lureCircle;
 
         public static Animation playerAnimation = new Animation(texture, 3, 4);
@@ -63,12 +63,13 @@ namespace TopDownShooterFinal
         public static void Update(GameTime gameTime)
         {
             playerAnimation.Update(gameTime);
-            if (moving) 
+            hitboxCircle.Update(position);
+            if (moving)
             {
-                lureCircle = new Circle(center, 140);
-                
+                lureCircle = new Circle(position, 140);
+
                 numToNextTrackIndex--;
-                if(numToNextTrackIndex == 0)
+                if (numToNextTrackIndex == 0)
                 {
                     if (trackIndex < Manager.trackTextures.Count - 1)
                     {
@@ -82,15 +83,15 @@ namespace TopDownShooterFinal
                     Manager.tracks.Add(track);
                     SetNumToNextTrackIndex();
                 }
-            } 
+            }
             else
             {
-                lureCircle = new Circle(center, 75);
+                lureCircle = new Circle(position, 75);
                 trackIndex = 0;
             }
-            if(rifleShooting || handgunShooting || shotgunShooting) lureCircle = new Circle(center, 1200);
+            if (rifleShooting || handgunShooting || shotgunShooting) lureCircle = new Circle(position, 1200);
 
-            if(stamina < 100)
+            if (stamina < 100)
             {
                 staminaNum--;
                 if (staminaNum == 0)
@@ -99,7 +100,7 @@ namespace TopDownShooterFinal
                     staminaNum = 36;
                 }
             }
-           
+
         }
 
         private static void SetNumToNextTrackIndex()

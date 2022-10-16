@@ -9,18 +9,29 @@ namespace TopDownShooterFinal
 {
     public class Camera2D
     {
+        //source: https://www.youtube.com/watch?v=ceBCDKU_mNw
+
+
         public Matrix Transform { get; private set; }
 
-        public void Follow()
+        public void Follow(GameTime gameTime)
         {
             var position = Matrix.CreateTranslation(
-                -Cursor.position.X - (float)Math.Sin(Player.playerAnimation.angle) * 18.5f,
-                -Cursor.position.Y + (float)Math.Cos(Player.playerAnimation.angle) * 18.5f,
+                -Player.position.X - 5,
+                -Player.position.Y - 25,
                 0);
-            
-            var offset = Matrix.CreateTranslation(Utils.screenWidth / 2, Utils.screenHeigth / 2, 0);
 
-            Transform = position + offset;
+            var offset = Matrix.CreateTranslation(
+                Utils.screenWidth / 2,
+                Utils.screenHeigth / 2,
+                0);
+
+            var position2 = Matrix.CreateTranslation(
+               -Cursor.mousePosition.X / 3f + 326,
+               -Cursor.mousePosition.Y / 3f + 206,
+               0);
+
+            Transform = position * offset * position2;
         }
     }
 }

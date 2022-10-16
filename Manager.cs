@@ -35,7 +35,7 @@ namespace TopDownShooterFinal
 
         public static void RemoveBlood()
         {
-            foreach(var k in bloodToRemove)
+            foreach (var k in bloodToRemove)
             {
                 bloodList.Remove(k);
             }
@@ -44,22 +44,22 @@ namespace TopDownShooterFinal
 
         public static void UpdateBlood()
         {
-            foreach(var k in bloodList)
+            foreach (var k in bloodList)
             {
                 k.Update();
             }
             //opatření proti lagům
             List<Blood> mediumAndLarge = new List<Blood>();
-            foreach(var k in bloodList)
+            foreach (var k in bloodList)
             {
-                if(k.texture != Textures.BloodSmall && k.update)
+                if (k.texture != Textures.BloodSmall && k.update)
                 {
                     mediumAndLarge.Add(k);
                 }
             }
-            for(int i = 0; i < mediumAndLarge.Count; i++)
+            for (int i = 0; i < mediumAndLarge.Count; i++)
             {
-                if(i < 10) //tady snižovat nebo navyšovat (větší číslo -> tím víc to bude updatovat blood textur najednou)
+                if (i < 10) //tady snižovat nebo navyšovat (větší číslo -> tím víc to bude updatovat blood textur najednou)
                 {
                     mediumAndLarge[i].UpdateMediumAndLargeTexture();
                 }
@@ -68,7 +68,7 @@ namespace TopDownShooterFinal
 
         public static void DrawBlood(SpriteBatch spriteBatch)
         {
-            foreach(var k in bloodList)
+            foreach (var k in bloodList)
             {
                 k.Draw(spriteBatch);
             }
@@ -76,7 +76,7 @@ namespace TopDownShooterFinal
 
         public static void UpdateTracks()
         {
-            foreach(var k in tracks)
+            foreach (var k in tracks)
             {
                 k.Update();
             }
@@ -84,7 +84,7 @@ namespace TopDownShooterFinal
 
         public static void RemoveTracks()
         {
-            foreach(var k in tracksToDelete)
+            foreach (var k in tracksToDelete)
             {
                 tracks.Remove(k);
             }
@@ -101,7 +101,7 @@ namespace TopDownShooterFinal
 
         public static void DrawDeadZombies(SpriteBatch spriteBatch)
         {
-            foreach(var k in deadZombieBodies)
+            foreach (var k in deadZombieBodies)
             {
                 k.Draw(spriteBatch);
             }
@@ -109,7 +109,7 @@ namespace TopDownShooterFinal
 
         public static void UpdateDeadZombies(GameTime gameTime, GraphicsDevice graphicsDevice)
         {
-            foreach(var k in deadZombieBodies)
+            foreach (var k in deadZombieBodies)
             {
                 k.Update(gameTime, 1, 1, graphicsDevice); //neni potřeba přiřadit číselné hodnoty
             }
@@ -133,7 +133,7 @@ namespace TopDownShooterFinal
 
         public static void DeleteZombieBodies()
         {
-            foreach(var k in deadZombieBodiesToDelete)
+            foreach (var k in deadZombieBodiesToDelete)
             {
                 deadZombieBodies.Remove(k);
             }
@@ -142,7 +142,7 @@ namespace TopDownShooterFinal
 
         public static void UpdateListOfAllObjects()
         {
-            allObjects.Clear();
+            /*allObjects.Clear();
             foreach (var k in tracks)
             {
                 //k.position = new Vector2((int)k.position.X, (int)k.position.Y);
@@ -152,28 +152,28 @@ namespace TopDownShooterFinal
             {
                 allObjects.Add(k);
             }
-            foreach(var k in bulletList)
+            foreach (var k in bulletList)
             {
                 allObjects.Add(k);
             }
-            foreach(var k in deadZombieBodies)
+            foreach (var k in deadZombieBodies)
             {
                 //k.position = new Vector2((int)k.position.X, (int)k.position.Y);
                 allObjects.Add(k);
 
             }
-            foreach(var k in bloodList)
+            foreach (var k in bloodList)
             {
                 //k.position = new Vector2((int)k.position.X, (int)k.position.Y);
                 allObjects.Add(k);
-            }
+            }*/
 
-            
+
         }
 
         public static void UpdateBullets(GameTime gameTime)
         {
-            foreach(var k in bulletList)
+            foreach (var k in bulletList)
             {
                 k.Update(gameTime);
             }
@@ -181,7 +181,7 @@ namespace TopDownShooterFinal
 
         public static void DrawBullets(SpriteBatch spriteBatch)
         {
-            foreach(var k in bulletList)
+            foreach (var k in bulletList)
             {
                 k.Draw(spriteBatch);
             }
@@ -189,9 +189,9 @@ namespace TopDownShooterFinal
 
         public static void DeleteBullets()
         {
-            if(bulletsToDelete.Count >= 1)
+            if (bulletsToDelete.Count >= 1)
             {
-                foreach(var k in bulletsToDelete)
+                foreach (var k in bulletsToDelete)
                 {
                     bulletList.Remove(k);
                 }
@@ -201,15 +201,15 @@ namespace TopDownShooterFinal
 
         public static void UpdateZombies(GameTime gameTime, GraphicsDevice graphicsDevice)
         {
-            foreach(var k in zombieList)
+            foreach (var k in zombieList)
             {
-                k.Update(gameTime, (int)Player.position.X + 40, (int)Player.position.Y + 35, graphicsDevice);
+                k.Update(gameTime, (int)Player.position.X, (int)Player.position.Y, graphicsDevice);
             }
         }
 
         public static void DrawZombies(SpriteBatch spriteBatch, GameTime gameTime)
         {
-            foreach(var k in zombieList)
+            foreach (var k in zombieList)
             {
                 k.Draw(spriteBatch);
             }
@@ -217,7 +217,7 @@ namespace TopDownShooterFinal
 
         public static void DeleteZombies()
         {
-            foreach(var k in zombiesToDelete)
+            foreach (var k in zombiesToDelete)
             {
                 zombieList.Remove(k);
             }
@@ -225,3 +225,4 @@ namespace TopDownShooterFinal
         }
     }
 }
+

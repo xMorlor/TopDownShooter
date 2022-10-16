@@ -12,7 +12,7 @@ namespace TopDownShooterFinal
         public static int screenWidth;
         public static int screenHeigth;
 
-        
+
 
         public static void SetUpTracks()
         {
@@ -70,11 +70,11 @@ namespace TopDownShooterFinal
         {
             if (Player.onHitFlash)
             {
-                if(DayNight.flashColor.R < 60 && !Player.rev)
+                if (DayNight.flashColor.R < 60 && !Player.rev)
                 {
                     DayNight.flashColor.R += 6;
                 }
-                if(DayNight.flashColor.R == 60 && !Player.rev)
+                if (DayNight.flashColor.R == 60 && !Player.rev)
                 {
                     Player.rev = true;
                 }
@@ -82,7 +82,7 @@ namespace TopDownShooterFinal
                 {
                     DayNight.flashColor.R -= 6;
                 }
-                if(Player.rev && DayNight.flashColor.R == 0)
+                if (Player.rev && DayNight.flashColor.R == 0)
                 {
                     Player.onHitFlash = false;
                     Player.rev = false;
@@ -100,7 +100,7 @@ namespace TopDownShooterFinal
                     {
                         k.health -= 30;
                         k.meleeAttacked = true;
-                        if(k.health > 0)
+                        if (k.health > 0)
                         {
                             Blood b = new Blood(true, k.position, k, 0, graphicsDevice);
                             Manager.bloodList.Add(b);
@@ -156,9 +156,9 @@ namespace TopDownShooterFinal
                     }
                 }
             }
-            if(!Player.knifeAttacking && !Player.handgunMeleeAttacking && !Player.rifleMeleeAttacking && !Player.shotgunMeleeAttacking)
+            if (!Player.knifeAttacking && !Player.handgunMeleeAttacking && !Player.rifleMeleeAttacking && !Player.shotgunMeleeAttacking)
             {
-                foreach(var k in Manager.zombieList)
+                foreach (var k in Manager.zombieList)
                 {
                     k.meleeAttacked = false;
                 }
@@ -209,11 +209,12 @@ namespace TopDownShooterFinal
 
         public static void CheckCollisionBetweenPlayerAndZombies(GameTime gameTime)
         {
-            foreach(var k in Manager.zombieList)
+            foreach (var k in Manager.zombieList)
             {
                 if (IntersectCircles(k.hitboxCircle, Player.hitboxCircle))
                 {
-                    k.direction = k.position - (Player.position + Player.playerAnimation.originPlayer);
+                    k.direction = k.position - Player.position;
+                    //k.direction = k.position - (Player.position + Player.playerAnimation.originPlayer);
                     k.position += k.direction * 0.0001f * (float)gameTime.ElapsedGameTime.TotalSeconds;//tady a dole upravovat
                     k.speed += 250000 * (k.direction / (k.direction.LengthSquared() + 1)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 }
@@ -222,11 +223,11 @@ namespace TopDownShooterFinal
 
         public static void CheckCollisionBetweenZombiesAndBullets(GraphicsDevice graphicsDevice)
         {
-            foreach(var k in Manager.zombieList)
+            foreach (var k in Manager.zombieList)
             {
-                foreach(var o in Manager.bulletList)
+                foreach (var o in Manager.bulletList)
                 {
-                    if(k.health > 0)
+                    if (k.health > 0)
                     {
                         if (IntersectCircles(k.hitboxCircle, o.hitboxCircle))
                         {
@@ -240,7 +241,7 @@ namespace TopDownShooterFinal
                             if (o.shotFromRifle) k.health -= 70;
                             else k.health -= 50;
 
-                            if(k.health > 0)
+                            if (k.health > 0)
                             {
                                 Blood b = new Blood(true, k.position, k, 0, graphicsDevice); //tady se doplňovat num na konci nemusí, proto 0
                                 Manager.bloodList.Add(b);
@@ -261,7 +262,7 @@ namespace TopDownShooterFinal
         {
             foreach (var k in Manager.zombieList)
             {
-                if(!k.lured)
+                if (!k.lured)
                 {
                     if (IntersectCircles(k.lureCircle, Player.lureCircle))
                     {
@@ -297,7 +298,7 @@ namespace TopDownShooterFinal
             angle = MathHelper.ToDegrees((float)angle);
 
             Vector2 pos = Player.position + Player.playerAnimation.originBullet;
-            
+
             Bullet bullet = new Bullet(pos, Textures.bul, angle, gameTime);
             Manager.bulletList.Add(bullet);
             Player.rifleAmmoLoaded--;
@@ -309,7 +310,7 @@ namespace TopDownShooterFinal
 
         public static void CreateBulletsShotgun(GameTime gameTime)//zkusit udělat private
         {
-            for(int i = 0; i < 8; i++)
+            for (int i = 0; i < 8; i++)
             {
                 var angle = Player.playerAnimation.angle;
                 angle = MathHelper.ToDegrees((float)angle);
@@ -321,7 +322,7 @@ namespace TopDownShooterFinal
 
                 Bullet bullet = new Bullet(pos, Textures.bul, angle, gameTime);
                 Manager.bulletList.Add(bullet);
-                
+
                 bullet.shotFromShotgun = true;
             }
             Player.shotgunAmmoLoaded--;

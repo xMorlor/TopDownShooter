@@ -11,7 +11,7 @@ namespace TopDownShooterFinal
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        Camera2D camera;
+        public static Camera2D camera;
 
         /*
         MAP
@@ -148,7 +148,7 @@ namespace TopDownShooterFinal
             Utils.ScreenFlashOnHit();
             MuzzleFlashAnimation.Update();
 
-            camera.Follow();
+            camera.Follow(gameTime);
         }
 
         void UpdateEndOfGame()
@@ -189,8 +189,8 @@ namespace TopDownShooterFinal
             
 
             _spriteBatch.Begin(transformMatrix: camera.Transform);
+            //_spriteBatch.Begin();
 
-            
             //tiles první (kvůli vrstvám) -> pak vše ostatní -> pak shadows -> pak zdi a věci co dělaj stíny
             Manager.DrawTracks(_spriteBatch);
             Manager.DrawBlood(_spriteBatch);
@@ -201,10 +201,10 @@ namespace TopDownShooterFinal
             Player.Draw(_spriteBatch, gameTime); //aby byl poslední (kvůli vrstvám)
             MuzzleFlashAnimation.Draw(_spriteBatch);
 
-            
+
             //zčervenání obrazovky při hitu hráče
-            _spriteBatch.Draw(Textures._1x1, new Rectangle(-495, -280, Utils.screenWidth + 990, Utils.screenHeigth + 560), null, DayNight.flashColor, 0, Vector2.Zero, SpriteEffects.None, 1);
-            
+            _spriteBatch.Draw(Textures._1x1, new Rectangle((int)Player.position.X - 1300, (int)Player.position.Y - 750, Utils.screenWidth + 1300, Utils.screenHeigth + 750), null, DayNight.flashColor, 0, Vector2.Zero, SpriteEffects.None, 1);
+
             _spriteBatch.End();
             
             _spriteBatch.Begin();

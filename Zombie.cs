@@ -55,7 +55,7 @@ namespace TopDownShooterFinal
             zombieAnimation = new ZombieAnimation(texture, 4, 8);
             numberToNextChangeOfBehavior = 900;
         }
-        
+
         public void Update(GameTime gameTime, int posX, int posY, GraphicsDevice graphicsDevice)
         {
             if (health < 1 && (zombieAnimation.Texture != Textures.ZombieDeath1 && zombieAnimation.Texture != Textures.ZombieDeath2))
@@ -68,7 +68,7 @@ namespace TopDownShooterFinal
             {
                 case true:
                     UpdateDeadZombie(gameTime);
-                    
+
                     break;
 
                 case false:
@@ -89,7 +89,7 @@ namespace TopDownShooterFinal
                     hitboxCircle.Center -= direction * 60;
                 }
 
-                if(Math.Abs(Math.Abs(position.X) - Math.Abs(hitboxCircle.Center.X)) > 1000)
+                if (Math.Abs(Math.Abs(position.X) - Math.Abs(hitboxCircle.Center.X)) > 1000)
                 {
                     zombieAnimation.fadeOut = true;
                 }
@@ -103,7 +103,7 @@ namespace TopDownShooterFinal
         private void UpdateLiveZombie(GameTime gameTime, int posX, int posY)
         {
             if (lured) //běh za hráčem
-            {                
+            {
                 radian = Math.Atan2((position.Y - posY), (position.X - posX));
                 angle = (radian * (180 / Math.PI) + 360) % 360;
                 direction = new Vector2((float)-Math.Cos(MathHelper.ToRadians((float)angle)), (float)-Math.Sin(MathHelper.ToRadians((float)angle)));
@@ -112,7 +112,8 @@ namespace TopDownShooterFinal
                 position += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 //speed = speed * 0.9f;
 
-                if(Vector2.Distance(position, Player.position + new Vector2(44, 35)) < 70 && !attacking)
+                //if (Vector2.Distance(position, Player.position + new Vector2(44, 35)) < 70 && !attacking)
+                if (Vector2.Distance(position, Player.position) < 70 && !attacking)
                 {
                     MakeZombieAttack();
                 }
@@ -121,9 +122,9 @@ namespace TopDownShooterFinal
             {
                 foreach (var k in Manager.zombieList)
                 {
-                    if(k != this)
+                    if (k != this)
                     {
-                        if(Utils.IntersectCircles(hitboxCircle, k.hitboxCircle))
+                        if (Utils.IntersectCircles(hitboxCircle, k.hitboxCircle))
                         {
                             position += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
@@ -142,7 +143,7 @@ namespace TopDownShooterFinal
                         //dodělat
                         if (behavior == NotLuredBehavior.eating && Manager.deadZombieBodies.Count > 0)
                         {
-                            
+
                             numberToNextChangeOfBehavior = 2700; //udělat random
                             if (behavior != NotLuredBehavior.idle) MakeZombieSaunterToDeadBody();
                         }
@@ -170,7 +171,7 @@ namespace TopDownShooterFinal
                     {
                         SaunterTodeadBodyUpdate(gameTime);
                     }
-                    else if(Utils.IntersectCircles(hitboxCircle, Manager.deadZombieBodies[indexToNearestBody].hitboxCircle) && zombieAnimation.Texture != Textures.ZombieEating)
+                    else if (Utils.IntersectCircles(hitboxCircle, Manager.deadZombieBodies[indexToNearestBody].hitboxCircle) && zombieAnimation.Texture != Textures.ZombieEating)
                     {
                         MakeZombieEat();
                     }
@@ -190,7 +191,7 @@ namespace TopDownShooterFinal
             {
                 if (!Manager.deadZombieBodies.Contains(this))
                 {
-                    if(rnd1.Next(1, 3) == 1)
+                    if (rnd1.Next(1, 3) == 1)
                     {
                         //fade out
                         zombieAnimation.fadeOut = true;
@@ -244,12 +245,12 @@ namespace TopDownShooterFinal
                         num++;
                     }
                 }
-                if(num < 2)
+                if (num < 2)
                 {
                     listOfBodies.Add(o);
                 }
             }
-            if(listOfBodies.Count == 0)
+            if (listOfBodies.Count == 0)
             {
                 behavior = NotLuredBehavior.idle;
                 MakeZombieIdle();
@@ -257,12 +258,12 @@ namespace TopDownShooterFinal
             else
             {
                 //https://stackoverflow.com/questions/21868842/xna-get-the-nearest-distance-between-a-object-and-a-list-of-objects
-                Zombie closestZombieBody = listOfBodies.OrderBy<Zombie, float> 
+                Zombie closestZombieBody = listOfBodies.OrderBy<Zombie, float>
                     (i => Vector2.Distance(i.position, position)).ToList<Zombie>()[0];
                 indexToNearestBody = Manager.deadZombieBodies.IndexOf(closestZombieBody);
             }
         }
-        
+
         private void MakeZombieSaunterToDeadBody()
         {
             movementSpeed = 80;
@@ -324,17 +325,17 @@ namespace TopDownShooterFinal
             isDead = true;
 
             Random random = new Random();
-            if(random.Next(1, 3) == 1)
+            if (random.Next(1, 3) == 1)
             {
                 zombieAnimation.Texture = Textures.ZombieDeath1;
                 Utils.CreateBlood(this, 75, graphicsDevice);
-            } 
+            }
             else
             {
                 zombieAnimation.Texture = Textures.ZombieDeath2;
                 Utils.CreateBlood(this, -75, graphicsDevice);
             }
-                
+
             zombieAnimation.Rows = 3;
             zombieAnimation.Columns = 6;
             zombieAnimation.currentFrame = 0;
@@ -369,7 +370,7 @@ namespace TopDownShooterFinal
         public void MakeZombieRunOrWalk()
         {
             Random rnd = new Random();
-            if(rnd.Next(1, 3) == 1)
+            if (rnd.Next(1, 3) == 1)
             {
                 //run
                 /*running = true;
