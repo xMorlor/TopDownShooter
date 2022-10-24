@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using System.Text;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -46,9 +48,9 @@ namespace TopDownShooterFinal
         public static Vector2 position = new Vector2(Utils.screenWidth / 2, Utils.screenHeigth / 2);
         public static Texture2D texture = Textures.PlayerKnifeIdle;
 
-        //public static Vector2 center = new Vector2(Utils.screenWidth / 2 - 11, position.Y + 35);
         public static Circle hitboxCircle = new Circle(position, 35);
         public static Circle lureCircle;
+        public static Rectangle hitboxRectangle = new Rectangle((int)position.X - 30, (int)position.Y - 30, 60, 60);
 
         public static Animation playerAnimation = new Animation(texture, 3, 4);
         public static int health = 100;
@@ -60,12 +62,31 @@ namespace TopDownShooterFinal
         public static int screenFlashNum = 0;
         public static bool rev = false;
 
+        private static double radian;
+        private static double playerAngle;
+        public static Vector2 direction;
+        public static Vector2 speed;
+
         public static void Update(GameTime gameTime)
         {
             playerAnimation.Update(gameTime);
             hitboxCircle.Update(position);
             if (moving)
             {
+                hitboxRectangle = new Rectangle((int)position.X - 30, (int)position.Y - 30, 60, 60);
+                
+                /*if (true)
+                {
+                    radian = Math.Atan2((position.Y - Cursor.mousePosition.Y), (position.X - Cursor.mousePosition.X));
+                    playerAngle = (radian * (180 / Math.PI) + 360) % 360;
+                    direction = new Vector2((float)-Math.Cos(MathHelper.ToRadians((float)playerAngle)), (float)-Math.Sin(MathHelper.ToRadians((float)playerAngle)));
+                    direction.Normalize();
+                    position += direction * 1 * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    //
+                    //
+                }*/
+
+
                 lureCircle = new Circle(position, 140);
 
                 numToNextTrackIndex--;
@@ -138,6 +159,7 @@ namespace TopDownShooterFinal
             {
                 spriteBatch.DrawString(Textures.debug, shotgunAmmoLoaded + " / " + shotgunAmmo, new Vector2(50, 50), Color.White);
             }
+            spriteBatch.DrawString(Textures.debug, speed + "", new Vector2(position.X + 100, position.Y + 100), Color.White);
             //spriteBatch.DrawString(Textures.debug, "health: " + health, new Vector2(550, 550), Color.White);
             //spriteBatch.Draw(Textures.exp, position + playerAnimation.originPlayer, Color.White);
             //spriteBatch.Draw(Textures.exp, center, Color.White);

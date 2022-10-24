@@ -16,12 +16,13 @@ namespace TopDownShooterFinal
         /*
         MAP
         https://www.gamedeveloper.com/programming/procedural-dungeon-generation-algorithm
-
+        
+        https://community.monogame.net/t/fast-tilemap/13363/4       <------------- UDĚLAT
          
-
-         
+        https://ansiware.com/tutorial-part-6-create-a-map-and-map-generator/
+        https://www.freecodecamp.org/news/how-to-make-your-own-procedural-dungeon-map-generator-using-the-random-walk-algorithm-e0085c8aa9a/
          */
-        //předělat cameru... místo hejbání všeho se hejbe jen player... kamera vycentrovaná na něj
+        
 
         /*
          A * algo
@@ -40,12 +41,13 @@ namespace TopDownShooterFinal
         //naučit se pointers
         //https://www.youtube.com/watch?v=USjZcfj8yxE
         //https://www.youtube.com/watch?v=HkdAHXoRtos
-
+        //pohyb vody
 
         /*
         ide "analyzovat" (vyzkoušet coco dělá)
          */
-        //celkově hru zrychlit
+        //player se v keři skryje
+        //celkově hru zrychlit, night vision
         //předělat child classy aby to bylo podle asteroidsV2 (víc fancy)
         //udělat všude private x public u proměných
         //ryhclost pohybu hráče a zombie podle povrchu
@@ -70,10 +72,8 @@ namespace TopDownShooterFinal
         //open world
         //GameTime poštelovat pro zastavení hry
         //multiplayer pvp 
-        //tiles
         //fade na konci hry
         //dialog na začátku hry se zombie (ikona), písmo se postupně píše na obrazovku (font je jako hodiny (to zelený))
-        //headshoty (one shot one kill do zombies)
 
         public Game1()
         {
@@ -97,6 +97,10 @@ namespace TopDownShooterFinal
 
             Textures.Load(this.Content);
             Utils.SetUpTracks();
+            Map.InitializeWater();
+            Map.InitializeGround();
+            Map.CreateHouse();
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -141,12 +145,27 @@ namespace TopDownShooterFinal
             if(!Player.onHitFlash) DayNight.Update();
             Manager.UpdateDeadZombies(gameTime, graphicsDevice);
             Manager.DeleteZombieBodies();
+
+            /*
+            If the users computer cannot finish a Update in the allotted frame slice how can you expect it to have any time left to draw. IsRunningSlowly is always being set here every frame so somehow it’s still drawing on emergency lifesupport.
+            https://community.monogame.net/t/lag-if-update-takes-longer-than-frametime/12054/5
+            */
+            /*if (!gameTime.IsRunningSlowly)
+            {
+                
+            }*/
             Manager.UpdateTracks();
             Manager.RemoveTracks();
+            /*if (!gameTime.IsRunningSlowly)
+            {
+                
+            }*/
             Manager.UpdateBlood();
             Manager.RemoveBlood();
             Utils.ScreenFlashOnHit();
             MuzzleFlashAnimation.Update();
+            Map.Update(gameTime);
+            Map.ChechCollisionBetweenPlayerAndObjectsAndWalls(gameTime);
 
             camera.Follow(gameTime);
         }
@@ -189,7 +208,9 @@ namespace TopDownShooterFinal
             
 
             _spriteBatch.Begin(transformMatrix: camera.Transform);
-            //_spriteBatch.Begin();
+
+
+            Map.Draw(_spriteBatch);
 
             //tiles první (kvůli vrstvám) -> pak vše ostatní -> pak shadows -> pak zdi a věci co dělaj stíny
             Manager.DrawTracks(_spriteBatch);
@@ -201,6 +222,8 @@ namespace TopDownShooterFinal
             Player.Draw(_spriteBatch, gameTime); //aby byl poslední (kvůli vrstvám)
             MuzzleFlashAnimation.Draw(_spriteBatch);
 
+            _spriteBatch.DrawString(Textures.debug, Player.position + "", Player.position, Color.White);
+            _spriteBatch.Draw(Textures.exp, Player.position, Color.White);
 
             //zčervenání obrazovky při hitu hráče
             _spriteBatch.Draw(Textures._1x1, new Rectangle((int)Player.position.X - 1300, (int)Player.position.Y - 750, Utils.screenWidth + 1300, Utils.screenHeigth + 750), null, DayNight.flashColor, 0, Vector2.Zero, SpriteEffects.None, 1);

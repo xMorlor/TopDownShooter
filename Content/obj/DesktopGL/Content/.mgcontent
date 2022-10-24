@@ -4,6 +4,12 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/../../../../Desktop/MonogameShooter/testTiles/resized/testtile1.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/../../../../Desktop/MonogameShooter/testTiles/resized/testtile2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/../../../../Desktop/MonogameShooter/testTiles/resized/testtile3.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/../../../../Desktop/MonogameShooter/testTiles/resized/testtile4.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/../../../../Desktop/MonogameShooter/testTiles/resized/testtile5.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/../../../../Desktop/MonogameShooter/testTiles/resized/testtile6.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/1x1pixels.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/ball3.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/ball4.png</File>
@@ -31,6 +37,18 @@
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Shot3.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Shot4.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/shotgunMove2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/test/1/testtile1.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/test/1/testtile2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/test/1/testtile3.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/test/1/testtile4.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/test/1/testtile5.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/test/1/testtile6.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/test/testtile1.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/test/testtile2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/test/testtile3.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/test/testtile4.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/test/testtile5.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/test/testtile6.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/testTile.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/200x177.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/ball.png</File>
@@ -71,6 +89,16 @@
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/shotgunReload.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/shotgunShoot.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/usedForBloodOnly.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/ground2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/ground3.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/ground4.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/ground5.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/ground6.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/ground7.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/ground8.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/ground9.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/testTile.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/water1.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run0.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run1.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/tracks/run10.png</File>
@@ -103,6 +131,34 @@
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Zombie/walk.png</File>
   </SourceFiles>
   <DestFiles>
+    <File>test/testtile1.png</File>
+    <File>test/testtile2.png</File>
+    <File>test/testtile3.png</File>
+    <File>test/testtile4.png</File>
+    <File>test/testtile5.png</File>
+    <File>test/testtile6.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -91,6 +91,25 @@ namespace TopDownShooterFinal
         public static Texture2D _1x1;
 
         public static Texture2D testTile;
+        //pak předělat jako ostatní
+        public static Texture2D tTile1;
+        public static Texture2D tTile2;
+        public static Texture2D tTile3;
+        public static Texture2D tTile4;
+        public static Texture2D tTile5;
+        public static Texture2D tTile6;
+
+        public static Texture2D groundTile1;
+        public static Texture2D groundTile2;
+        public static Texture2D groundTile3;
+        public static Texture2D groundTile4;
+        public static Texture2D groundTile5;
+        public static Texture2D groundTile6;
+        public static Texture2D groundTile7;
+        public static Texture2D groundTile8;
+        public static Texture2D groundTile9;
+
+        public static Texture2D waterTile1;
 
         //zkusit pak všechny udělat takhle
         //public static Texture2D tex { get; private set;  }
@@ -186,7 +205,25 @@ namespace TopDownShooterFinal
             _1x1 = manager.Load<Texture2D>("1x1pixels");
 
             testTile = manager.Load<Texture2D>("testTile");
-            //playerKnifeAttack = manager.Load<Texture2D>("Textures\\melee_attack3");
+
+            tTile1 = manager.Load<Texture2D>("test\\1\\testtile1");
+            tTile2 = manager.Load<Texture2D>("test\\1\\testtile2");
+            tTile3 = manager.Load<Texture2D>("test\\1\\testtile3");
+            tTile4 = manager.Load<Texture2D>("test\\1\\testtile4");
+            tTile5 = manager.Load<Texture2D>("test\\1\\testtile5");
+            tTile6 = manager.Load<Texture2D>("test\\1\\testtile6");
+
+            groundTile1 = manager.Load<Texture2D>("Tiles\\testTile");
+            groundTile2 = manager.Load<Texture2D>("Tiles\\ground2");
+            groundTile3 = manager.Load<Texture2D>("Tiles\\ground3");
+            groundTile4 = manager.Load<Texture2D>("Tiles\\ground4");
+            groundTile5 = manager.Load<Texture2D>("Tiles\\ground5");
+            groundTile6 = manager.Load<Texture2D>("Tiles\\ground6");
+            groundTile7 = manager.Load<Texture2D>("Tiles\\ground7");
+            groundTile8 = manager.Load<Texture2D>("Tiles\\ground8");
+            groundTile9 = manager.Load<Texture2D>("Tiles\\ground9");
+
+            waterTile1 = manager.Load<Texture2D>("Tiles\\water1");
         }
 
         public static Texture2D PlayerKnifeIdle { get { return playerKnifeIdle; } }

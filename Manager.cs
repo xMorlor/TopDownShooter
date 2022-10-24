@@ -59,7 +59,7 @@ namespace TopDownShooterFinal
             }
             for (int i = 0; i < mediumAndLarge.Count; i++)
             {
-                if (i < 10) //tady snižovat nebo navyšovat (větší číslo -> tím víc to bude updatovat blood textur najednou)
+                if (i < 5) //tady snižovat nebo navyšovat (větší číslo -> tím víc to bude updatovat blood textur najednou)
                 {
                     mediumAndLarge[i].UpdateMediumAndLargeTexture();
                 }
@@ -195,6 +195,7 @@ namespace TopDownShooterFinal
                 {
                     bulletList.Remove(k);
                 }
+                
                 bulletsToDelete.Clear();
             }
         }
