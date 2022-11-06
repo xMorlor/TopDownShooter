@@ -17,7 +17,7 @@ namespace TopDownShooterFinal
 
     class Zombie : MotherClass
     {
-        private int numberToNextChangeOfBehavior, indexToNearestBody;
+        private int numberToNextChangeOfBehavior, indexToNearestBody, updateSight;
         public int health;
         private float movementSpeed;
         private double radian;
@@ -31,9 +31,11 @@ namespace TopDownShooterFinal
         public Circle hitboxCircle, lureCircle;
         private bool isDead;
         public bool lured, attacking, running, walking, meleeAttacked;
+        bool sightIsBlocked;
 
         public Zombie()
         {
+            updateSight = 10;
             rnd1 = new Random();
             rnd2 = new Random();
             meleeAttacked = false;
@@ -102,7 +104,14 @@ namespace TopDownShooterFinal
 
         private void UpdateLiveZombie(GameTime gameTime, int posX, int posY)
         {
-            if (lured) //běh za hráčem
+            if (updateSight == 10)
+            {
+                updateSight = 0;
+                sightIsBlocked = SightIsBlocked();
+            }
+            else updateSight++;
+            
+            if (lured && !sightIsBlocked)
             {
                 radian = Math.Atan2((position.Y - posY), (position.X - posX));
                 angle = (radian * (180 / Math.PI) + 360) % 360;
@@ -112,11 +121,18 @@ namespace TopDownShooterFinal
                 position += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 //speed = speed * 0.9f;
 
-                //if (Vector2.Distance(position, Player.position + new Vector2(44, 35)) < 70 && !attacking)
                 if (Vector2.Distance(position, Player.position) < 70 && !attacking)
                 {
                     MakeZombieAttack();
                 }
+            }
+            else if (lured && sightIsBlocked)
+            {
+                /*
+                 dodělat
+                pak asi odstranit motherclassu
+                 
+                 */
             }
             else
             {
@@ -323,7 +339,6 @@ namespace TopDownShooterFinal
         public void MakeZombieDie(GraphicsDevice graphicsDevice)
         {
             isDead = true;
-
             Random random = new Random();
             if (random.Next(1, 3) == 1)
             {
@@ -335,7 +350,6 @@ namespace TopDownShooterFinal
                 zombieAnimation.Texture = Textures.ZombieDeath2;
                 Utils.CreateBlood(this, -75, graphicsDevice);
             }
-
             zombieAnimation.Rows = 3;
             zombieAnimation.Columns = 6;
             zombieAnimation.currentFrame = 0;
@@ -350,7 +364,6 @@ namespace TopDownShooterFinal
             zombieAnimation.Texture = Textures.ZombieRun;
             zombieAnimation.currentFrame = 0;
             zombieAnimation.totalFrames = 4 * 8;
-            //rnd = new Random();
             movementSpeed = rnd.Next(240, 251);
         }
 
@@ -363,7 +376,6 @@ namespace TopDownShooterFinal
             zombieAnimation.Texture = Textures.ZombieWalk;
             zombieAnimation.currentFrame = 0;
             zombieAnimation.totalFrames = 4 * 8;
-            //rnd = new Random();
             movementSpeed = rnd.Next(120, 141);
         }
 
@@ -372,32 +384,78 @@ namespace TopDownShooterFinal
             Random rnd = new Random();
             if (rnd.Next(1, 3) == 1)
             {
-                //run
-                /*running = true;
-                zombieAnimation.Columns = 8;
-                zombieAnimation.Rows = 4;
-                zombieAnimation.Texture = Textures.ZombieRun;
-                rnd = new Random();
-                movementSpeed = rnd.Next(240, 251);*/
                 MakeZombieRun();
             }
             else
             {
-                //walk
                 MakeZombieWalk();
-                /*walking = true;
-                zombieAnimation.Columns = 8;
-                zombieAnimation.Rows = 4;
-                zombieAnimation.Texture = Textures.ZombieWalk;
-                rnd = new Random();
-                movementSpeed = rnd.Next(120, 141);*/
             }
+        }
+
+        private bool SightIsBlocked()
+        {
+            bool condition = true;
+            Circle collisionCircle = new Circle(this.position, 1);
+
+            List<Circle> listOfCircles = new List<Circle>();
+            List<Rectangle> listOfRectangles = new List<Rectangle>();
+
+            double radian2 = Math.Atan2((position.Y - (Player.position.Y)), (position.X - (Player.position.X)));
+            float degrees = (float)(radian2 * 180 / Math.PI);
+            float positionX = ((float)(Math.Cos(degrees / 360.0 * 2 * Math.PI) * 1000));
+            float positionY = ((float)(Math.Sin(degrees / 360.0 * 2 * Math.PI) * 1000));
+
+            for (int i = 0; i < 200; i++)
+            {
+                collisionCircle.Center.X -= positionX;
+                collisionCircle.Center.Y -= positionY;
+
+                Circle c = new Circle(collisionCircle.Center, 1);
+                listOfCircles.Add(c);
+            }
+
+            for (int i = 1; i <= listOfCircles.Count; i++)
+            {
+                listOfCircles[i - 1].Center.X += positionX * 0.99f * i;
+                listOfCircles[i - 1].Center.Y += positionY * 0.99f * i;
+
+                listOfRectangles.Add(new Rectangle((int)listOfCircles[i - 1].Center.X, (int)listOfCircles[i - 1].Center.Y, 1, 1));
+            }
+
+            foreach (var k in listOfRectangles)
+            {
+                if (condition)
+                {
+                    if (k.Intersects(Player.hitboxRectangle))
+                    {
+                        return false;
+                    }
+                    foreach (var o in Map.drawList)
+                    {
+                        if (k.Intersects(o.hitboxRectangle1) || k.Intersects(o.hitboxRectangle2))
+                        {
+                            listOfRectangles = listOfRectangles.FindAll(i => listOfRectangles.IndexOf(i) < listOfRectangles.IndexOf(k));
+                            return true;
+                        }
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return false;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             //spriteBatch.Draw(Textures.ball2, hitboxCircle.Center - new Vector2(25, 25), Color.White);
             zombieAnimation.Draw(spriteBatch, position, angle, this);
+
+            /*for(int i = 0; i < listOfRectangles.Count; i++)
+            {
+                spriteBatch.Draw(Textures.exp, listOfRectangles[i].Location.ToVector2(), Color.White);
+            }*/
             //spriteBatch.DrawString(Textures.debug, Vector2.Distance(position, Player.position + Player.playerAnimation.originPlayer) + "", new Vector2(position.X + 50, position.Y + 50), Color.White);
             /*spriteBatch.DrawString(Textures.debug, running + "", new Vector2(position.X, position.Y + 60),Color.White);
             spriteBatch.DrawString(Textures.debug, walking + "", new Vector2(position.X, position.Y + 80), Color.White);

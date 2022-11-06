@@ -22,15 +22,16 @@ namespace TopDownShooterFinal
         https://ansiware.com/tutorial-part-6-create-a-map-and-map-generator/
         https://www.freecodecamp.org/news/how-to-make-your-own-procedural-dungeon-map-generator-using-the-random-walk-algorithm-e0085c8aa9a/
          */
-        
+
 
         /*
          A * algo
-        https://www.youtube.com/watch?v=FflEY83irJo
-        https://www.youtube.com/watch?v=j3iNy36dKxY
-        https://www.youtube.com/watch?v=dlVwzKnV6FM
-         
-         
+        https://dotnetcoretutorials.com/2020/07/25/a-search-pathfinding-algorithm-in-c/
+        https://gigi.nullneuron.net/gigilabs/a-pathfinding-example-in-c/
+        source
+        https://community.monogame.net/t/pathfinding-with-aabb-collision-detection/10237/5
+        https://gamedev.stackexchange.com/questions/58963/pathfinding-with-2d-non-grid-based-movement-over-uniform-terrain
+         ------------------> https://www.geeksforgeeks.org/a-search-algorithm/
          
          */
         //checknout https://www.youtube.com/watch?v=aRInA1P4-fc a jeho kanál pro další užitečný tipy
@@ -165,7 +166,7 @@ namespace TopDownShooterFinal
             Utils.ScreenFlashOnHit();
             MuzzleFlashAnimation.Update();
             Map.Update(gameTime);
-            Map.ChechCollisionBetweenPlayerAndObjectsAndWalls(gameTime);
+            
 
             camera.Follow(gameTime);
         }

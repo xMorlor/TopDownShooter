@@ -10,11 +10,9 @@ namespace TopDownShooterFinal
 {
     static class Map
     {
-        public static bool houseCreated = false;
-        public static List<Tile> house = new List<Tile>();
+        public static List<Tile> walls = new List<Tile>();
         private static List<Tile> allTiles = new List<Tile>();
         public static List<Tile> drawList;
-
 
         public static void CreateHouse()
         {
@@ -22,55 +20,50 @@ namespace TopDownShooterFinal
 
             Tile tile1 = new Tile(corePos, Textures.tTile1);
             allTiles.Add(tile1);
-            house.Add(tile1);
+            walls.Add(tile1);
 
             tile1.CreateHitboxRectangle1((int)corePos.X, (int)corePos.Y, 28, 356);
             tile1.CreateHitboxRectangle2((int)corePos.X, (int)corePos.Y, 89, 28);
 
             Tile tile2 = new Tile(new Vector2(corePos.X, corePos.Y + Textures.tTile1.Height), Textures.tTile5);
             allTiles.Add(tile2);
-            house.Add(tile2);
+            walls.Add(tile2);
 
             Tile tile3 = new Tile(new Vector2(tile2.position.X, tile2.position.Y + tile2.texture.Height), Textures.tTile5);
             allTiles.Add(tile3);
-            house.Add(tile3);
+            walls.Add(tile3);
 
             Tile tile4 = new Tile(new Vector2(tile3.position.X, tile3.position.Y + tile3.texture.Height), Textures.tTile4);
             allTiles.Add(tile4);
-            house.Add(tile4);
+            walls.Add(tile4);
             tile4.CreateHitboxRectangle2((int)tile4.position.X, (int)tile4.position.Y + 61, 89, 28);
 
             Tile tile5 = new Tile(new Vector2(tile1.position.X + 163, tile1.position.Y), Textures.tTile2);
             allTiles.Add(tile5);
-            house.Add(tile5);
+            walls.Add(tile5);
             tile5.CreateHitboxRectangle1((int)tile5.position.X, (int)tile5.position.Y, 89, 28);
             tile5.CreateHitboxRectangle2((int)tile5.position.X + 61, (int)tile5.position.Y, 28, 356);
 
             Tile tile6 = new Tile(new Vector2(corePos.X + 224, corePos.Y + 89), Textures.tTile5);
             allTiles.Add(tile6);
-            house.Add(tile6);
+            walls.Add(tile6);
 
             Tile tile7 = new Tile(new Vector2(corePos.X + 224, corePos.Y + 178), Textures.tTile5);
             allTiles.Add(tile7);
-            house.Add(tile7);
+            walls.Add(tile7);
 
             Tile tile8 = new Tile(new Vector2(corePos.X + 163, corePos.Y + 265), Textures.tTile3);
             allTiles.Add(tile8);
-            house.Add(tile8);
+            walls.Add(tile8);
             tile8.CreateHitboxRectangle2((int)tile8.position.X, (int)tile8.position.Y + 62, 89, 29);
-        }
-
-        public static void ChechCollisionBetweenPlayerAndObjectsAndWalls(GameTime gameTime)
-        {
-
         }
 
         public static bool CheckCollisionsWithWallsLeft(GameTime gameTime)
         {
             Rectangle hitboxRec = Player.hitboxRectangle;
-            hitboxRec.X -= (int)(176.78f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 1;
+            hitboxRec.X -= (int)(176.78f * 1.5f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 1;
 
-            foreach (var k in house)
+            foreach (var k in walls)
             {
                 if (hitboxRec.Intersects(k.hitboxRectangle1) || hitboxRec.Intersects(k.hitboxRectangle2))
                 {
@@ -83,8 +76,8 @@ namespace TopDownShooterFinal
         public static bool CheckCollisionsWithWallsRight(GameTime gameTime)
         {
             Rectangle hitboxRec = Player.hitboxRectangle;
-            hitboxRec.X += (int)(176.78f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 1;
-            foreach (var k in house)
+            hitboxRec.X += (int)(176.78f * 1.5f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 1;
+            foreach (var k in walls)
             {
                 if (hitboxRec.Intersects(k.hitboxRectangle1) || hitboxRec.Intersects(k.hitboxRectangle2))
                 {
@@ -97,9 +90,9 @@ namespace TopDownShooterFinal
         public static bool CheckCollisionsWithWallsTop(GameTime gameTime)
         {
             Rectangle hitboxRec = Player.hitboxRectangle;
-            hitboxRec.Y -= (int)(176.78f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 2;
+            hitboxRec.Y -= (int)(176.78f * 1.5f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 2;
 
-            foreach (var k in house)
+            foreach (var k in walls)
             {
                 if (hitboxRec.Intersects(k.hitboxRectangle1) || hitboxRec.Intersects(k.hitboxRectangle2))
                 {
@@ -112,9 +105,9 @@ namespace TopDownShooterFinal
         public static bool CheckCollisionsWithWallsBottom(GameTime gameTime)
         {
             Rectangle hitboxRec = Player.hitboxRectangle;
-            hitboxRec.Y += (int)(176.78f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 1;
+            hitboxRec.Y += (int)(176.78f * 1.5f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 1;
 
-            foreach (var k in house)
+            foreach (var k in walls)
             {
                 if (hitboxRec.Intersects(k.hitboxRectangle1) || hitboxRec.Intersects(k.hitboxRectangle2))
                 {
