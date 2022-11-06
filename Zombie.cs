@@ -223,6 +223,16 @@ namespace TopDownShooterFinal
             }
         }
 
+        private void FollowPath()
+        {
+
+        }
+        //30px tiles
+        private void MakePath()
+        {
+
+        }
+
         public void MakeZombieAttack()
         {
             movementSpeed = 80;
@@ -430,7 +440,7 @@ namespace TopDownShooterFinal
                     {
                         return false;
                     }
-                    foreach (var o in Map.drawList)
+                    foreach (var o in Map.drawListWalls)
                     {
                         if (k.Intersects(o.hitboxRectangle1) || k.Intersects(o.hitboxRectangle2))
                         {

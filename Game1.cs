@@ -43,7 +43,7 @@ namespace TopDownShooterFinal
         //https://www.youtube.com/watch?v=USjZcfj8yxE
         //https://www.youtube.com/watch?v=HkdAHXoRtos
         //pohyb vody
-
+        //různý baráky z různejch materiálů
         /*
         ide "analyzovat" (vyzkoušet coco dělá)
          */
@@ -58,7 +58,7 @@ namespace TopDownShooterFinal
         //udělat hodinky (asset někde najít)
         //vyskakovací oznámení pro hráče že jsou zombies pomalejší nebo rychlejší (záleží na hodinách)
 
-
+        //fixnout když zombie umře u zdi -> skrz zeď padne
         //vrstvy pro draw (jen jeden spritebatch begin a end)
         //shake obrazovky při výbuchu (udělat v camera2D)
         //zvuky
@@ -75,7 +75,8 @@ namespace TopDownShooterFinal
         //multiplayer pvp 
         //fade na konci hry
         //dialog na začátku hry se zombie (ikona), písmo se postupně píše na obrazovku (font je jako hodiny (to zelený))
-
+        //všude daynight color zkontrolovat kde má být
+      
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -100,8 +101,7 @@ namespace TopDownShooterFinal
             Utils.SetUpTracks();
             Map.InitializeWater();
             Map.InitializeGround();
-            Map.CreateHouse();
-            
+            Map.CreateHouses();
         }
 
         protected override void Update(GameTime gameTime)
@@ -211,7 +211,7 @@ namespace TopDownShooterFinal
             _spriteBatch.Begin(transformMatrix: camera.Transform);
 
 
-            Map.Draw(_spriteBatch);
+            Map.DrawGround(_spriteBatch);
 
             //tiles první (kvůli vrstvám) -> pak vše ostatní -> pak shadows -> pak zdi a věci co dělaj stíny
             Manager.DrawTracks(_spriteBatch);
@@ -225,7 +225,7 @@ namespace TopDownShooterFinal
 
             _spriteBatch.DrawString(Textures.debug, Player.position + "", Player.position, Color.White);
             _spriteBatch.Draw(Textures.exp, Player.position, Color.White);
-
+            Map.DrawWalls(_spriteBatch);
             //zčervenání obrazovky při hitu hráče
             _spriteBatch.Draw(Textures._1x1, new Rectangle((int)Player.position.X - 1300, (int)Player.position.Y - 750, Utils.screenWidth + 1300, Utils.screenHeigth + 750), null, DayNight.flashColor, 0, Vector2.Zero, SpriteEffects.None, 1);
 

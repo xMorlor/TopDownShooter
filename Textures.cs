@@ -111,6 +111,13 @@ namespace TopDownShooterFinal
 
         public static Texture2D waterTile1;
 
+
+        public static Texture2D wall1_139;
+        public static Texture2D wall2_139;
+        public static Texture2D wall3_139;
+        public static Texture2D wall4_139;
+        public static Texture2D wall5_139;
+        public static Texture2D wall6_139;
         //zkusit pak všechny udělat takhle
         //public static Texture2D tex { get; private set;  }
 
@@ -224,6 +231,15 @@ namespace TopDownShooterFinal
             groundTile9 = manager.Load<Texture2D>("Tiles\\ground9");
 
             waterTile1 = manager.Load<Texture2D>("Tiles\\water1");
+
+
+
+            wall1_139 = manager.Load<Texture2D>("test2_139\\testtile1");
+            wall2_139 = manager.Load<Texture2D>("test2_139\\testtile2");
+            wall3_139 = manager.Load<Texture2D>("test2_139\\testtile3");
+            wall4_139 = manager.Load<Texture2D>("test2_139\\testtile4");
+            wall5_139 = manager.Load<Texture2D>("test2_139\\testtile5");
+            wall6_139 = manager.Load<Texture2D>("test2_139\\testtile6");
         }
 
         public static Texture2D PlayerKnifeIdle { get { return playerKnifeIdle; } }
