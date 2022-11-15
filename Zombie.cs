@@ -5,6 +5,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Linq;
+using System.Net.Http.Headers;
+using Microsoft.VisualBasic;
 
 namespace TopDownShooterFinal
 {
@@ -32,6 +34,14 @@ namespace TopDownShooterFinal
         private bool isDead;
         public bool lured, attacking, running, walking, meleeAttacked;
         bool sightIsBlocked;
+
+        GridTile startTile = new GridTile();
+        GridTile endTile = new GridTile();
+        GridTile currentTile;
+        List<GridTile> pathList = new List<GridTile>();
+        List<GridTile> successors = new List<GridTile>();
+        List<GridTile> path = new List<GridTile>();
+        List<GridTile> pathTilesToDelete = new List<GridTile>();
 
         public Zombie()
         {
@@ -102,6 +112,8 @@ namespace TopDownShooterFinal
             }
         }
 
+        
+
         private void UpdateLiveZombie(GameTime gameTime, int posX, int posY)
         {
             if (updateSight == 10)
@@ -113,6 +125,8 @@ namespace TopDownShooterFinal
             
             if (lured && !sightIsBlocked)
             {
+                if (path.Count > 0) path.Clear();
+
                 radian = Math.Atan2((position.Y - posY), (position.X - posX));
                 angle = (radian * (180 / Math.PI) + 360) % 360;
                 direction = new Vector2((float)-Math.Cos(MathHelper.ToRadians((float)angle)), (float)-Math.Sin(MathHelper.ToRadians((float)angle)));
@@ -128,11 +142,9 @@ namespace TopDownShooterFinal
             }
             else if (lured && sightIsBlocked)
             {
-                /*
-                 dodělat
-                pak asi odstranit motherclassu
-                 
-                 */
+                if(path.Count <= 0) path = MakePath();
+
+                FollowPath(gameTime);
             }
             else
             {
@@ -156,7 +168,6 @@ namespace TopDownShooterFinal
 
                     if (behavior != behaviorBefore)
                     {
-                        //dodělat
                         if (behavior == NotLuredBehavior.eating && Manager.deadZombieBodies.Count > 0)
                         {
 
@@ -223,14 +234,410 @@ namespace TopDownShooterFinal
             }
         }
 
-        private void FollowPath()
+        private List<GridTile> MakePath()
         {
+            bool con1 = true;
+            bool con2 = true;
+            List<Vector2> nearestPositions = new List<Vector2>();
+            while (con1)
+            {
+                //pokud se budou zombie divně hýbat po začátku, tak to je chyba tady
+                for (int x = 0; x < 30; x++)
+                {
+                    for (int y = 0; y < 30; y++)
+                    {
+                        Vector2 v = new Vector2();
+                        v.X = (int)Player.position.X + x;
+                        v.Y = (int)Player.position.Y + y;
+                        if (v.X % 30 == 0 && v.Y % 30 == 0)
+                        {
+                            //nevim proč to nejde normálně
+                            Vector2 v1 = new Vector2();
+                            Vector2 v2 = new Vector2();
+                            Vector2 v3 = new Vector2();
+                            Vector2 v4 = new Vector2();
+                            Vector2 v5 = new Vector2();
+                            Vector2 v6 = new Vector2();
+                            Vector2 v7 = new Vector2();
+                            Vector2 v8 = new Vector2();
+                            Vector2 v9 = new Vector2();
 
+                            v1.X = (int)Player.position.X + x;
+                            v1.Y = (int)Player.position.Y + y;
+                            v2.X = (int)Player.position.X + x - 30;
+                            v2.Y = (int)Player.position.Y + y;
+                            v3.X = (int)Player.position.X + x;
+                            v3.Y = (int)Player.position.Y + y + 30;
+                            v4.X = (int)Player.position.X + x + 30;
+                            v4.Y = (int)Player.position.Y + y;
+                            v5.X = (int)Player.position.X + x + 30;
+                            v5.Y = (int)Player.position.Y + y + 30;
+                            v6.X = (int)Player.position.X + x;
+                            v6.Y = (int)Player.position.Y + y - 30;
+                            v7.X = (int)Player.position.X + x - 30;
+                            v7.Y = (int)Player.position.Y + y - 30;
+                            v8.X = (int)Player.position.X + x - 30;
+                            v8.Y = (int)Player.position.Y + y + 30;
+                            v9.X = (int)Player.position.X + x + 30;
+                            v9.Y = (int)Player.position.Y + y - 30;
+
+                            nearestPositions.Add(v1);
+                            nearestPositions.Add(v2);
+                            nearestPositions.Add(v3);
+                            nearestPositions.Add(v4);
+                            nearestPositions.Add(v5);
+                            nearestPositions.Add(v6);
+                            nearestPositions.Add(v7);
+                            nearestPositions.Add(v8);
+                            nearestPositions.Add(v9);
+                            con1 = false;
+                        }
+                    }
+                }
+            }
+            float min = float.MaxValue;
+            Vector2 nearest = Vector2.Zero;
+            foreach (var k in nearestPositions)
+            {
+                if(Vector2.Distance(k, Player.position) < min)
+                {
+                    min = Vector2.Distance(k, Player.position);
+                    nearest = k;
+                }
+            }
+            endTile = new GridTile();
+            endTile.position = nearest;
+            endTile.collisionRectangle = new Rectangle((int)endTile.position.X, (int)endTile.position.Y, 30, 30);
+            endTile.h = 0;
+            
+            nearestPositions = new List<Vector2>();
+            while (con2)
+            {
+                for (int x = 0; x < 30; x++)
+                {
+                    for (int y = 0; y < 30; y++)
+                    {
+                        Vector2 v = new Vector2();
+                        v.X = (int)position.X + x;
+                        v.Y = (int)position.Y + y;
+                        if (v.X % 30 == 0 && v.Y % 30 == 0)
+                        {
+                            Vector2 v1 = new Vector2();
+                            Vector2 v2 = new Vector2();
+                            Vector2 v3 = new Vector2();
+                            Vector2 v4 = new Vector2();
+                            Vector2 v5 = new Vector2();
+                            Vector2 v6 = new Vector2();
+                            Vector2 v7 = new Vector2();
+                            Vector2 v8 = new Vector2();
+                            Vector2 v9 = new Vector2();
+
+                            v1.X = (int)position.X + x;
+                            v1.Y = (int)position.Y + y;
+                            v2.X = (int)position.X + x - 30;
+                            v2.Y = (int)position.Y + y;
+                            v3.X = (int)position.X + x;
+                            v3.Y = (int)position.Y + y + 30;
+                            v4.X = (int)position.X + x + 30;
+                            v4.Y = (int)position.Y + y;
+                            v5.X = (int)position.X + x + 30;
+                            v5.Y = (int)position.Y + y + 30;
+                            v6.X = (int)position.X + x;
+                            v6.Y = (int)position.Y + y - 30;
+                            v7.X = (int)position.X + x - 30;
+                            v7.Y = (int)position.Y + y - 30;
+                            v8.X = (int)position.X + x - 30;
+                            v8.Y = (int)position.Y + y + 30;
+                            v9.X = (int)position.X + x + 30;
+                            v9.Y = (int)position.Y + y - 30;
+
+                            nearestPositions.Add(v1);
+                            nearestPositions.Add(v2);
+                            nearestPositions.Add(v3);
+                            nearestPositions.Add(v4);
+                            nearestPositions.Add(v5);
+                            nearestPositions.Add(v6);
+                            nearestPositions.Add(v7);
+                            nearestPositions.Add(v8);
+                            nearestPositions.Add(v9);
+                            con2 = false;
+                        }
+                    }
+                }
+            }
+            
+            List<GridTile> posibbleStartingLocations = new List<GridTile>();
+            foreach (var k in nearestPositions)
+            {
+                GridTile gridTile = new GridTile();
+                gridTile.position = k;
+                gridTile.h = (int)Math.Sqrt((gridTile.position.X - endTile.position.X) * (gridTile.position.X - endTile.position.X) + (gridTile.position.Y - endTile.position.Y) * (gridTile.position.Y - endTile.position.Y));
+                posibbleStartingLocations.Add(gridTile);
+            }
+            float minH = float.MaxValue;
+            foreach(var k in posibbleStartingLocations)
+            {
+                if(k.h < minH)
+                {
+                    minH = k.h;
+                    startTile = new GridTile();
+                    startTile.position = k.position;
+                    startTile.collisionRectangle = new Rectangle((int)startTile.position.X, (int)startTile.position.Y, 30, 30);
+                    startTile.h = Int32.MaxValue;
+                    currentTile = startTile;
+                }
+            }
+
+            currentTile.g = 0;
+            currentTile.h = (int)Math.Sqrt((currentTile.position.X - endTile.position.X) * (currentTile.position.X - endTile.position.X) + (currentTile.position.Y - endTile.position.Y) * (currentTile.position.Y - endTile.position.Y));
+            currentTile.f = currentTile.h;
+            List<GridTile> openList = new List<GridTile>();
+            List<GridTile> closedList = new List<GridTile>();
+
+            openList.Add(currentTile);
+            while (openList.Count > 0)
+            {
+                int smallest = Int32.MaxValue;
+                foreach (var k in openList)
+                {
+                    if (k.f < smallest)
+                    {
+                        smallest = k.f;
+                        currentTile = k;
+                    }
+                }
+                if (currentTile.collisionRectangle.Intersects(endTile.collisionRectangle))
+                {
+                    break;
+                }
+
+                closedList.Add(currentTile);
+                openList.Remove(currentTile);
+
+                successors = new List<GridTile>();
+
+                bool b1 = true;
+                bool b2 = true;
+                bool b3 = true;
+                bool b4 = true;//přejmenovat správně a vyhodit zbytečný
+                bool b5 = true;
+                bool b6 = true;
+                bool b7 = true;
+                bool b8 = true;
+
+                Rectangle rec1 = new Rectangle((int)currentTile.position.X - 30, (int)currentTile.position.Y - 30, 30, 30);
+                Rectangle rec2 = new Rectangle((int)currentTile.position.X, (int)currentTile.position.Y - 30, 30, 30);
+                Rectangle rec3 = new Rectangle((int)currentTile.position.X + 30, (int)currentTile.position.Y - 30, 30, 30);
+                Rectangle rec4 = new Rectangle((int)currentTile.position.X - 30, (int)currentTile.position.Y, 30, 30);
+                Rectangle rec5 = new Rectangle((int)currentTile.position.X + 30, (int)currentTile.position.Y, 30, 30);
+                Rectangle rec6 = new Rectangle((int)currentTile.position.X - 30, (int)currentTile.position.Y + 30, 30, 30);
+                Rectangle rec7 = new Rectangle((int)currentTile.position.X, (int)currentTile.position.Y + 30, 30, 30);
+                Rectangle rec8 = new Rectangle((int)currentTile.position.X + 30, (int)currentTile.position.Y + 30, 30, 30);
+
+                foreach (var k in Map.walls)
+                {
+                    if (k.hitboxRectangle1.Intersects(rec1) || k.hitboxRectangle2.Intersects(rec1))
+                    {
+                        b1 = false;
+                    }
+                    if (k.hitboxRectangle1.Intersects(rec2) || k.hitboxRectangle2.Intersects(rec2))
+                    {
+                        b2 = false;
+                    }
+                    if (k.hitboxRectangle1.Intersects(rec3) || k.hitboxRectangle2.Intersects(rec3))
+                    {
+                        b3 = false;
+                    }
+                    if (k.hitboxRectangle1.Intersects(rec4) || k.hitboxRectangle2.Intersects(rec4))
+                    {
+                        b4 = false;
+                    }
+                    if (k.hitboxRectangle1.Intersects(rec5) || k.hitboxRectangle2.Intersects(rec5))
+                    {
+                        b5 = false;
+                    }
+                    if (k.hitboxRectangle1.Intersects(rec6) || k.hitboxRectangle2.Intersects(rec6))
+                    {
+                        b6 = false;
+                    }
+                    if (k.hitboxRectangle1.Intersects(rec7) || k.hitboxRectangle2.Intersects(rec7))
+                    {
+                        b7 = false;
+                    }
+                    if (k.hitboxRectangle1.Intersects(rec8) || k.hitboxRectangle2.Intersects(rec8))
+                    {
+                        b8 = false;
+                    }
+                }
+                foreach (var k in openList)
+                {
+                    if (k.collisionRectangle.Intersects(rec1))
+                    {
+                        b1 = false;
+                    }
+                    if (k.collisionRectangle.Intersects(rec2))
+                    {
+                        b2 = false;
+                    }
+                    if (k.collisionRectangle.Intersects(rec3))
+                    {
+                        b3 = false;
+                    }
+                    if (k.collisionRectangle.Intersects(rec4))
+                    {
+                        b4 = false;
+                    }
+                    if (k.collisionRectangle.Intersects(rec5))
+                    {
+                        b5 = false;
+                    }
+                    if (k.collisionRectangle.Intersects(rec6))
+                    {
+                        b6 = false;
+                    }
+                    if (k.collisionRectangle.Intersects(rec7))
+                    {
+                        b7 = false;
+                    }
+                    if (k.collisionRectangle.Intersects(rec8))
+                    {
+                        b8 = false;
+                    }
+                }
+                foreach (var k in closedList)
+                {
+                    if (k.collisionRectangle.Intersects(rec1))
+                    {
+                        b1 = false;
+                    }
+                    if (k.collisionRectangle.Intersects(rec2))
+                    {
+                        b2 = false;
+                    }
+                    if (k.collisionRectangle.Intersects(rec3))
+                    {
+                        b3 = false;
+                    }
+                    if (k.collisionRectangle.Intersects(rec4))
+                    {
+                        b4 = false;
+                    }
+                    if (k.collisionRectangle.Intersects(rec5))
+                    {
+                        b5 = false;
+                    }
+                    if (k.collisionRectangle.Intersects(rec6))
+                    {
+                        b6 = false;
+                    }
+                    if (k.collisionRectangle.Intersects(rec7))
+                    {
+                        b7 = false;
+                    }
+                    if (k.collisionRectangle.Intersects(rec8))
+                    {
+                        b8 = false;
+                    }
+                }
+                if (b2)
+                {
+                    GridTile tile2 = new GridTile();
+                    tile2.position = new Vector2(currentTile.position.X, currentTile.position.Y - 30);
+                    tile2.h = (int)Math.Sqrt((tile2.position.X - endTile.position.X) * (tile2.position.X - endTile.position.X) + (tile2.position.Y - endTile.position.Y) * (tile2.position.Y - endTile.position.Y));
+                    tile2.collisionRectangle = new Rectangle((int)tile2.position.X, (int)tile2.position.Y, 30, 30);
+                    successors.Add(tile2);
+                }
+                if (b4)
+                {
+                    GridTile tile4 = new GridTile();
+                    tile4.position = new Vector2(currentTile.position.X - 30, currentTile.position.Y);
+                    tile4.h = (int)Math.Sqrt((tile4.position.X - endTile.position.X) * (tile4.position.X - endTile.position.X) + (tile4.position.Y - endTile.position.Y) * (tile4.position.Y - endTile.position.Y));
+                    tile4.collisionRectangle = new Rectangle((int)tile4.position.X, (int)tile4.position.Y, 30, 30);
+                    successors.Add(tile4);
+                }
+                if (b5)
+                {
+                    GridTile tile5 = new GridTile();
+                    tile5.position = new Vector2(currentTile.position.X + 30, currentTile.position.Y);
+                    tile5.h = (int)Math.Sqrt((tile5.position.X - endTile.position.X) * (tile5.position.X - endTile.position.X) + (tile5.position.Y - endTile.position.Y) * (tile5.position.Y - endTile.position.Y));
+                    tile5.collisionRectangle = new Rectangle((int)tile5.position.X, (int)tile5.position.Y, 30, 30);
+                    successors.Add(tile5);
+                }
+                if (b7)
+                {
+                    GridTile tile7 = new GridTile();
+                    tile7.position = new Vector2(currentTile.position.X, currentTile.position.Y + 30);
+                    tile7.h = (int)Math.Sqrt((tile7.position.X - endTile.position.X) * (tile7.position.X - endTile.position.X) + (tile7.position.Y - endTile.position.Y) * (tile7.position.Y - endTile.position.Y));
+                    tile7.collisionRectangle = new Rectangle((int)tile7.position.X, (int)tile7.position.Y, 30, 30);
+                    successors.Add(tile7);
+                }
+
+                foreach (var y in successors)
+                {
+                    int tentativeG = currentTile.g + 1;
+                    if (tentativeG > y.g)
+                    {
+                        y.parent = currentTile;
+                        y.g = tentativeG;
+                        y.f = tentativeG + (int)Math.Sqrt((y.position.X - endTile.position.X) * (y.position.X - endTile.position.X) + (y.position.Y - endTile.position.Y) * (y.position.Y - endTile.position.Y));
+                        openList.Add(y);
+                    }
+                }
+            }
+            pathList = new List<GridTile>();
+
+            MakePathList(currentTile, pathList);
+
+            foreach(var k in pathList)
+            {
+                k.collisionCircle = new Circle(k.collisionRectangle.Center.ToVector2(), 1);
+            }
+
+            return pathList;
         }
-        //30px tiles
-        private void MakePath()
-        {
 
+        private void MakePathList(GridTile tile, List<GridTile> list)
+        {
+            if (tile.parent != null)
+            {
+                list.Add(tile);
+                MakePathList(tile.parent, list);
+            }
+        }
+
+        bool followNextPoint = true;
+        private void FollowPath(GameTime gameTime)
+        {
+            foreach(var k in path)
+            {
+                if (Utils.IntersectCircles(hitboxCircle, k.collisionCircle))
+                {
+                    pathTilesToDelete.Add(k);
+                    followNextPoint = true;
+                }
+            }
+            foreach(var k in pathTilesToDelete)
+            {
+                path.Remove(k);
+            }
+            pathTilesToDelete.Clear();
+
+            /*if(path.Count == 0)
+            {
+                path = MakePath();
+            }*/ //asi neni potřeba protože to už je v updatu
+
+            if (followNextPoint)
+            {
+                radian = Math.Atan2((position.Y - path[path.Count - 1].position.Y), (position.X - path[path.Count - 1].position.X));
+                angle = (radian * (180 / Math.PI) + 360) % 360;
+                direction = new Vector2((float)-Math.Cos(MathHelper.ToRadians((float)angle)), (float)-Math.Sin(MathHelper.ToRadians((float)angle)));
+                direction.Normalize();      
+
+                followNextPoint = false;
+            }
+            position += direction * movementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            position += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         public void MakeZombieAttack()
@@ -461,6 +868,13 @@ namespace TopDownShooterFinal
         {
             //spriteBatch.Draw(Textures.ball2, hitboxCircle.Center - new Vector2(25, 25), Color.White);
             zombieAnimation.Draw(spriteBatch, position, angle, this);
+            if(path.Count > 0)
+            {
+                foreach(var k in path)
+                {
+                    spriteBatch.Draw(Textures.exp, k.collisionRectangle.Center.ToVector2(), Color.Wheat);
+                }
+            }
 
             /*for(int i = 0; i < listOfRectangles.Count; i++)
             {

@@ -22,8 +22,56 @@ namespace TopDownShooterFinal
         https://ansiware.com/tutorial-part-6-create-a-map-and-map-generator/
         https://www.freecodecamp.org/news/how-to-make-your-own-procedural-dungeon-map-generator-using-the-random-walk-algorithm-e0085c8aa9a/
          */
+        /*
+         udělat smoother pro a*
+        aby nechodili jak po zubech
+         */
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //handle kolizi mezi zombie a zdma              //////////////////////////////////////////////////////////
+        //udělat "zdi" pro a* větší                     //////////////////////////////////////////////////////////
+        //při zombie wander a kolizi se zdí bude wander -= 180 stupňů          ///////////////////////////////////
+       
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
         /*
          A * algo
         https://dotnetcoretutorials.com/2020/07/25/a-search-pathfinding-algorithm-in-c/
@@ -38,7 +86,7 @@ namespace TopDownShooterFinal
 
         //cíl hry -> najít na mapě 10 itemů (jako ve slendermanovi), po zabití zombie se charguje bar a můžeš pak použít nápovědu na to, kde se itemy nachází, v multiplayeru padnou z enemy playera když ho zabiješ + jinak barevná šipka při nápovědě
         //výpočty úhlů ve funkcni v utils
-
+        //nápis s počtem nábojů někde jinde udělat pořádně
         //naučit se pointers
         //https://www.youtube.com/watch?v=USjZcfj8yxE
         //https://www.youtube.com/watch?v=HkdAHXoRtos
