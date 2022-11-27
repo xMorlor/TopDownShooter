@@ -23,11 +23,12 @@ namespace TopDownShooterFinal
         https://www.freecodecamp.org/news/how-to-make-your-own-procedural-dungeon-map-generator-using-the-random-walk-algorithm-e0085c8aa9a/
          */
         /*
-         udělat smoother pro a*
-        aby nechodili jak po zubech
+         udělat linear smoother pro a*
+        aby nechodili jak po zubech 
          */
 
 
+        
 
 
 
@@ -42,36 +43,31 @@ namespace TopDownShooterFinal
 
 
 
-
-
-        //handle kolizi mezi zombie a zdma              //////////////////////////////////////////////////////////
-        //udělat "zdi" pro a* větší                     //////////////////////////////////////////////////////////
+        
         //při zombie wander a kolizi se zdí bude wander -= 180 stupňů          ///////////////////////////////////
-       
-        
-        
+        //a* pro saunter to dead body
+        //handle kolize pro saunter
 
 
 
 
 
+        //zombie se zombie kolize a oba jdou po path -> trošku random rozsah odstrčení, bay nebyli stacknutý
+
+        //gridtile preference pro a*
 
 
 
 
+        //když player koliduje se zombie tak checknout jestli ho to náhodou nehodí do zdi -> když jo tak to s nim nehejbne
+        //to samý se zombie - zombie kolize
 
 
 
+        //když je celá zeď v shadow tak jí to nezobrazí
 
-
-
-
-
-
-
-
-
-        
+        //zombie úhel handle aby se postupě otočil, ne jak teď jak robot hned
+        //wallsfor pathfinder (map) vypočítat přesně
         /*
          A * algo
         https://dotnetcoretutorials.com/2020/07/25/a-search-pathfinding-algorithm-in-c/
@@ -96,7 +92,7 @@ namespace TopDownShooterFinal
         ide "analyzovat" (vyzkoušet coco dělá)
          */
         //player se v keři skryje
-        //celkově hru zrychlit, night vision
+        //night vision
         //předělat child classy aby to bylo podle asteroidsV2 (víc fancy)
         //udělat všude private x public u proměných
         //ryhclost pohybu hráče a zombie podle povrchu
@@ -118,7 +114,6 @@ namespace TopDownShooterFinal
         //empty chambers (od bullet na zemi) (fade všech po nějaký době)
         //světlo (lampy, světlo na zbrani)
         //stavění barikád
-        //open world
         //GameTime poštelovat pro zastavení hry
         //multiplayer pvp 
         //fade na konci hry
@@ -271,14 +266,29 @@ namespace TopDownShooterFinal
             Player.Draw(_spriteBatch, gameTime); //aby byl poslední (kvůli vrstvám)
             MuzzleFlashAnimation.Draw(_spriteBatch);
 
-            _spriteBatch.DrawString(Textures.debug, Player.position + "", Player.position, Color.White);
-            _spriteBatch.Draw(Textures.exp, Player.position, Color.White);
+            //_spriteBatch.DrawString(Textures.debug, Player.position + "", Player.position, Color.White);
+            //_spriteBatch.Draw(Textures.exp, Player.position, Color.White);
+            ///
+            /*foreach (var k in Map.wallsForPathFinder)
+            {
+                _spriteBatch.Draw(Textures._1x1, new Rectangle(k.X, k.Y, k.Width, k.Height), null, Color.Purple, 0, Vector2.Zero, SpriteEffects.None, 1);
+            }
+            _spriteBatch.Draw(Textures._1x1, new Rectangle((int)Player.position.X - 50, (int)Player.position.Y - 50, 100, 100), null, Color.Yellow, 0, Vector2.Zero, SpriteEffects.None, 1);*/
+            ///
             Map.DrawWalls(_spriteBatch);
             //zčervenání obrazovky při hitu hráče
             _spriteBatch.Draw(Textures._1x1, new Rectangle((int)Player.position.X - 1300, (int)Player.position.Y - 750, Utils.screenWidth + 1300, Utils.screenHeigth + 750), null, DayNight.flashColor, 0, Vector2.Zero, SpriteEffects.None, 1);
 
+
+
+            
+
+
             _spriteBatch.End();
             
+
+
+
             _spriteBatch.Begin();
             WeaponIcons.Draw(_spriteBatch);
             _spriteBatch.End();

@@ -91,7 +91,7 @@ namespace TopDownShooterFinal
                 Player.moving = true;
                 if (kstate.IsKeyDown(Keys.W) && kstate.IsKeyDown(Keys.A))
                 {
-                    if (!Map.CheckCollisionsWithWallsTop(gameTime))
+                    if (!Map.CheckCollisionsForPlayerWithWallsTop(gameTime))
                     {
                         if (Player.knifeEquiped)
                         {
@@ -110,7 +110,7 @@ namespace TopDownShooterFinal
                         }
                     }
 
-                    if (!Map.CheckCollisionsWithWallsLeft(gameTime))
+                    if (!Map.CheckCollisionsForPlayerWithWallsLeft(gameTime))
                     {
                         if (Player.knifeEquiped)
                         {
@@ -132,7 +132,7 @@ namespace TopDownShooterFinal
                 }
                 else if (kstate.IsKeyDown(Keys.W) && kstate.IsKeyDown(Keys.D))
                 {
-                    if (!Map.CheckCollisionsWithWallsTop(gameTime))
+                    if (!Map.CheckCollisionsForPlayerWithWallsTop(gameTime))
                     {
                         if (Player.knifeEquiped)
                         {
@@ -151,7 +151,7 @@ namespace TopDownShooterFinal
                         }
                     }
 
-                    if (!Map.CheckCollisionsWithWallsRight(gameTime))
+                    if (!Map.CheckCollisionsForPlayerWithWallsRight(gameTime))
                     {
                         if (Player.knifeEquiped)
                         {
@@ -173,7 +173,7 @@ namespace TopDownShooterFinal
                 }
                 else if (kstate.IsKeyDown(Keys.S) && kstate.IsKeyDown(Keys.A))
                 {
-                    if (!Map.CheckCollisionsWithWallsBottom(gameTime))
+                    if (!Map.CheckCollisionsForPlayerWithWallsBottom(gameTime))
                     {
                         if (Player.knifeEquiped)
                         {
@@ -192,7 +192,7 @@ namespace TopDownShooterFinal
                         }
                     }
 
-                    if (!Map.CheckCollisionsWithWallsLeft(gameTime))
+                    if (!Map.CheckCollisionsForPlayerWithWallsLeft(gameTime))
                     {
                         if (Player.knifeEquiped)
                         {
@@ -213,7 +213,7 @@ namespace TopDownShooterFinal
                 }
                 else if (kstate.IsKeyDown(Keys.S) && kstate.IsKeyDown(Keys.D))
                 {
-                    if (!Map.CheckCollisionsWithWallsBottom(gameTime))
+                    if (!Map.CheckCollisionsForPlayerWithWallsBottom(gameTime))
                     {
                         if (Player.knifeEquiped)
                         {
@@ -231,7 +231,7 @@ namespace TopDownShooterFinal
                         }
                     }
 
-                    if (!Map.CheckCollisionsWithWallsRight(gameTime))
+                    if (!Map.CheckCollisionsForPlayerWithWallsRight(gameTime))
                     {
                         if (Player.knifeEquiped)
                         {
@@ -256,7 +256,7 @@ namespace TopDownShooterFinal
             {
                 if (kstate.IsKeyDown(Keys.W))
                 {
-                    if (!Map.CheckCollisionsWithWallsTop(gameTime))
+                    if (!Map.CheckCollisionsForPlayerWithWallsTop(gameTime))
                     {
                         Player.moving = true;
                         if (Player.knifeEquiped)
@@ -275,7 +275,7 @@ namespace TopDownShooterFinal
                 }
                 else if (kstate.IsKeyDown(Keys.A))
                 {
-                    if (!Map.CheckCollisionsWithWallsLeft(gameTime))
+                    if (!Map.CheckCollisionsForPlayerWithWallsLeft(gameTime))
                     {
                         Player.moving = true;
                         if (Player.knifeEquiped)
@@ -295,7 +295,7 @@ namespace TopDownShooterFinal
                 }
                 else if (kstate.IsKeyDown(Keys.S))
                 {
-                    if (!Map.CheckCollisionsWithWallsBottom(gameTime))
+                    if (!Map.CheckCollisionsForPlayerWithWallsBottom(gameTime))
                     {
                         Player.moving = true;
                         if (Player.knifeEquiped)
@@ -315,7 +315,7 @@ namespace TopDownShooterFinal
                 }
                 else if (kstate.IsKeyDown(Keys.D))
                 {
-                    if (!Map.CheckCollisionsWithWallsRight(gameTime))
+                    if (!Map.CheckCollisionsForPlayerWithWallsRight(gameTime))
                     {
                         Player.moving = true;
                         if (Player.knifeEquiped)
@@ -534,7 +534,16 @@ namespace TopDownShooterFinal
                 for (int i = 0; i < 5; i++)
                 {
                     Zombie z = new Zombie();
-                    Manager.zombieList.Add(z);
+                    Rectangle rec = new Rectangle((int)z.position.X - 30, (int)z.position.Y - 30, 60, 60);
+                    bool b = true;
+                    foreach(var k in Map.wallsForPathFinder)
+                    {
+                        if (rec.Intersects(k))
+                        {
+                            b = false;
+                        }
+                    }
+                    if(b) Manager.zombieList.Add(z);
                 }
             }
 

@@ -37,7 +37,7 @@ namespace TopDownShooterFinal
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            if(hitboxRectangle1 != new Rectangle(0, 0, 0, 0))
+            /*if(hitboxRectangle1 != new Rectangle(0, 0, 0, 0))
             {
                 spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y), Color.White);
                 spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle1.Location.X + hitboxRectangle1.Width, hitboxRectangle1.Location.Y), Color.White);
@@ -49,11 +49,11 @@ namespace TopDownShooterFinal
                 //spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle1.Location.X + hitboxRectangle1.Width, hitboxRectangle1.Location.Y), Color.White);
                 //spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y + hitboxRectangle1.Height), Color.White);
                 //spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle1.Location.X + hitboxRectangle1.Width, hitboxRectangle1.Location.Y + hitboxRectangle1.Height), Color.White);
-                /*spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y) + "", new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y), Color.White);
+                spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y) + "", new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y), Color.White);
                 spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle1.Location.X + hitboxRectangle1.Width, hitboxRectangle1.Location.Y) + "", new Vector2(hitboxRectangle1.Location.X + hitboxRectangle1.Width, hitboxRectangle1.Location.Y), Color.White);
                 spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y + hitboxRectangle1.Height) + "", new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y + hitboxRectangle1.Height), Color.White);
                 spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle1.Location.X + hitboxRectangle1.Width, hitboxRectangle1.Location.Y + hitboxRectangle1.Height) + "", new Vector2(hitboxRectangle1.Location.X + hitboxRectangle1.Width, hitboxRectangle1.Location.Y + hitboxRectangle1.Height), Color.White);
-                */
+                
             }
             if (hitboxRectangle2 != new Rectangle(0, 0, 0, 0))
             {
@@ -66,7 +66,7 @@ namespace TopDownShooterFinal
                 //spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle2.Location.X + hitboxRectangle2.Width, hitboxRectangle2.Location.Y) + "", new Vector2(hitboxRectangle2.Location.X + hitboxRectangle2.Width, hitboxRectangle2.Location.Y), Color.White);
                 //spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle2.Location.X, hitboxRectangle2.Location.Y + hitboxRectangle2.Height) + "", new Vector2(hitboxRectangle2.Location.X, hitboxRectangle2.Location.Y + hitboxRectangle2.Height), Color.White);
                 //spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle2.Location.X + hitboxRectangle2.Width, hitboxRectangle2.Location.Y + hitboxRectangle2.Height) + "", new Vector2(hitboxRectangle2.Location.X + hitboxRectangle2.Width, hitboxRectangle2.Location.Y + hitboxRectangle2.Height), Color.White);
-            }
+            }*/
         }
     }
 }
