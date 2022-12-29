@@ -31,7 +31,7 @@ namespace TopDownShooterFinal
             totalFrames = Rows * Columns;
         }
 
-        public void Update(GameTime gameTime, Zombie zombie)
+        public void Update(Zombie zombie)
         {
             if (fadeOut == false)
             {
@@ -100,17 +100,23 @@ namespace TopDownShooterFinal
                 }
             }
         }
+        int width;
+        int height;
+        int row;
+        int column;
+        Rectangle sourceRectangle;
+        Vector2 origin;
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 location, double angle, Zombie zombie)
+        public void Draw(SpriteBatch spriteBatch, double angle, Zombie zombie)
         {
-            int width = Texture.Width / Columns;
-            int height = Texture.Height / Rows;
-            int row = currentFrame / Columns;
-            int column = currentFrame % Columns;
+            width = Texture.Width / Columns;
+            height = Texture.Height / Rows;
+            row = currentFrame / Columns;
+            column = currentFrame % Columns;
 
-            Rectangle sourceRectangle = new Rectangle(width * column, height * row, width, height);
+            sourceRectangle = new Rectangle(width * column, height * row, width, height);
 
-            Vector2 origin = new Vector2((Texture.Width / Columns) / 2, (Texture.Height / Rows) / 2);
+            origin = new Vector2((Texture.Width / Columns) / 2, (Texture.Height / Rows) / 2);
                                                                                                                             //+180 protože to bylo o půl kruh otočený
             if (!fadeOut) spriteBatch.Draw(Texture, zombie.position, sourceRectangle, DayNight.color, MathHelper.ToRadians((float)angle + 180), origin, 1, SpriteEffects.None, 1);
             else spriteBatch.Draw(Texture, zombie.position, sourceRectangle, fadeColor, MathHelper.ToRadians((float)angle + 180), origin, 1, SpriteEffects.None, 1);

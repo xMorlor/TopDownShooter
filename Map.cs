@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Color = Microsoft.Xna.Framework.Color;
 using Point = Microsoft.Xna.Framework.Point;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
@@ -20,6 +20,10 @@ namespace TopDownShooterFinal
         public static List<Tile> drawListWalls;
         private static List<Point> housePoints = new List<Point>();
 
+        public static List<Texture2D> groundCracks = new();
+
+        public static List<Rectangle> rectanglesAroundHouses = new List<Rectangle>();
+
         public static void CreateHouses()
         {
             Point point = new Point(1200, 600);
@@ -27,7 +31,7 @@ namespace TopDownShooterFinal
             CreateHouse(1200, 600);
             
             Random rnd = new Random();
-            for(int i = 0; i < 100; i++)
+            for(int i = 0; i < 1500; i++)
             {
                 bool condition = true;
                 while (condition)
@@ -65,64 +69,81 @@ namespace TopDownShooterFinal
             Vector2 corePos = new Vector2(p.X, p.Y);
 
             Tile tile1 = new Tile(corePos, Textures.tTile1);
-            //allTiles.Add(tile1);
+
             walls.Add(tile1);
             tile1.CreateHitboxRectangle1((int)corePos.X, (int)corePos.Y, 28, 356);
             tile1.CreateHitboxRectangle2((int)corePos.X, (int)corePos.Y, 89, 28);
 
-            wallsForPathFinder.Add(new Rectangle((int)tile1.position.X - 50, (int)tile1.position.Y - 50, 159, 100));
-            wallsForPathFinder.Add(new Rectangle((int)tile1.position.X - 50, (int)tile1.position.Y - 25, 125, 406));
-            wallsForPathFinder.Add(new Rectangle((int)tile1.position.X - 50, (int)tile1.position.Y + 306, 159, 100));
+            //wallsForPathFinder.Add(new Rectangle((int)tile1.position.X - 50, (int)tile1.position.Y - 50, 159, 100));
+            //wallsForPathFinder.Add(new Rectangle((int)tile1.position.X - 50, (int)tile1.position.Y - 25, 125, 406));
+            //wallsForPathFinder.Add(new Rectangle((int)tile1.position.X - 50, (int)tile1.position.Y + 306, 159, 100));
 
             Tile tile2 = new Tile(new Vector2(corePos.X, corePos.Y + Textures.tTile1.Height), Textures.tTile5);
-            //allTiles.Add(tile2);
             walls.Add(tile2);
 
             Tile tile3 = new Tile(new Vector2(tile2.position.X, tile2.position.Y + tile2.texture.Height), Textures.tTile5);
-            //allTiles.Add(tile3);
             walls.Add(tile3);
 
             Tile tile4 = new Tile(new Vector2(tile3.position.X, tile3.position.Y + tile3.texture.Height), Textures.tTile4);
-            //allTiles.Add(tile4);
             walls.Add(tile4);
             tile4.CreateHitboxRectangle2((int)tile4.position.X, (int)tile4.position.Y + 61, 89, 28);
 
             Tile tile5 = new Tile(new Vector2(tile1.position.X + 163, tile1.position.Y), Textures.tTile2);
-            //allTiles.Add(tile5);
             walls.Add(tile5);
             tile5.CreateHitboxRectangle1((int)tile5.position.X, (int)tile5.position.Y, 89, 28);
             tile5.CreateHitboxRectangle2((int)tile5.position.X + 61, (int)tile5.position.Y, 28, 356);
 
-            wallsForPathFinder.Add(new Rectangle((int)tile5.position.X - 20, (int)tile5.position.Y - 50, 159, 100));
-            wallsForPathFinder.Add(new Rectangle((int)tile5.position.X + 10, (int)tile5.position.Y - 25, 125, 436));
-            wallsForPathFinder.Add(new Rectangle((int)tile5.position.X - 20, (int)tile5.position.Y + 306, 159, 100));
+            //wallsForPathFinder.Add(new Rectangle((int)tile5.position.X - 20, (int)tile5.position.Y - 50, 159, 100));
+            //wallsForPathFinder.Add(new Rectangle((int)tile5.position.X + 10, (int)tile5.position.Y - 25, 125, 436));
+            //wallsForPathFinder.Add(new Rectangle((int)tile5.position.X - 20, (int)tile5.position.Y + 306, 159, 100));
 
             Tile tile6 = new Tile(new Vector2(corePos.X + 224, corePos.Y + 89), Textures.tTile5);
-            //allTiles.Add(tile6);
             walls.Add(tile6);
 
             Tile tile7 = new Tile(new Vector2(corePos.X + 224, corePos.Y + 178), Textures.tTile5);
-            //allTiles.Add(tile7);
             walls.Add(tile7);
 
             Tile tile8 = new Tile(new Vector2(corePos.X + 163, corePos.Y + 265), Textures.tTile3);
-            //allTiles.Add(tile8);
             walls.Add(tile8);
             tile8.CreateHitboxRectangle2((int)tile8.position.X, (int)tile8.position.Y + 62, 89, 29);
+
+            rectanglesAroundHouses.Add(new Rectangle((int)tile1.position.X - 120, (int)tile1.position.Y - 120, 120, 120));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile1.position.X - 120, (int)tile1.position.Y, 120, 80));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile1.position.X - 120, (int)tile1.position.Y + 80, 120, 80));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile1.position.X - 120, (int)tile1.position.Y + 160, 120, 80));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile1.position.X - 120, (int)tile1.position.Y + 240, 120, 80));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile1.position.X - 120, (int)tile1.position.Y + 320, 120, 156));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile1.position.X + 89, (int)tile1.position.Y - 120, 74, 120));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile1.position.X + 89, (int)tile1.position.Y, 74, 160));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile1.position.X + 89, (int)tile1.position.Y + 160, 74, 80));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile1.position.X + 89, (int)tile1.position.Y + 240, 74, 144));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile1.position.X, (int)tile1.position.Y - 120, 89, 120));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile5.position.X, (int)tile5.position.Y - 120, 89, 120));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile5.position.X + 89, (int)tile5.position.Y - 120, 120, 120));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile5.position.X + 89, (int)tile5.position.Y, 120, 80));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile5.position.X + 89, (int)tile5.position.Y + 80, 120, 80));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile5.position.X + 89, (int)tile5.position.Y + 160, 120, 80));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile5.position.X + 89, (int)tile5.position.Y + 240, 120, 80));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile5.position.X + 89, (int)tile5.position.Y + 320, 120, 156));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile4.position.X, (int)tile4.position.Y + 89, 89, 120));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile4.position.X + 89, (int)tile4.position.Y + 89, 74, 120));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile4.position.X + 163, (int)tile4.position.Y + 89, 89, 120));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile1.position.X + 28, (int)tile1.position.Y + 28, 61, 160));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile1.position.X + 28, (int)tile1.position.Y + 188, 61, 140));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile5.position.X, (int)tile5.position.Y + 28, 61, 160));
+            rectanglesAroundHouses.Add(new Rectangle((int)tile5.position.X, (int)tile5.position.Y + 188, 61, 140));
         }
 
-        /*
-         pak implementovat algo a optimalizovat pokud to bude dělat bordel
-         */
+        private static Rectangle playerHitboxRec;
 
         public static bool CheckCollisionsForPlayerWithWallsLeft(GameTime gameTime)
         {
-            Rectangle hitboxRec = Player.hitboxRectangle;
-            hitboxRec.X -= (int)(176.78f * 1.5f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 1;
+            playerHitboxRec = Player.hitboxRectangle;
+            playerHitboxRec.X -= (int)(176.78f * 1.5f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 1;
 
             foreach (var k in walls)
             {
-                if (hitboxRec.Intersects(k.hitboxRectangle1) || hitboxRec.Intersects(k.hitboxRectangle2))
+                if (playerHitboxRec.Intersects(k.hitboxRectangle1) || playerHitboxRec.Intersects(k.hitboxRectangle2))
                 {
                     return true;
                 }
@@ -132,11 +153,11 @@ namespace TopDownShooterFinal
 
         public static bool CheckCollisionsForPlayerWithWallsRight(GameTime gameTime)
         {
-            Rectangle hitboxRec = Player.hitboxRectangle;
-            hitboxRec.X += (int)(176.78f * 1.5f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 1;
+            playerHitboxRec = Player.hitboxRectangle;
+            playerHitboxRec.X += (int)(176.78f * 1.5f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 1;
             foreach (var k in walls)
             {
-                if (hitboxRec.Intersects(k.hitboxRectangle1) || hitboxRec.Intersects(k.hitboxRectangle2))
+                if (playerHitboxRec.Intersects(k.hitboxRectangle1) || playerHitboxRec.Intersects(k.hitboxRectangle2))
                 {
                     return true;
                 }
@@ -146,12 +167,12 @@ namespace TopDownShooterFinal
 
         public static bool CheckCollisionsForPlayerWithWallsTop(GameTime gameTime)
         {
-            Rectangle hitboxRec = Player.hitboxRectangle;
-            hitboxRec.Y -= (int)(176.78f * 1.5f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 2;
+            playerHitboxRec = Player.hitboxRectangle;
+            playerHitboxRec.Y -= (int)(176.78f * 1.5f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 2;
 
             foreach (var k in walls)
             {
-                if (hitboxRec.Intersects(k.hitboxRectangle1) || hitboxRec.Intersects(k.hitboxRectangle2))
+                if (playerHitboxRec.Intersects(k.hitboxRectangle1) || playerHitboxRec.Intersects(k.hitboxRectangle2))
                 {
                     return true;
                 }
@@ -161,12 +182,12 @@ namespace TopDownShooterFinal
 
         public static bool CheckCollisionsForPlayerWithWallsBottom(GameTime gameTime)
         {
-            Rectangle hitboxRec = Player.hitboxRectangle;
-            hitboxRec.Y += (int)(176.78f * 1.5f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 1;
+            playerHitboxRec = Player.hitboxRectangle;
+            playerHitboxRec.Y += (int)(176.78f * 1.5f * (float)gameTime.ElapsedGameTime.TotalSeconds) + 1;
 
             foreach (var k in walls)
             {
-                if (hitboxRec.Intersects(k.hitboxRectangle1) || hitboxRec.Intersects(k.hitboxRectangle2))
+                if (playerHitboxRec.Intersects(k.hitboxRectangle1) || playerHitboxRec.Intersects(k.hitboxRectangle2))
                 {
                     return true;
                 }
@@ -287,56 +308,173 @@ namespace TopDownShooterFinal
             //return false;
         }
 
+        private static void HandleGrassTiles(int x, int y)
+        {
+            if (x == -25000 && y == -25000)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.grass2);
+                allTiles.Add(tile);
+            }
+            else if (x == -25000 && y != -25000 && y != 24901)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.grass9);
+                allTiles.Add(tile);
+            }
+            else if (y == -25000 && x != -25000 && x != 24901)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.grass3);
+                allTiles.Add(tile);
+            }
+            else if (x == -25000 && y == 24901)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.grass8);
+                allTiles.Add(tile);
+            }
+            else if (x == 24901 && y == -25000)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.grass4);
+                allTiles.Add(tile);
+            }
+            else if (x == 24901 && y != -25000 && y != 24901)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.grass5);
+                allTiles.Add(tile);
+            }
+            else if (x == 24901 && y == 24901)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.grass6);
+                allTiles.Add(tile);
+            }
+            else if (y == 24901 && x != -25000 && x != 24901)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.grass7);
+                allTiles.Add(tile);
+            }
+            else
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.grassFull);
+                allTiles.Add(tile);
+            }
+        }
+
+        private static void HandleGroundTiles(int x, int y)
+        {
+            Random rnd = new Random();
+            if (x == -25000 && y == -25000)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.groundTile2);
+                allTiles.Add(tile);
+            }
+            else if (x == -25000 && y != -25000 && y != 24901)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.groundTile9);
+                allTiles.Add(tile);
+            }
+            else if (y == -25000 && x != -25000 && x != 24901)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.groundTile3);
+                allTiles.Add(tile);
+            }
+            else if (x == -25000 && y == 24901)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.groundTile8);
+                allTiles.Add(tile);
+            }
+            else if (x == 24901 && y == -25000)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.groundTile4);
+                allTiles.Add(tile);
+            }
+            else if (x == 24901 && y != -25000 && y != 24901)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.groundTile5);
+                allTiles.Add(tile);
+            }
+            else if (x == 24901 && y == 24901)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.groundTile6);
+                allTiles.Add(tile);
+            }
+            else if (y == 24901 && x != -25000 && x != 24901)
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.groundTile7);
+                allTiles.Add(tile);
+            }
+            else
+            {
+                Tile tile = new Tile(new Vector2(x, y), Textures.groundTile1);
+                allTiles.Add(tile);
+
+                if (rnd.Next(1, 15) == 1)
+                {
+                    Texture2D tex = groundCracks[rnd.Next(1, groundCracks.Count)];
+                    Tile t = new Tile(new Vector2(x + 70 - tex.Width / 2, y + 70 - tex.Height / 2), tex);
+                    t.SetAngle();
+                    allTiles.Add(t);
+                }
+            }
+        }
+
         public static void InitializeGround()
         {
+            List<Rectangle> zonesGrass = new List<Rectangle>();
+            List<Rectangle> zonesGround = new List<Rectangle>();
+            Random rnd = new Random();
+
+            for (int x = -25000; x < 25000; x += 10000)
+            {
+                for(int y = -25000; y < 25000; y += 10000)
+                {
+                    if(rnd.Next(1, 3) == 1)
+                    {
+                        zonesGrass.Add(new Rectangle(x, y, 12500, 12500));
+                    }
+                    else
+                    {
+                        zonesGround.Add(new Rectangle(x, y, 12500, 12500));
+                    }
+                }
+            }
+            
             for(int x = -25000; x < 25040; x += 139)
             {
                 for(int y = -25000; y < 25040; y += 139)
                 {
-                    if(x == -25000 && y == -25000)
+                    bool inZoneGrass = false;
+                    bool inZoneGround = false;
+                    foreach(var k in zonesGrass)
                     {
-                        Tile tile = new Tile(new Vector2(x, y), Textures.groundTile2);
-                        allTiles.Add(tile);
+                        if (new Rectangle(x, y, 1, 1).Intersects(k))
+                        {
+                            inZoneGrass = true;
+                        }
                     }
-                    else if (x == -25000 && y != -25000 && y != 24901)
+                    foreach(var k in zonesGround)
                     {
-                        Tile tile = new Tile(new Vector2(x, y), Textures.groundTile9);
-                        allTiles.Add(tile);
+                        if (new Rectangle(x, y, 1, 1).Intersects(k))
+                        {
+                            inZoneGround = true;
+                        }
                     }
-                    else if (y == -25000 && x != -25000 && x != 24901)
+                    
+                    if(inZoneGrass && inZoneGround)
                     {
-                        Tile tile = new Tile(new Vector2(x, y), Textures.groundTile3);
-                        allTiles.Add(tile);
+                        if(rnd.Next(1, 3) == 1)
+                        {
+                            HandleGroundTiles(x, y);
+                        }
+                        else
+                        {
+                            HandleGrassTiles(x, y);
+                        }
                     }
-                    else if(x == -25000 && y == 24901)
+                    else if (inZoneGround)
                     {
-                        Tile tile = new Tile(new Vector2(x, y), Textures.groundTile8);
-                        allTiles.Add(tile);
+                        HandleGroundTiles(x, y);
                     }
-                    else if(x == 24901 && y == -25000)
+                    else if (inZoneGrass)
                     {
-                        Tile tile = new Tile(new Vector2(x, y), Textures.groundTile4);
-                        allTiles.Add(tile);
-                    }
-                    else if (x == 24901 && y != -25000 && y != 24901)
-                    {
-                        Tile tile = new Tile(new Vector2(x, y), Textures.groundTile5);
-                        allTiles.Add(tile);
-                    }
-                    else if (x == 24901 && y == 24901)
-                    {
-                        Tile tile = new Tile(new Vector2(x, y), Textures.groundTile6);
-                        allTiles.Add(tile);
-                    }
-                    else if (y == 24901 && x != -25000 && x != 24901)
-                    {
-                        Tile tile = new Tile(new Vector2(x, y), Textures.groundTile7);
-                        allTiles.Add(tile);
-                    }
-                    else
-                    {
-                        Tile tile = new Tile(new Vector2(x, y), Textures.groundTile1);
-                        allTiles.Add(tile);
+                        HandleGrassTiles(x, y);
                     }
                 }
             }
@@ -353,7 +491,7 @@ namespace TopDownShooterFinal
                         Tile tile = new Tile(new Vector2(x, y), Textures.waterTile1);
                         allTiles.Add(tile);
                     }
-                    else if(x <= 24861)
+                    else if(x <= -24861)
                     {
                         Tile tile = new Tile(new Vector2(x, y), Textures.waterTile1);
                         allTiles.Add(tile);
@@ -393,7 +531,6 @@ namespace TopDownShooterFinal
 
         public static void DrawGround(SpriteBatch spriteBatch)
         {
-            
             foreach (var k in drawListGround)
             {
                 k.Draw(spriteBatch);

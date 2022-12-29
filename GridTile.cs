@@ -14,6 +14,8 @@ namespace TopDownShooterFinal
         public Rectangle collisionRectangle;
         public Circle collisionCircle;
 
+        public bool mapRec = false;
+
         public int f;
         public int g;
         public int h;

@@ -30,6 +30,7 @@ namespace TopDownShooterFinal
         public static List<Tracks> tracksToDelete = new List<Tracks>();
         public static List<Blood> bloodList = new List<Blood>();
         public static List<Blood> bloodToRemove = new List<Blood>();
+        private static List<Blood> mediumAndLarge = new List<Blood>();
 
         public static List<MotherClass> allObjects = new List<MotherClass>();
 
@@ -49,7 +50,7 @@ namespace TopDownShooterFinal
                 k.Update();
             }
             //opatření proti lagům
-            List<Blood> mediumAndLarge = new List<Blood>();
+            mediumAndLarge.Clear();
             foreach (var k in bloodList)
             {
                 if (k.texture != Textures.BloodSmall && k.update)

@@ -25,6 +25,7 @@ namespace TopDownShooterFinal
         private static readonly Random rnd2 = new Random();
         private static readonly Random rnd3 = new Random();
 
+        private static int checkKeysNum;
         private static bool wDown = false;
         private static bool aDown = false;
         private static bool sDown = false;
@@ -46,23 +47,23 @@ namespace TopDownShooterFinal
 
         private static bool CheckKeys()
         {
-            int num = 0;
-            if (wDown) num++;
-            if (aDown) num++;
-            if (sDown) num++;
-            if (dDown) num++;
+            checkKeysNum = 0;
+            if (wDown) checkKeysNum++;
+            if (aDown) checkKeysNum++;
+            if (sDown) checkKeysNum++;
+            if (dDown) checkKeysNum++;
 
-            if (num >= 2) return true;
+            if (checkKeysNum >= 2) return true;
             else return false;
         }
 
-        
+        private static KeyboardState kstate;
 
         public static void Update(GameTime gameTime)
         {
             Cursor.Update(gameTime);
             GetState();
-            var kstate = Keyboard.GetState();
+            kstate = Keyboard.GetState();
 
             if (kstate.IsKeyDown(Keys.W))
             {
@@ -96,17 +97,14 @@ namespace TopDownShooterFinal
                         if (Player.knifeEquiped)
                         {
                             Player.position.Y -= 176.78f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
                         }
                         else if (Player.handgunEquiped)
                         {
                             Player.position.Y -= 155.56f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
                         }
                         else if (Player.rifleEquiped || Player.shotgunEquiped)
                         {
                             Player.position.Y -= 113.14f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
                         }
                     }
 
@@ -114,21 +112,17 @@ namespace TopDownShooterFinal
                     {
                         if (Player.knifeEquiped)
                         {
-
                             Player.position.X -= 176.78f * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
                         else if (Player.handgunEquiped)
                         {
-
                             Player.position.X -= 155.56f * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
                         else if (Player.rifleEquiped || Player.shotgunEquiped)
                         {
-
                             Player.position.X -= 113.14f * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
                     }
-                    
                 }
                 else if (kstate.IsKeyDown(Keys.W) && kstate.IsKeyDown(Keys.D))
                 {
@@ -137,17 +131,14 @@ namespace TopDownShooterFinal
                         if (Player.knifeEquiped)
                         {
                             Player.position.Y -= 176.78f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
                         }
                         else if (Player.handgunEquiped)
                         {
                             Player.position.Y -= 155.56f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
                         }
                         else if (Player.rifleEquiped || Player.shotgunEquiped)
                         {
                             Player.position.Y -= 113.14f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
                         }
                     }
 
@@ -155,21 +146,17 @@ namespace TopDownShooterFinal
                     {
                         if (Player.knifeEquiped)
                         {
-
                             Player.position.X += 176.78f * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
                         else if (Player.handgunEquiped)
                         {
-
                             Player.position.X += 155.56f * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
                         else if (Player.rifleEquiped || Player.shotgunEquiped)
                         {
-
                             Player.position.X += 113.14f * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
                     }
-                    
                 }
                 else if (kstate.IsKeyDown(Keys.S) && kstate.IsKeyDown(Keys.A))
                 {
@@ -178,17 +165,14 @@ namespace TopDownShooterFinal
                         if (Player.knifeEquiped)
                         {
                             Player.position.Y += 176.78f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
                         }
                         else if (Player.handgunEquiped)
                         {
                             Player.position.Y += 155.56f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
                         }
                         else if (Player.rifleEquiped || Player.shotgunEquiped)
                         {
                             Player.position.Y += 113.14f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
                         }
                     }
 
@@ -196,17 +180,14 @@ namespace TopDownShooterFinal
                     {
                         if (Player.knifeEquiped)
                         {
-
                             Player.position.X -= 176.78f * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
                         else if (Player.handgunEquiped)
                         {
-
                             Player.position.X -= 155.56f * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
                         else if (Player.rifleEquiped || Player.shotgunEquiped)
                         {
-
                             Player.position.X -= 113.14f * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
                     }
@@ -218,12 +199,10 @@ namespace TopDownShooterFinal
                         if (Player.knifeEquiped)
                         {
                             Player.position.Y += 176.78f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                            
                         }
                         else if (Player.handgunEquiped)
                         {
                             Player.position.Y += 155.56f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                         
                         }
                         else if (Player.rifleEquiped || Player.shotgunEquiped)
                         {
@@ -235,21 +214,17 @@ namespace TopDownShooterFinal
                     {
                         if (Player.knifeEquiped)
                         {
-                            
                             Player.position.X += 176.78f * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
                         else if (Player.handgunEquiped)
                         {
-                         
                             Player.position.X += 155.56f * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
                         else if (Player.rifleEquiped || Player.shotgunEquiped)
                         {
-                            
                             Player.position.X += 113.14f * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
                     }
-                    
                 }
             }
             else
@@ -291,7 +266,6 @@ namespace TopDownShooterFinal
                             Player.position.X -= 160 * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
                     }
-                    
                 }
                 else if (kstate.IsKeyDown(Keys.S))
                 {
@@ -311,7 +285,6 @@ namespace TopDownShooterFinal
                             Player.position.Y += 160 * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
                     }
-                    
                 }
                 else if (kstate.IsKeyDown(Keys.D))
                 {
@@ -331,7 +304,6 @@ namespace TopDownShooterFinal
                             Player.position.X += 160 * (float)gameTime.ElapsedGameTime.TotalSeconds;
                         }
                     }
-                    
                 }
             }
 
@@ -536,9 +508,9 @@ namespace TopDownShooterFinal
                     Zombie z = new Zombie();
                     Rectangle rec = new Rectangle((int)z.position.X - 30, (int)z.position.Y - 30, 60, 60);
                     bool b = true;
-                    foreach(var k in Map.wallsForPathFinder)
+                    foreach(var k in Map.walls)
                     {
-                        if (rec.Intersects(k))
+                        if (rec.Intersects(k.hitboxRectangle1) || rec.Intersects(k.hitboxRectangle2))
                         {
                             b = false;
                         }

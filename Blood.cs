@@ -83,9 +83,7 @@ namespace TopDownShooterFinal
                     colors1D[x].B = 0;
                 }
 
-                int width = texture.Width;
-                int height = texture.Height;
-                texture = new Texture2D(graphicsDevice, width, height); 
+                texture = new Texture2D(graphicsDevice, texture.Width, texture.Height); 
             }
         }
 
@@ -103,6 +101,12 @@ namespace TopDownShooterFinal
             else if (justHit)
             {
                 destRectangle = new Rectangle((int)this.position.X, (int)this.position.Y, Textures.BloodSmall.Width, Textures.BloodSmall.Height);
+            }*/
+
+            //nouzový opatření
+            /*if(!Manager.zombieList.Contains(zombie) && !Manager.deadZombieBodies.Contains(zombie))
+            {
+                Manager.bloodToRemove.Add(this);
             }*/
 
             if (zombie.zombieAnimation.fadeOut || texture == Textures.BloodSmall)
@@ -125,6 +129,8 @@ namespace TopDownShooterFinal
                 }
             }
         }
+        int posX;
+        int posY;
 
         public void UpdateMediumAndLargeTexture()
         {
@@ -132,8 +138,8 @@ namespace TopDownShooterFinal
             {
                 colors1D = new Color[texture.Width * texture.Height];
                 texture.GetData<Color>(colors1D);
-                int posX = 0;
-                int posY = 0;
+                posX = 0;
+                posY = 0;
                 for (int x = 0; x < this.colors1D.Length; x++)
                 {
                     posX++;

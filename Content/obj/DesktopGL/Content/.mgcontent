@@ -14,6 +14,39 @@
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/ball3.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/ball4.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Fonts/debug.spritefont</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/1.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/10.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/11.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/12.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/13.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/14.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/15.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/16.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/17.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/18.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/19.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/20.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/21.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/22.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/23.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/24.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/25.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/26.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/27.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/28.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/29.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/3.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/30.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/31.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/32.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/33.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/4.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/5.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/6.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/7.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/8.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/GroundCracks/9.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/idle2.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/idle3.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/image.png</File>
@@ -101,6 +134,15 @@
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/shotgunReload.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/shotgunShoot.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Textures/usedForBloodOnly.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/grass2.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/grass3.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/grass4.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/grass5.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/grass6.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/grass7.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/grass8.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/grass9.png</File>
+    <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/grassFull.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/ground2.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/ground3.png</File>
     <File>C:/Users/stepa/source/repos/TopDownShooterFinal/Content/Tiles/ground4.png</File>
@@ -149,6 +191,48 @@
     <File>test/testtile4.png</File>
     <File>test/testtile5.png</File>
     <File>test/testtile6.png</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

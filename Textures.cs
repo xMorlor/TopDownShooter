@@ -109,7 +109,52 @@ namespace TopDownShooterFinal
         public static Texture2D groundTile8;
         public static Texture2D groundTile9;
 
+        public static Texture2D grass2 { get; private set; }
+        public static Texture2D grass3 { get; private set; }
+        public static Texture2D grass4 { get; private set; }
+        public static Texture2D grass5 { get; private set; }
+        public static Texture2D grass6 { get; private set; }
+        public static Texture2D grass7 { get; private set; }
+        public static Texture2D grass8 { get; private set; }
+        public static Texture2D grass9 { get; private set; }
+        public static Texture2D grassFull { get; private set; }
+
+
         public static Texture2D waterTile1;
+
+        public static Texture2D groundCrack1 { get; private set; }
+        public static Texture2D groundCrack2 { get; private set; }
+        public static Texture2D groundCrack3 { get; private set; }
+        public static Texture2D groundCrack4 { get; private set; }
+        public static Texture2D groundCrack5 { get; private set; }
+        public static Texture2D groundCrack6 { get; private set; }
+        public static Texture2D groundCrack7 { get; private set; }
+        public static Texture2D groundCrack8 { get; private set; }
+        public static Texture2D groundCrack9 { get; private set; }
+        public static Texture2D groundCrack10 { get; private set; }
+        public static Texture2D groundCrack11 { get; private set; }
+        public static Texture2D groundCrack12 { get; private set; }
+        public static Texture2D groundCrack13 { get; private set; }
+        public static Texture2D groundCrack14 { get; private set; }
+        public static Texture2D groundCrack15 { get; private set; }
+        public static Texture2D groundCrack16 { get; private set; }
+        public static Texture2D groundCrack17 { get; private set; }
+        public static Texture2D groundCrack18 { get; private set; }
+        public static Texture2D groundCrack19 { get; private set; }
+        public static Texture2D groundCrack20 { get; private set; }
+        public static Texture2D groundCrack21 { get; private set; }
+        public static Texture2D groundCrack22 { get; private set; }
+        public static Texture2D groundCrack23 { get; private set; }
+        public static Texture2D groundCrack24 { get; private set; }
+        public static Texture2D groundCrack25 { get; private set; }
+        public static Texture2D groundCrack26 { get; private set; }
+        public static Texture2D groundCrack27 { get; private set; }
+        public static Texture2D groundCrack28 { get; private set; }
+        public static Texture2D groundCrack29 { get; private set; }
+        public static Texture2D groundCrack30 { get; private set; }
+        public static Texture2D groundCrack31 { get; private set; }
+        public static Texture2D groundCrack32 { get; private set; }
+        public static Texture2D groundCrack33 { get; private set; }
 
 
         public static Texture2D wall1_139;
@@ -230,9 +275,53 @@ namespace TopDownShooterFinal
             groundTile8 = manager.Load<Texture2D>("Tiles\\ground8");
             groundTile9 = manager.Load<Texture2D>("Tiles\\ground9");
 
+            grassFull = manager.Load<Texture2D>("Tiles\\grassFull");
+            grass2 = manager.Load<Texture2D>("Tiles\\grass2");
+            grass3 = manager.Load<Texture2D>("Tiles\\grass3");
+            grass4 = manager.Load<Texture2D>("Tiles\\grass4");
+            grass5 = manager.Load<Texture2D>("Tiles\\grass5");
+            grass6 = manager.Load<Texture2D>("Tiles\\grass6");
+            grass7 = manager.Load<Texture2D>("Tiles\\grass7");
+            grass8 = manager.Load<Texture2D>("Tiles\\grass8");
+            grass9 = manager.Load<Texture2D>("Tiles\\grass9");
+
             waterTile1 = manager.Load<Texture2D>("Tiles\\water1");
 
+            groundCrack1 = manager.Load<Texture2D>("GroundCracks\\1");
+            groundCrack2 = manager.Load<Texture2D>("GroundCracks\\2");
+            groundCrack3 = manager.Load<Texture2D>("GroundCracks\\3");
+            groundCrack4 = manager.Load<Texture2D>("GroundCracks\\4");
+            groundCrack5 = manager.Load<Texture2D>("GroundCracks\\5");
+            groundCrack6 = manager.Load<Texture2D>("GroundCracks\\6");
+            groundCrack7 = manager.Load<Texture2D>("GroundCracks\\7");
+            groundCrack8 = manager.Load<Texture2D>("GroundCracks\\8");
+            groundCrack9 = manager.Load<Texture2D>("GroundCracks\\9");
+            groundCrack10 = manager.Load<Texture2D>("GroundCracks\\10");
+            groundCrack11 = manager.Load<Texture2D>("GroundCracks\\11");
+            groundCrack12 = manager.Load<Texture2D>("GroundCracks\\12");
+            groundCrack13 = manager.Load<Texture2D>("GroundCracks\\13");
+            groundCrack14 = manager.Load<Texture2D>("GroundCracks\\14");
+            groundCrack15 = manager.Load<Texture2D>("GroundCracks\\15");
+            groundCrack16 = manager.Load<Texture2D>("GroundCracks\\16");
+            groundCrack17 = manager.Load<Texture2D>("GroundCracks\\17");
+            groundCrack18 = manager.Load<Texture2D>("GroundCracks\\18");
+            groundCrack19 = manager.Load<Texture2D>("GroundCracks\\19");
+            groundCrack20 = manager.Load<Texture2D>("GroundCracks\\20");
+            groundCrack21 = manager.Load<Texture2D>("GroundCracks\\21");
+            groundCrack22 = manager.Load<Texture2D>("GroundCracks\\22");
+            groundCrack23 = manager.Load<Texture2D>("GroundCracks\\23");
+            groundCrack24 = manager.Load<Texture2D>("GroundCracks\\24");
+            groundCrack25 = manager.Load<Texture2D>("GroundCracks\\25");
+            groundCrack26 = manager.Load<Texture2D>("GroundCracks\\26");
+            groundCrack27 = manager.Load<Texture2D>("GroundCracks\\27");
+            groundCrack28 = manager.Load<Texture2D>("GroundCracks\\28");
+            groundCrack29 = manager.Load<Texture2D>("GroundCracks\\29");
+            groundCrack30 = manager.Load<Texture2D>("GroundCracks\\30");
+            groundCrack31 = manager.Load<Texture2D>("GroundCracks\\31");
+            groundCrack32 = manager.Load<Texture2D>("GroundCracks\\32");
+            groundCrack33 = manager.Load<Texture2D>("GroundCracks\\33");
 
+          
 
             wall1_139 = manager.Load<Texture2D>("test2_139\\testtile1");
             wall2_139 = manager.Load<Texture2D>("test2_139\\testtile2");

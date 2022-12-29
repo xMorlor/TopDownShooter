@@ -12,16 +12,20 @@ namespace TopDownShooterFinal
         public Texture2D texture;
         public Rectangle hitboxRectangle1 = new Rectangle(0, 0, 0, 0);
         public Rectangle hitboxRectangle2 = new Rectangle(0, 0, 0, 0);
+        private float angle;
+        private Random rnd = new Random();
 
         public Tile(Vector2 position, Texture2D texture)
         {
+            angle = 0;
             this.position = position;
             this.texture = texture;
         }
 
-        public void Update()
+        public void SetAngle()
         {
-
+            
+            angle = rnd.Next(1, 361);
         }
 
         public void CreateHitboxRectangle1(int posX, int posY, int width, int heigth)
@@ -36,7 +40,7 @@ namespace TopDownShooterFinal
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 1f);
+            spriteBatch.Draw(texture, position, null, Color.White, angle, Vector2.Zero, 1f, SpriteEffects.None, 1f);
             /*if(hitboxRectangle1 != new Rectangle(0, 0, 0, 0))
             {
                 spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y), Color.White);

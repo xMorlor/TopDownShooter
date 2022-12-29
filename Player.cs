@@ -62,11 +62,28 @@ namespace TopDownShooterFinal
         public static bool onHitFlash = false;
         public static int screenFlashNum = 0;
         public static bool rev = false;
+        public static List<Rectangle> nearestWalls = new List<Rectangle>();
+        private static byte numToUpdateNearestWalls = 0;
+        private static List<Rectangle> walls = new List<Rectangle>();
 
         public static void Update(GameTime gameTime)
         {
             playerAnimation.Update(gameTime);
             hitboxCircle.Update(position);
+
+            /*if (numToUpdateNearestWalls == 0)
+            {
+                walls.Clear();
+                foreach (var k in Map.walls)
+                {
+                    walls.Add(k.hitboxRectangle1);
+                    walls.Add(k.hitboxRectangle2);
+                }
+                nearestWalls = walls.FindAll(x => Vector2.Distance(position, x.Center.ToVector2()) < 4000);
+                numToUpdateNearestWalls = 30;
+            }
+            numToUpdateNearestWalls--;*/
+
             if (moving)
             {
                 hitboxRectangle = new Rectangle((int)position.X - 30, (int)position.Y - 30, 60, 60);
@@ -83,8 +100,8 @@ namespace TopDownShooterFinal
                     {
                         trackIndex = 0;
                     }
-                    Tracks track = new Tracks(trackIndex, (float)playerAnimation.angle);
-                    Manager.tracks.Add(track);
+                    //Tracks track = new Tracks(trackIndex, (float)playerAnimation.angle);
+                    Manager.tracks.Add(new Tracks(trackIndex, (float)playerAnimation.angle));
                     SetNumToNextTrackIndex();
                 }
             }

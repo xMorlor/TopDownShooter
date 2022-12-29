@@ -22,52 +22,62 @@ namespace TopDownShooterFinal
         https://ansiware.com/tutorial-part-6-create-a-map-and-map-generator/
         https://www.freecodecamp.org/news/how-to-make-your-own-procedural-dungeon-map-generator-using-the-random-walk-algorithm-e0085c8aa9a/
          */
+
         /*
          udělat linear smoother pro a*
         aby nechodili jak po zubech 
+        (místo toho dělat pohyb ve všech směrech)
          */
 
 
         
+        //random spawn point playera
+        //při collectění itemů se intenzita spawnu zombies postupně zvyšuje
+
+
+
+        //checknout že nikde není linq na listy
+        //
+
+
+      
+        /*
+         
+         fix když je zombie ve zdi (furt se to někdy bugne)
+         
+         */
+
+
+
+        //zmenšit mapu (-5000;5000)
 
 
 
 
-
-
-
-
-
-
-
-
-
-
+        //udělat player closest zombie list
         
-        //při zombie wander a kolizi se zdí bude wander -= 180 stupňů          ///////////////////////////////////
-        //a* pro saunter to dead body
-        //handle kolize pro saunter
 
+        //a* pro saunter to dead body
 
 
 
 
         //zombie se zombie kolize a oba jdou po path -> trošku random rozsah odstrčení, bay nebyli stacknutý
 
-        //gridtile preference pro a*
+
+
+        //zombie se spawnujou po čase kolem playera (postupně fade in -> po 100% fade  in se začnou hýbat)
 
 
 
-
-        //když player koliduje se zombie tak checknout jestli ho to náhodou nehodí do zdi -> když jo tak to s nim nehejbne
-        //to samý se zombie - zombie kolize
-
-
+        //hlasitost zvuků podle jejich blízkosti ke středu obrazovky (ne ke hráči -> když je myš v rohu tak je hráč taky dál od středu obrazovky)
+        //když nevidíš do baráku, vidíš střechu
 
         //když je celá zeď v shadow tak jí to nezobrazí
 
         //zombie úhel handle aby se postupě otočil, ne jak teď jak robot hned
-        //wallsfor pathfinder (map) vypočítat přesně
+
+
         /*
          A * algo
         https://dotnetcoretutorials.com/2020/07/25/a-search-pathfinding-algorithm-in-c/
@@ -116,6 +126,7 @@ namespace TopDownShooterFinal
         //stavění barikád
         //GameTime poštelovat pro zastavení hry
         //multiplayer pvp 
+        //když je hráč na kraji mapy, aby nemohl jít dál, to samý zombie
         //fade na konci hry
         //dialog na začátku hry se zombie (ikona), písmo se postupně píše na obrazovku (font je jako hodiny (to zelený))
         //všude daynight color zkontrolovat kde má být
@@ -132,7 +143,6 @@ namespace TopDownShooterFinal
             base.Initialize();
             
             Utils.SetUpScreen(_graphics);
-
             camera = new Camera2D();
         }
 
@@ -142,6 +152,7 @@ namespace TopDownShooterFinal
 
             Textures.Load(this.Content);
             Utils.SetUpTracks();
+            Utils.SetUpListOfGroundCracks();
             Map.InitializeWater();
             Map.InitializeGround();
             Map.CreateHouses();
@@ -174,6 +185,7 @@ namespace TopDownShooterFinal
 
         void UpdateGameplay(GameTime gameTime, GraphicsDevice graphicsDevice)
         {
+            Map.Update(gameTime);
             Input.Update(gameTime);
             Player.Update(gameTime);
             Utils.CheckLure();
@@ -184,8 +196,9 @@ namespace TopDownShooterFinal
             Utils.CheckCollisionBetweenZombies(gameTime);
             Utils.CheckCollisionBetweenPlayerAndZombies(gameTime);
             Utils.CheckCollisionBetweenZombiesAndBullets(graphicsDevice);
+            Utils.CheckCollisionBetweenBulletsAndWalls();
             Utils.MeleeattackCheck(graphicsDevice);
-            Manager.UpdateListOfAllObjects();
+            //Manager.UpdateListOfAllObjects();
             if(!Player.onHitFlash) DayNight.Update();
             Manager.UpdateDeadZombies(gameTime, graphicsDevice);
             Manager.DeleteZombieBodies();
@@ -208,10 +221,10 @@ namespace TopDownShooterFinal
             Manager.RemoveBlood();
             Utils.ScreenFlashOnHit();
             MuzzleFlashAnimation.Update();
-            Map.Update(gameTime);
+            
             
 
-            camera.Follow(gameTime);
+            camera.Follow();
         }
 
         void UpdateEndOfGame()

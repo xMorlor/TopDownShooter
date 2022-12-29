@@ -14,6 +14,7 @@ namespace TopDownShooterFinal
         public static Vector2 position = new Vector2();
         public static Rectangle mouseRectangle;
         public static Vector2 mousePosition;
+        private static Matrix invertedMatrix;
 
         public static void Update(GameTime gameTime)
         {
@@ -24,7 +25,7 @@ namespace TopDownShooterFinal
 
             position = new Vector2(posX, posY);
             //source: https://community.monogame.net/t/solved-how-can-i-get-the-world-coords-of-the-mouse-2d/11263
-            Matrix invertedMatrix = Matrix.Invert(Game1.camera.Transform);
+            invertedMatrix = Matrix.Invert(Game1.camera.Transform);
             position = Vector2.Transform(position, invertedMatrix);
 
             posX = (int)position.X;

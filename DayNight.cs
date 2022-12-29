@@ -19,7 +19,7 @@ namespace TopDownShooterFinal
 
         public static Color color = new Color();
         public static Color colorBeforeFlash = color;
-        public static int colorRValueBeforeFlash;
+
         private static int value = 255;
         private static int numberDayCycle = 0;
         

@@ -13,20 +13,24 @@ namespace TopDownShooterFinal
 
 
         public Matrix Transform { get; private set; }
+        private Matrix position;
+        private Matrix offset;
+        private Matrix position2;
 
-        public void Follow(GameTime gameTime)
+        public void Follow()
         {
-            var position = Matrix.CreateTranslation(
+
+            position = Matrix.CreateTranslation(
                 -Player.position.X - 5,
                 -Player.position.Y - 25,
                 0);
 
-            var offset = Matrix.CreateTranslation(
+            offset = Matrix.CreateTranslation(
                 Utils.screenWidth / 2,
                 Utils.screenHeigth / 2,
                 0);
 
-            var position2 = Matrix.CreateTranslation(
+            position2 = Matrix.CreateTranslation(
                -Cursor.mousePosition.X / 3f + 326,
                -Cursor.mousePosition.Y / 3f + 206,
                0);

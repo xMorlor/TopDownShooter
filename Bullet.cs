@@ -16,6 +16,7 @@ namespace TopDownShooterFinal
         private int duration;
 
         public Circle hitboxCircle;
+        public Rectangle hitboxRectangle;
 
         public bool shotFromRifle; 
         public bool shotFromHandgun;  
@@ -34,6 +35,7 @@ namespace TopDownShooterFinal
             position.Y -= posY * 150 * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             hitboxCircle = new Circle(position, 2);
+            hitboxRectangle = new Rectangle((int)(hitboxCircle.Center.X - hitboxCircle.Radius * 6), (int)(hitboxCircle.Center.Y - hitboxCircle.Radius * 6), (int)(hitboxCircle.Radius * 12), (int)(hitboxCircle.Radius * 12));
         }
 
         public void Update(GameTime gameTime)
@@ -42,8 +44,9 @@ namespace TopDownShooterFinal
             position.Y += posY * 150 * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             hitboxCircle.Update(position);
+            hitboxRectangle = new Rectangle((int)(hitboxCircle.Center.X - hitboxCircle.Radius * 3), (int)(hitboxCircle.Center.Y - hitboxCircle.Radius * 3), (int)(hitboxCircle.Radius * 6), (int)(hitboxCircle.Radius * 6));
 
-            
+
             duration++;
             if(duration == 65)
             {

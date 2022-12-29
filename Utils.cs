@@ -38,6 +38,43 @@ namespace TopDownShooterFinal
             Manager.trackTextures.Add(Textures.Run19);
         }
 
+        public static void SetUpListOfGroundCracks()
+        {
+            Map.groundCracks.Add(Textures.groundCrack1);
+            Map.groundCracks.Add(Textures.groundCrack2);
+            Map.groundCracks.Add(Textures.groundCrack3);
+            Map.groundCracks.Add(Textures.groundCrack4);
+            Map.groundCracks.Add(Textures.groundCrack5);
+            Map.groundCracks.Add(Textures.groundCrack6);
+            Map.groundCracks.Add(Textures.groundCrack7);
+            Map.groundCracks.Add(Textures.groundCrack8);
+            Map.groundCracks.Add(Textures.groundCrack9);
+            Map.groundCracks.Add(Textures.groundCrack10);
+            Map.groundCracks.Add(Textures.groundCrack11);
+            Map.groundCracks.Add(Textures.groundCrack12);
+            Map.groundCracks.Add(Textures.groundCrack13);
+            Map.groundCracks.Add(Textures.groundCrack14);
+            Map.groundCracks.Add(Textures.groundCrack15);
+            Map.groundCracks.Add(Textures.groundCrack16);
+            Map.groundCracks.Add(Textures.groundCrack17);
+            Map.groundCracks.Add(Textures.groundCrack18);
+            Map.groundCracks.Add(Textures.groundCrack19);
+            Map.groundCracks.Add(Textures.groundCrack20);
+            Map.groundCracks.Add(Textures.groundCrack21);
+            Map.groundCracks.Add(Textures.groundCrack22);
+            Map.groundCracks.Add(Textures.groundCrack23);
+            Map.groundCracks.Add(Textures.groundCrack24);
+            Map.groundCracks.Add(Textures.groundCrack25);
+            Map.groundCracks.Add(Textures.groundCrack26);
+            Map.groundCracks.Add(Textures.groundCrack27);
+            Map.groundCracks.Add(Textures.groundCrack28);
+            Map.groundCracks.Add(Textures.groundCrack29);
+            Map.groundCracks.Add(Textures.groundCrack30);
+            Map.groundCracks.Add(Textures.groundCrack30);
+            Map.groundCracks.Add(Textures.groundCrack32);
+            Map.groundCracks.Add(Textures.groundCrack33);
+        }
+
         public static void SetUpScreen(GraphicsDeviceManager graphics)
         {
             GraphicsDevice device = graphics.GraphicsDevice;
@@ -47,16 +84,17 @@ namespace TopDownShooterFinal
             screenWidth = graphics.PreferredBackBufferWidth;
             screenHeigth = graphics.PreferredBackBufferHeight;
             graphics.ApplyChanges();
+            
         }
 
         public static bool IntersectCircles(Circle a, Circle b)
         {
-            float dx = b.Center.X - a.Center.X;
-            float dy = b.Center.Y - a.Center.Y;
-            float dist = MathF.Sqrt(dx * dx + dy * dy);
-            float r2 = a.Radius + b.Radius;
+            //float dx = (b.Center.X - a.Center.X);
+            //float dy = (b.Center.Y - a.Center.Y);
+            //float dist = MathF.Sqrt((b.Center.X - a.Center.X) * (b.Center.X - a.Center.X) + (b.Center.Y - a.Center.Y) * (b.Center.Y - a.Center.Y));
+            //float r2 = a.Radius + b.Radius;
 
-            if (dist >= r2)
+            if (MathF.Sqrt((b.Center.X - a.Center.X) * (b.Center.X - a.Center.X) + (b.Center.Y - a.Center.Y) * (b.Center.Y - a.Center.Y)) >= (a.Radius + b.Radius))
             {
                 return false;
             }
@@ -102,8 +140,7 @@ namespace TopDownShooterFinal
                         k.meleeAttacked = true;
                         if (k.health > 0)
                         {
-                            Blood b = new Blood(true, k.position, k, 0, graphicsDevice);
-                            Manager.bloodList.Add(b);
+                            Manager.bloodList.Add(new Blood(true, k.position, k, 0, graphicsDevice));
                         }
                     }
                 }
@@ -118,8 +155,7 @@ namespace TopDownShooterFinal
                         k.meleeAttacked = true;
                         if (k.health > 0)
                         {
-                            Blood b = new Blood(true, k.position, k, 0, graphicsDevice);
-                            Manager.bloodList.Add(b);
+                            Manager.bloodList.Add(new Blood(true, k.position, k, 0, graphicsDevice));
                         }
                     }
                 }
@@ -134,8 +170,7 @@ namespace TopDownShooterFinal
                         k.meleeAttacked = true;
                         if (k.health > 0)
                         {
-                            Blood b = new Blood(true, k.position, k, 0, graphicsDevice);
-                            Manager.bloodList.Add(b);
+                            Manager.bloodList.Add(new Blood(true, k.position, k, 0, graphicsDevice));
                         }
                     }
                 }
@@ -150,8 +185,7 @@ namespace TopDownShooterFinal
                         k.meleeAttacked = true;
                         if (k.health > 0)
                         {
-                            Blood b = new Blood(true, k.position, k, 0, graphicsDevice);
-                            Manager.bloodList.Add(b);
+                            Manager.bloodList.Add(new Blood(true, k.position, k, 0, graphicsDevice));
                         }
                     }
                 }
@@ -214,9 +248,8 @@ namespace TopDownShooterFinal
                 if (IntersectCircles(k.hitboxCircle, Player.hitboxCircle))
                 {
                     k.direction = k.position - Player.position;
-                    //k.direction = k.position - (Player.position + Player.playerAnimation.originPlayer);
-                    k.position += k.direction * 0.0001f * (float)gameTime.ElapsedGameTime.TotalSeconds;//tady a dole upravovat
-                    k.speed += 250000 * (k.direction / (k.direction.LengthSquared() + 1)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    k.position += k.direction * 0.0001f * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                    k.speed += 100000 * (k.direction / (k.direction.LengthSquared() + 1)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
                 }
             }
         }
@@ -243,8 +276,8 @@ namespace TopDownShooterFinal
 
                             if (k.health > 0)
                             {
-                                Blood b = new Blood(true, k.position, k, 0, graphicsDevice); //tady se doplňovat num na konci nemusí, proto 0
-                                Manager.bloodList.Add(b);
+                                //Blood b = new Blood(true, k.position, k, 0, graphicsDevice); //tady se doplňovat num na konci nemusí, proto 0
+                                Manager.bloodList.Add(new Blood(true, k.position, k, 0, graphicsDevice));
                             }
                         }
                     }
@@ -252,41 +285,47 @@ namespace TopDownShooterFinal
             }
         }
 
+        public static void CheckCollisionBetweenBulletsAndWalls()
+        {
+            foreach(var k in Manager.bulletList)
+            {
+                foreach(var o in Map.drawListWalls)
+                {
+                    if(k.hitboxRectangle.Intersects(o.hitboxRectangle1) || k.hitboxRectangle.Intersects(o.hitboxRectangle2))
+                    {
+                        Manager.bulletsToDelete.Add(k);
+                    }
+                }
+            }
+        }
+
         public static void CreateBlood(Zombie zombie, int num, GraphicsDevice graphicsDevice)
         {
-            Blood b = new Blood(false, zombie.position, zombie, num, graphicsDevice);
-            Manager.bloodList.Add(b);
+            Manager.bloodList.Add(new Blood(false, zombie.position, zombie, num, graphicsDevice));
         }
 
         public static void CheckLure()
         {
             foreach (var k in Manager.zombieList)
             {
-                if (!k.lured)
+                if (!k.lured && IntersectCircles(k.lureCircle, Player.lureCircle))
                 {
-                    if (IntersectCircles(k.lureCircle, Player.lureCircle))
-                    {
-                        k.lured = true;
-                        k.MakeZombieRunOrWalk();
-                    }
+                    k.lured = true;
+                    k.MakeZombieRunOrWalk();
                 }
             }
         }
 
         public static void CreateBulletHandgun(GameTime gameTime)//udělat private kde to půjde
         {
-            var angle = Player.playerAnimation.angle;
             Vector2 bulletOrigin = Player.playerAnimation.originBullet;
-            bulletOrigin.Y += (float)Math.Cos(angle) * 3.5f;
+            bulletOrigin.Y += (float)Math.Cos(Player.playerAnimation.angle) * 3.5f;
+            var angle = MathHelper.ToDegrees((float)Player.playerAnimation.angle);
 
-            angle = MathHelper.ToDegrees((float)angle);
-
-            Vector2 pos = Player.position + bulletOrigin;
-
-            Bullet bullet = new Bullet(pos, Textures.bul, angle, gameTime);
+            Bullet bullet = new Bullet(Player.position + bulletOrigin, Textures.bul, angle, gameTime);
+            bullet.shotFromHandgun = true;
             Manager.bulletList.Add(bullet);
             Player.handgunAmmoLoaded--;
-            bullet.shotFromHandgun = true;
 
             MuzzleFlashAnimation.texture = Textures.MuzzleFlash1;
             MuzzleFlashAnimation.draw = true;
@@ -294,15 +333,15 @@ namespace TopDownShooterFinal
 
         public static void CreateBulletRifle(GameTime gameTime)//zkusit udělat private
         {
-            var angle = Player.playerAnimation.angle;
-            angle = MathHelper.ToDegrees((float)angle);
+            //angle = Player.playerAnimation.angle;
+            //var angle = MathHelper.ToDegrees((float)Player.playerAnimation.angle);
 
-            Vector2 pos = Player.position + Player.playerAnimation.originBullet;
+            //Vector2 pos = Player.position + Player.playerAnimation.originBullet;
 
-            Bullet bullet = new Bullet(pos, Textures.bul, angle, gameTime);
+            Bullet bullet = new Bullet(Player.position + Player.playerAnimation.originBullet, Textures.bul, MathHelper.ToDegrees((float)Player.playerAnimation.angle), gameTime);
+            bullet.shotFromRifle = true;
             Manager.bulletList.Add(bullet);
             Player.rifleAmmoLoaded--;
-            bullet.shotFromRifle = true;
 
             MuzzleFlashAnimation.texture = Textures.MuzzleFlash1;
             MuzzleFlashAnimation.draw = true;
@@ -312,18 +351,19 @@ namespace TopDownShooterFinal
         {
             for (int i = 0; i < 8; i++)
             {
-                var angle = Player.playerAnimation.angle;
-                angle = MathHelper.ToDegrees((float)angle);
+                //var angle = Player.playerAnimation.angle;
+                var angle = MathHelper.ToDegrees((float)Player.playerAnimation.angle);
 
                 Random rnd = new Random();
                 angle -= rnd.Next(-15, 16);
 
-                Vector2 pos = Player.position + Player.playerAnimation.originBullet;
+                //Vector2 pos = Player.position + Player.playerAnimation.originBullet;
 
-                Bullet bullet = new Bullet(pos, Textures.bul, angle, gameTime);
+                Bullet bullet = new Bullet(Player.position + Player.playerAnimation.originBullet, Textures.bul, angle, gameTime);
+                bullet.shotFromShotgun = true;
                 Manager.bulletList.Add(bullet);
 
-                bullet.shotFromShotgun = true;
+                
             }
             Player.shotgunAmmoLoaded--;
 
