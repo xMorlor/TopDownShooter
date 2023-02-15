@@ -13,13 +13,12 @@ namespace TopDownShooterFinal
         public Texture2D Texture { get; set; }
         public int Rows { get; set; }
         public int Columns { get; set; }
-        public int currentFrame;
-        public int totalFrames;
-        Color fadeColor;
-        public bool fadeOut;
-        bool bFade;
+        public int currentFrame { get; set; }
+        public int totalFrames { get; set; }
+        private Color fadeColor;
+        public bool fadeOut { get; set; }
+        private bool bFade;
         
-
         public ZombieAnimation(Texture2D texture, int rows, int columns)
         {
             bFade = false;

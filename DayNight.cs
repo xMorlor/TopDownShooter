@@ -14,10 +14,8 @@ namespace TopDownShooterFinal
         private static int number = 0;
         private static string clockHours;
         private static string clockMinutes;
-
         public static Color flashColor = Color.Transparent;
-
-        public static Color color = new Color();
+        public static Color color { get; set; }
         public static Color colorBeforeFlash = color;
 
         private static int value = 255;
@@ -25,7 +23,6 @@ namespace TopDownShooterFinal
         
         public static void Update()
         {
-            //aby byl cyklus den a noc na pět minut, tak bude podmínka pro number 12
             number++;
             if(number == 12)
             {
@@ -41,12 +38,10 @@ namespace TopDownShooterFinal
             {
                 hours = 0;
             }
-
             if(minutes.ToString().Length == 1) clockMinutes = "0" + minutes.ToString();
             else clockMinutes = minutes.ToString();
             if (hours.ToString().Length == 1) clockHours = "0" + hours.ToString();
             else clockHours = hours.ToString();
-
             numberDayCycle++;
             if(hours >= 5 && hours < 18)
             {
@@ -56,7 +51,7 @@ namespace TopDownShooterFinal
                     value++;
                 }
             }
-            else//(hours >= 18 || hours < 6)
+            else
             {
                 if (numberDayCycle == 60 && value > 190)
                 {
@@ -65,15 +60,13 @@ namespace TopDownShooterFinal
                 }
             }
             if(numberDayCycle > 60) numberDayCycle = 0;
-
             color = new Color(value, value, value);
         }
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-            //odstranit
+            //debug
             spriteBatch.DrawString(Textures.debug, clockHours + ":" + clockMinutes, new Vector2(50, 200), Color.White);
-            //spriteBatch.DrawString(Textures.debug, value + "", new Vector2(50, 250), Color.White);
         }
     }
 }

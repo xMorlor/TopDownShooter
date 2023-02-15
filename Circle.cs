@@ -9,7 +9,7 @@ namespace TopDownShooterFinal
     public class Circle
     {
         public Vector2 Center;
-        public float Radius;
+        public float Radius { get; set; }
 
         public Circle(Vector2 center, float radius)
         {
@@ -21,10 +21,5 @@ namespace TopDownShooterFinal
         {
             this.Center = center;
         }
-
-        /*public void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw()
-        }*/
     }
 }

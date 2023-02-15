@@ -7,20 +7,19 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TopDownShooterFinal
 {
-    class Bullet : MotherClass
+    class Bullet
     {
-        public Texture2D texture;
+        public Texture2D texture { get; set; }
         private float posX;
         private float posY;
         private double angle;
         private int duration;
-
-        public Circle hitboxCircle;
-        public Rectangle hitboxRectangle;
-
-        public bool shotFromRifle; 
-        public bool shotFromHandgun;  
-        public bool shotFromShotgun;  
+        public Circle hitboxCircle { get; set; }
+        public Rectangle hitboxRectangle { get; set; }
+        public bool shotFromRifle { get; set; }
+        public bool shotFromHandgun { get; set; }
+        public bool shotFromShotgun { get; set; }
+        Vector2 position;
 
         public Bullet(Vector2 pos, Texture2D t, double angl, GameTime gameTime)
         {
@@ -30,10 +29,8 @@ namespace TopDownShooterFinal
             posX = ((float)(Math.Cos(angl / 360.0 * 2 * Math.PI) * 13));
             posY = ((float)(Math.Sin(angl / 360.0 * 2 * Math.PI) * 13));
             duration = 0;
-
             position.X -= posX * 150 * (float)gameTime.ElapsedGameTime.TotalSeconds;
             position.Y -= posY * 150 * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             hitboxCircle = new Circle(position, 2);
             hitboxRectangle = new Rectangle((int)(hitboxCircle.Center.X - hitboxCircle.Radius * 6), (int)(hitboxCircle.Center.Y - hitboxCircle.Radius * 6), (int)(hitboxCircle.Radius * 12), (int)(hitboxCircle.Radius * 12));
         }
@@ -42,11 +39,8 @@ namespace TopDownShooterFinal
         {
             position.X += posX * 150 * (float)gameTime.ElapsedGameTime.TotalSeconds;
             position.Y += posY * 150 * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
             hitboxCircle.Update(position);
             hitboxRectangle = new Rectangle((int)(hitboxCircle.Center.X - hitboxCircle.Radius * 3), (int)(hitboxCircle.Center.Y - hitboxCircle.Radius * 3), (int)(hitboxCircle.Radius * 6), (int)(hitboxCircle.Radius * 6));
-
-
             duration++;
             if(duration == 65)
             {

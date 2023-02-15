@@ -6,14 +6,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TopDownShooterFinal
 {
-    class Tracks : MotherClass
+    class Tracks
     {
         private Texture2D texture;
-        int fadeAfter;
-        bool fade;
+        private int fadeAfter;
+        private bool fade;
         private Rectangle destRectangle;
-        float angle;
-        Color color;
+        private float angle;
+        private Color color;
+        public Vector2 position { get; set; }
 
         public Tracks(int index, float ang)
         {
@@ -43,12 +44,6 @@ namespace TopDownShooterFinal
                 color.G--;
                 color.B--;
                 color.A--;
-                /*poud nebude fungovat:
-                if (fadeColor.R > 0) fadeColor.R--;
-                if (fadeColor.G > 0) fadeColor.G--;
-                if (fadeColor.B > 0) fadeColor.B--;
-                if (fadeColor.A > 0) fadeColor.A--;
-                 */
                 if(color.A == 0)
                 {
                     Manager.tracksToDelete.Add(this);

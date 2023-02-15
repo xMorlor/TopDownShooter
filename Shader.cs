@@ -6,22 +6,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TopDownShooterFinal
 {
-    //internal class Shader
     static class Shader
     {
         //https://www.youtube.com/watch?v=SrhbYNlXbZk       SOLUTION
-        
         /*
-         
          PROJECT 16 FUNGUJE
          APLIKOVAT
-         
-         
          */
-         
-          
-         
-         
+        
         public static void Update(Camera2D camera)
         {
             

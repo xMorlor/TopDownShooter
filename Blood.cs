@@ -12,18 +12,21 @@ using Rectangle = Microsoft.Xna.Framework.Rectangle;
 namespace TopDownShooterFinal
 {
     //internal class Blood
-    class Blood : MotherClass
+    class Blood
     {
         private int num, randomNum, randomAngle, maxCircleRange, range, fadeOutNum, increaseRange;
         private Color[] colors1D, defaultColors;
         private Color color;
         private Random rnd;
-        public Texture2D texture;
+        public Texture2D texture { get; set; }
         private Vector2 origin;
         private Rectangle destRectangle;
-        public Zombie zombie;
+        public Zombie zombie { get; set; }
         private bool fadeOut, justHit;
-        public bool update;
+        public bool update { get; set; }
+        private int posX;
+        private int posY;
+        Vector2 position;
 
         public Blood(bool justHit, Vector2 position, Zombie zombie, int num, GraphicsDevice graphicsDevice)
         {
@@ -82,7 +85,6 @@ namespace TopDownShooterFinal
                     colors1D[x].G = 0;
                     colors1D[x].B = 0;
                 }
-
                 texture = new Texture2D(graphicsDevice, texture.Width, texture.Height); 
             }
         }
@@ -90,25 +92,6 @@ namespace TopDownShooterFinal
         public void Update()
         {
             if(!fadeOut)color = DayNight.color;
-            /*if (randomNum == 1 && !justHit)
-            {
-                destRectangle = new Rectangle((int)this.position.X, (int)this.position.Y, Textures.BloodMedium.Width, Textures.BloodMedium.Height);
-            }
-            else if (randomNum == 2 && !justHit)
-            {
-                destRectangle = new Rectangle((int)this.position.X, (int)this.position.Y, Textures.BloodLarge.Width, Textures.BloodLarge.Height);
-            }
-            else if (justHit)
-            {
-                destRectangle = new Rectangle((int)this.position.X, (int)this.position.Y, Textures.BloodSmall.Width, Textures.BloodSmall.Height);
-            }*/
-
-            //nouzový opatření
-            /*if(!Manager.zombieList.Contains(zombie) && !Manager.deadZombieBodies.Contains(zombie))
-            {
-                Manager.bloodToRemove.Add(this);
-            }*/
-
             if (zombie.zombieAnimation.fadeOut || texture == Textures.BloodSmall)
             {
                 fadeOutNum--;
@@ -129,8 +112,6 @@ namespace TopDownShooterFinal
                 }
             }
         }
-        int posX;
-        int posY;
 
         public void UpdateMediumAndLargeTexture()
         {

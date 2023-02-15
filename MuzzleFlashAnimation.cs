@@ -9,7 +9,6 @@ using System.Reflection.Metadata;
 
 namespace TopDownShooterFinal
 {
-    //internal class MuzzleFlashAnimation
     static class MuzzleFlashAnimation
     {
         public static Texture2D texture = Textures.MuzzleFlash1;

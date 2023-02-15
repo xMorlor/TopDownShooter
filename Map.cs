@@ -19,11 +19,8 @@ namespace TopDownShooterFinal
         public static List<Tile> drawListGround;
         public static List<Tile> drawListWalls;
         private static List<Point> housePoints = new List<Point>();
-
         public static List<Texture2D> groundCracks = new();
-
         public static List<Rectangle> rectanglesAroundHouses = new List<Rectangle>();
-
         public static void CreateHouses()
         {
             Point point = new Point(1200, 600);
@@ -61,7 +58,6 @@ namespace TopDownShooterFinal
                 }
             }
         }
-
         private static void CreateHouse(int x, int y)
         {
             Point p = new Point(x, y);
@@ -133,7 +129,6 @@ namespace TopDownShooterFinal
             rectanglesAroundHouses.Add(new Rectangle((int)tile5.position.X, (int)tile5.position.Y + 28, 61, 160));
             rectanglesAroundHouses.Add(new Rectangle((int)tile5.position.X, (int)tile5.position.Y + 188, 61, 140));
         }
-
         private static Rectangle playerHitboxRec;
 
         public static bool CheckCollisionsForPlayerWithWallsLeft(GameTime gameTime)
@@ -206,57 +201,6 @@ namespace TopDownShooterFinal
                 {
                     Manager.zombieList[Manager.zombieList.IndexOf(zombie)].position.X -= zombie.direction.X * zombie.movementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
                     Manager.zombieList[Manager.zombieList.IndexOf(zombie)].position.X -= zombie.speed.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    //return true;
-                }
-            }
-            //return false;
-        }
-
-        public static void CheckCollisionsForZombieWithWallsRight(GameTime gameTime, Zombie zombie)
-        {
-            Rectangle hitboxRec = new Rectangle((int)(zombie.hitboxCircle.Center.X - zombie.hitboxCircle.Radius), (int)(zombie.hitboxCircle.Center.Y - zombie.hitboxCircle.Radius), (int)(zombie.hitboxCircle.Radius * 2), (int)(zombie.hitboxCircle.Radius * 2));
-            hitboxRec.X += (int)(zombie.direction.X * 2 * zombie.movementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds);
-            hitboxRec.X += (int)(zombie.speed.X * 2 * (float)gameTime.ElapsedGameTime.TotalSeconds);
-            foreach (var k in walls)
-            {
-                if (hitboxRec.Intersects(k.hitboxRectangle1) || hitboxRec.Intersects(k.hitboxRectangle2))
-                {
-                    Manager.zombieList[Manager.zombieList.IndexOf(zombie)].position.X -= zombie.direction.X * zombie.movementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    Manager.zombieList[Manager.zombieList.IndexOf(zombie)].position.X -= zombie.speed.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    //return true;
-                }
-            }
-            //return false;
-        }
-
-        public static void CheckCollisionsForZombieWithWallsTop(GameTime gameTime, Zombie zombie)
-        {
-            Rectangle hitboxRec = new Rectangle((int)(zombie.hitboxCircle.Center.X - zombie.hitboxCircle.Radius), (int)(zombie.hitboxCircle.Center.Y - zombie.hitboxCircle.Radius), (int)(zombie.hitboxCircle.Radius * 2), (int)(zombie.hitboxCircle.Radius * 2));
-            hitboxRec.Y += (int)(zombie.direction.Y * 2 * zombie.movementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds);
-            hitboxRec.Y += (int)(zombie.speed.Y * 2 * (float)gameTime.ElapsedGameTime.TotalSeconds);
-            foreach (var k in walls)
-            {
-                if (hitboxRec.Intersects(k.hitboxRectangle1) || hitboxRec.Intersects(k.hitboxRectangle2))
-                {
-                    Manager.zombieList[Manager.zombieList.IndexOf(zombie)].position.Y -= zombie.direction.Y * zombie.movementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    Manager.zombieList[Manager.zombieList.IndexOf(zombie)].position.Y -= zombie.speed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    //return true;
-                }
-            }
-            //return false;
-        }
-
-        public static void CheckCollisionsForZombieWithWallsBottom(GameTime gameTime, Zombie zombie)
-        {
-            Rectangle hitboxRec = new Rectangle((int)(zombie.hitboxCircle.Center.X - zombie.hitboxCircle.Radius), (int)(zombie.hitboxCircle.Center.Y - zombie.hitboxCircle.Radius), (int)(zombie.hitboxCircle.Radius * 2), (int)(zombie.hitboxCircle.Radius * 2));
-            hitboxRec.Y += (int)(zombie.direction.Y * 2 * zombie.movementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds);
-            hitboxRec.Y += (int)(zombie.speed.Y * 2 * (float)gameTime.ElapsedGameTime.TotalSeconds);
-            foreach (var k in walls)
-            {
-                if (hitboxRec.Intersects(k.hitboxRectangle1) || hitboxRec.Intersects(k.hitboxRectangle2))
-                {
-                    Manager.zombieList[Manager.zombieList.IndexOf(zombie)].position.Y -= zombie.direction.Y * zombie.movementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    Manager.zombieList[Manager.zombieList.IndexOf(zombie)].position.Y -= zombie.speed.Y * (float)gameTime.ElapsedGameTime.TotalSeconds;
                     //return true;
                 }
             }

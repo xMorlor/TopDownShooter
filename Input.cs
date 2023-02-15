@@ -10,9 +10,9 @@ namespace TopDownShooterFinal
 
     static class Input
     {
-        static KeyboardState currentKeyState;
-        static KeyboardState previousKeyState;
-        static MouseState previousMouseState;
+        private static KeyboardState currentKeyState;
+        private static KeyboardState previousKeyState;
+        private static MouseState previousMouseState;
 
         public static bool alreadyMoving = false;
         public static bool alreadyIdle = true;
@@ -31,9 +31,9 @@ namespace TopDownShooterFinal
         private static bool sDown = false;
         private static bool dDown = false;
 
-        public static bool holdingLeftButton;
-
-        public static KeyboardState GetState()
+        public static bool holdingLeftButton { get; set; }
+        
+        private static KeyboardState GetState()
         {
             previousKeyState = currentKeyState;
             currentKeyState = Keyboard.GetState();

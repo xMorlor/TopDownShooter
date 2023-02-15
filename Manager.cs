@@ -32,8 +32,6 @@ namespace TopDownShooterFinal
         public static List<Blood> bloodToRemove = new List<Blood>();
         private static List<Blood> mediumAndLarge = new List<Blood>();
 
-        public static List<MotherClass> allObjects = new List<MotherClass>();
-
         public static void RemoveBlood()
         {
             foreach (var k in bloodToRemove)
@@ -114,22 +112,6 @@ namespace TopDownShooterFinal
             {
                 k.Update(gameTime, 1, 1, graphicsDevice); //neni potřeba přiřadit číselné hodnoty
             }
-
-            /*foreach(var k in deadZombieBodies)
-            {
-                k.feedingNumberOfZombies = 0;
-            }
-
-            foreach(var k in deadZombieBodies)
-            {
-                foreach(var o in zombieList)
-                {
-                    if(o.zombieAnimation.Texture == Textures.ZombieEating && Utils.IntersectCircles(o.hitboxCircle, k.hitboxCircle))
-                    {
-                        k.feedingNumberOfZombies++;
-                    }
-                }
-            }*/
         }
 
         public static void DeleteZombieBodies()
@@ -139,37 +121,6 @@ namespace TopDownShooterFinal
                 deadZombieBodies.Remove(k);
             }
             deadZombieBodiesToDelete.Clear();
-        }
-
-        public static void UpdateListOfAllObjects()
-        {
-            /*allObjects.Clear();
-            foreach (var k in tracks)
-            {
-                //k.position = new Vector2((int)k.position.X, (int)k.position.Y);
-                allObjects.Add(k);
-            }
-            foreach (var k in zombieList)
-            {
-                allObjects.Add(k);
-            }
-            foreach (var k in bulletList)
-            {
-                allObjects.Add(k);
-            }
-            foreach (var k in deadZombieBodies)
-            {
-                //k.position = new Vector2((int)k.position.X, (int)k.position.Y);
-                allObjects.Add(k);
-
-            }
-            foreach (var k in bloodList)
-            {
-                //k.position = new Vector2((int)k.position.X, (int)k.position.Y);
-                allObjects.Add(k);
-            }*/
-
-
         }
 
         public static void UpdateBullets(GameTime gameTime)

@@ -6,7 +6,6 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TopDownShooterFinal
 {
-    //internal class WeaponIcons
     static class WeaponIcons
     {
         private static Vector2 knifePos = new Vector2(Utils.screenWidth - 20 - Textures.KnifeLogo.Width, Utils.screenHeigth - 138);

@@ -45,14 +45,11 @@ namespace TopDownShooterFinal
         //remaining
         public static bool laserOn = false;
         public static bool moving = false;
-
         public static Vector2 position = new Vector2(Utils.screenWidth / 2, Utils.screenHeigth / 2);
         public static Texture2D texture = Textures.PlayerKnifeIdle;
-
         public static Circle hitboxCircle = new Circle(position, 35);
         public static Circle lureCircle;
         public static Rectangle hitboxRectangle = new Rectangle((int)position.X - 30, (int)position.Y - 30, 60, 60);
-
         public static Animation playerAnimation = new Animation(texture, 3, 4);
         public static int health = 100;
         public static int stamina = 100;
@@ -63,26 +60,12 @@ namespace TopDownShooterFinal
         public static int screenFlashNum = 0;
         public static bool rev = false;
         public static List<Rectangle> nearestWalls = new List<Rectangle>();
-        private static byte numToUpdateNearestWalls = 0;
         private static List<Rectangle> walls = new List<Rectangle>();
 
         public static void Update(GameTime gameTime)
         {
             playerAnimation.Update(gameTime);
             hitboxCircle.Update(position);
-
-            /*if (numToUpdateNearestWalls == 0)
-            {
-                walls.Clear();
-                foreach (var k in Map.walls)
-                {
-                    walls.Add(k.hitboxRectangle1);
-                    walls.Add(k.hitboxRectangle2);
-                }
-                nearestWalls = walls.FindAll(x => Vector2.Distance(position, x.Center.ToVector2()) < 4000);
-                numToUpdateNearestWalls = 30;
-            }
-            numToUpdateNearestWalls--;*/
 
             if (moving)
             {
@@ -100,7 +83,6 @@ namespace TopDownShooterFinal
                     {
                         trackIndex = 0;
                     }
-                    //Tracks track = new Tracks(trackIndex, (float)playerAnimation.angle);
                     Manager.tracks.Add(new Tracks(trackIndex, (float)playerAnimation.angle));
                     SetNumToNextTrackIndex();
                 }
@@ -158,16 +140,6 @@ namespace TopDownShooterFinal
             {
                 spriteBatch.DrawString(Textures.debug, shotgunAmmoLoaded + " / " + shotgunAmmo, new Vector2(50, 50), Color.White);
             }
-            //spriteBatch.DrawString(Textures.debug, speed + "", new Vector2(position.X + 100, position.Y + 100), Color.White);
-            //spriteBatch.DrawString(Textures.debug, "health: " + health, new Vector2(550, 550), Color.White);
-            //spriteBatch.Draw(Textures.exp, position + playerAnimation.originPlayer, Color.White);
-            //spriteBatch.Draw(Textures.exp, center, Color.White);
-            //spriteBatch.Draw(Textures.ball, new Vector2(Utils.screenWidth / 2 - 38, position.Y), Color.White);
-            //spriteBatch.DrawString(Textures.debug, position.X + 5 + "", new Vector2(300, 300), Color.White);
-            /*spriteBatch.Begin();
-            spriteBatch.DrawString(Textures.debug, (Textures.Player_knife_idle.Width / 4 + 100) + ", " + (Textures.Player_knife_idle.Height / 3 + 100), new Vector2(50, 50), Color.White);
-            spriteBatch.Draw(Textures.x200x177, new Vector2((int)position.X - 50, (int)position.Y - 50), Color.White);
-            spriteBatch.End();*/
         }
     }
 }

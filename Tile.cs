@@ -8,8 +8,8 @@ namespace TopDownShooterFinal
 {
     class Tile
     {
-        public Vector2 position;
-        public Texture2D texture;
+        public Vector2 position { get; set; }
+        public Texture2D texture { get; set; }
         public Rectangle hitboxRectangle1 = new Rectangle(0, 0, 0, 0);
         public Rectangle hitboxRectangle2 = new Rectangle(0, 0, 0, 0);
         private float angle;
@@ -24,7 +24,6 @@ namespace TopDownShooterFinal
 
         public void SetAngle()
         {
-            
             angle = rnd.Next(1, 361);
         }
 
@@ -41,36 +40,6 @@ namespace TopDownShooterFinal
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, null, Color.White, angle, Vector2.Zero, 1f, SpriteEffects.None, 1f);
-            /*if(hitboxRectangle1 != new Rectangle(0, 0, 0, 0))
-            {
-                spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y), Color.White);
-                spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle1.Location.X + hitboxRectangle1.Width, hitboxRectangle1.Location.Y), Color.White);
-                spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y + hitboxRectangle1.Height), Color.White);
-                spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle1.Location.X + hitboxRectangle1.Width, hitboxRectangle1.Location.Y + hitboxRectangle1.Height), Color.White);
-
-
-                
-                //spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle1.Location.X + hitboxRectangle1.Width, hitboxRectangle1.Location.Y), Color.White);
-                //spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y + hitboxRectangle1.Height), Color.White);
-                //spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle1.Location.X + hitboxRectangle1.Width, hitboxRectangle1.Location.Y + hitboxRectangle1.Height), Color.White);
-                spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y) + "", new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y), Color.White);
-                spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle1.Location.X + hitboxRectangle1.Width, hitboxRectangle1.Location.Y) + "", new Vector2(hitboxRectangle1.Location.X + hitboxRectangle1.Width, hitboxRectangle1.Location.Y), Color.White);
-                spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y + hitboxRectangle1.Height) + "", new Vector2(hitboxRectangle1.Location.X, hitboxRectangle1.Location.Y + hitboxRectangle1.Height), Color.White);
-                spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle1.Location.X + hitboxRectangle1.Width, hitboxRectangle1.Location.Y + hitboxRectangle1.Height) + "", new Vector2(hitboxRectangle1.Location.X + hitboxRectangle1.Width, hitboxRectangle1.Location.Y + hitboxRectangle1.Height), Color.White);
-                
-            }
-            if (hitboxRectangle2 != new Rectangle(0, 0, 0, 0))
-            {
-                spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle2.Location.X, hitboxRectangle2.Location.Y), Color.White);
-                spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle2.Location.X + hitboxRectangle2.Width, hitboxRectangle2.Location.Y), Color.White);
-                spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle2.Location.X, hitboxRectangle2.Location.Y + hitboxRectangle2.Height), Color.White);
-                spriteBatch.Draw(Textures.exp, new Vector2(hitboxRectangle2.Location.X + hitboxRectangle2.Width, hitboxRectangle2.Location.Y + hitboxRectangle2.Height), Color.White);
-
-                //spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle2.Location.X, hitboxRectangle2.Location.Y) + "", new Vector2(hitboxRectangle2.Location.X, hitboxRectangle2.Location.Y), Color.White);
-                //spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle2.Location.X + hitboxRectangle2.Width, hitboxRectangle2.Location.Y) + "", new Vector2(hitboxRectangle2.Location.X + hitboxRectangle2.Width, hitboxRectangle2.Location.Y), Color.White);
-                //spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle2.Location.X, hitboxRectangle2.Location.Y + hitboxRectangle2.Height) + "", new Vector2(hitboxRectangle2.Location.X, hitboxRectangle2.Location.Y + hitboxRectangle2.Height), Color.White);
-                //spriteBatch.DrawString(Textures.debug, new Vector2(hitboxRectangle2.Location.X + hitboxRectangle2.Width, hitboxRectangle2.Location.Y + hitboxRectangle2.Height) + "", new Vector2(hitboxRectangle2.Location.X + hitboxRectangle2.Width, hitboxRectangle2.Location.Y + hitboxRectangle2.Height), Color.White);
-            }*/
         }
     }
 }

@@ -79,35 +79,35 @@ namespace TopDownShooterFinal
         private static Texture2D muzzleFlash3;
 
         //debug
-        public static Texture2D exp;
-        public static SpriteFont debug;
+        public static Texture2D exp { get; private set; }
+        public static SpriteFont debug { get; private set; }
         private static Texture2D laser;
-        public static Texture2D x200x177;
-        public static Texture2D bul;
-        public static Texture2D ball;
-        public static Texture2D ball2;
-        public static Texture2D ball150;
-        public static Texture2D ball280;
-        public static Texture2D _1x1;
+        public static Texture2D x200x177 { get; private set; }
+        public static Texture2D bul { get; private set; }
+        public static Texture2D ball { get; private set; }
+        public static Texture2D ball2 { get; private set; }
+        public static Texture2D ball150 { get; private set; }
+        public static Texture2D ball280 { get; private set; }
+        public static Texture2D _1x1 { get; private set; }
 
-        public static Texture2D testTile;
+        public static Texture2D testTile { get; private set; }
         //pak předělat jako ostatní
-        public static Texture2D tTile1;
-        public static Texture2D tTile2;
-        public static Texture2D tTile3;
-        public static Texture2D tTile4;
-        public static Texture2D tTile5;
-        public static Texture2D tTile6;
+        public static Texture2D tTile1 { get; private set; }
+        public static Texture2D tTile2 { get; private set; }
+        public static Texture2D tTile3 { get; private set; }
+        public static Texture2D tTile4 { get; private set; }
+        public static Texture2D tTile5 { get; private set; }
+        public static Texture2D tTile6 { get; private set; }
 
-        public static Texture2D groundTile1;
-        public static Texture2D groundTile2;
-        public static Texture2D groundTile3;
-        public static Texture2D groundTile4;
-        public static Texture2D groundTile5;
-        public static Texture2D groundTile6;
-        public static Texture2D groundTile7;
-        public static Texture2D groundTile8;
-        public static Texture2D groundTile9;
+        public static Texture2D groundTile1 { get; private set; }
+        public static Texture2D groundTile2 { get; private set; }
+        public static Texture2D groundTile3 { get; private set; }
+        public static Texture2D groundTile4 { get; private set; }
+        public static Texture2D groundTile5 { get; private set; }
+        public static Texture2D groundTile6 { get; private set; }
+        public static Texture2D groundTile7 { get; private set; }
+        public static Texture2D groundTile8 { get; private set; }
+        public static Texture2D groundTile9 { get; private set; }
 
         public static Texture2D grass2 { get; private set; }
         public static Texture2D grass3 { get; private set; }
@@ -120,7 +120,7 @@ namespace TopDownShooterFinal
         public static Texture2D grassFull { get; private set; }
 
 
-        public static Texture2D waterTile1;
+        public static Texture2D waterTile1 { get; private set; }
 
         public static Texture2D groundCrack1 { get; private set; }
         public static Texture2D groundCrack2 { get; private set; }
@@ -157,16 +157,13 @@ namespace TopDownShooterFinal
         public static Texture2D groundCrack33 { get; private set; }
 
 
-        public static Texture2D wall1_139;
-        public static Texture2D wall2_139;
-        public static Texture2D wall3_139;
-        public static Texture2D wall4_139;
-        public static Texture2D wall5_139;
-        public static Texture2D wall6_139;
-        //zkusit pak všechny udělat takhle
-        //public static Texture2D tex { get; private set;  }
+        public static Texture2D wall1_139 { get; private set; }
+        public static Texture2D wall2_139 { get; private set; }
+        public static Texture2D wall3_139 { get; private set; }
+        public static Texture2D wall4_139 { get; private set; }
+        public static Texture2D wall5_139 { get; private set; }
+        public static Texture2D wall6_139 { get; private set; }
 
-        //public static Texture2D playerKnifeAttack;
 
         public static void Load(ContentManager manager)
         {
@@ -179,26 +176,18 @@ namespace TopDownShooterFinal
             playerHandgunMove = manager.Load<Texture2D>("Textures\\handgun_move");
             playerHandgunReload = manager.Load<Texture2D>("Textures\\handgun_reload");
             playerHandgunShoot = manager.Load<Texture2D>("Textures\\handgun_shoot");
-
-            //ty ve final version jsou už fakt final version
             playerRifleIdle = manager.Load<Texture2D>("RifleFolder\\rifle_idle");
             playerRifleMeleeattack = manager.Load<Texture2D>("RifleFolder\\rifle_meleeattack");
             playerRifleMove = manager.Load<Texture2D>("RifleFolder\\rifle_move");
             playerRifleReload = manager.Load<Texture2D>("RifleFolder\\rifle_reload");
             playerRifleShoot = manager.Load<Texture2D>("RifleFolder\\rifle_shoot");
 
-
-            //fixnout shake idlu a movu!!!
             playerShotgunIdle = manager.Load<Texture2D>("Textures\\shotgunIdle");
             playerShotgunMeleeattack = manager.Load<Texture2D>("Textures\\shotgunMeleeattack");
-            //dodělat
-            //playerShotgunMove = manager.Load<Texture2D>("Textures\\shotgunMove");
             playerShotgunMove = manager.Load<Texture2D>("shotgunMove2");
-            //
             playerShotgunReload = manager.Load<Texture2D>("Textures\\shotgunReload");
             playerShotgunShoot = manager.Load<Texture2D>("Textures\\shotgunShoot");
 
-            //ty z předěláno
             zombieAttack1 = manager.Load<Texture2D>("Zombie\\attack1");
             zombieAttack2 = manager.Load<Texture2D>("Zombie\\attack2");
             zombieAttack3 = manager.Load<Texture2D>("Zombie\\attack3");
@@ -320,8 +309,6 @@ namespace TopDownShooterFinal
             groundCrack31 = manager.Load<Texture2D>("GroundCracks\\31");
             groundCrack32 = manager.Load<Texture2D>("GroundCracks\\32");
             groundCrack33 = manager.Load<Texture2D>("GroundCracks\\33");
-
-          
 
             wall1_139 = manager.Load<Texture2D>("test2_139\\testtile1");
             wall2_139 = manager.Load<Texture2D>("test2_139\\testtile2");

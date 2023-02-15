@@ -17,8 +17,9 @@ namespace TopDownShooterFinal
         saunter,
     }
 
-    class Zombie : MotherClass
+    class Zombie
     {
+        public Vector2 position;
         private int numberToNextChangeOfBehavior, indexToNearestBody, updateSight;
         public int health;
         public float movementSpeed;

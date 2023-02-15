@@ -18,17 +18,14 @@ namespace TopDownShooterFinal
 
         public void Follow()
         {
-
             position = Matrix.CreateTranslation(
                 -Player.position.X - 5,
                 -Player.position.Y - 25,
                 0);
-
             offset = Matrix.CreateTranslation(
                 Utils.screenWidth / 2,
                 Utils.screenHeigth / 2,
                 0);
-
             position2 = Matrix.CreateTranslation(
                -Cursor.mousePosition.X / 3f + 326,
                -Cursor.mousePosition.Y / 3f + 206,
