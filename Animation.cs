@@ -27,8 +27,25 @@ namespace TopDownShooterFinal
         private int number = 0;
 
         public double angle2;
- 
+        float laserDist;
+        bool laserCondition;
+        List<Circle> listOfCircles;
 
+        double radian2;
+        float degrees;
+        float positionX;
+        float positionY;
+        Rectangle testRectangle;
+        int width;
+        int height;
+        int row;
+        int column;
+        Rectangle destinationRectanglePlayer;
+        Rectangle sourceRectangle;
+        float posX;
+        float posY;
+        Vector2 diff;
+        Vector2 diffVec;
         //test
         List<Circle> circlesToDeleteAFter = new List<Circle>();
 
@@ -380,16 +397,6 @@ namespace TopDownShooterFinal
 
         }
 
-        float laserDist;
-        bool laserCondition;
-        List<Circle> listOfCircles;
-
-        double radian2;
-        float degrees;
-        float positionX;
-        float positionY;
-        Rectangle testRectangle;
-
         private void HandleLaser(float pX, float pY)
         {
             laserDist = 0;
@@ -455,19 +462,6 @@ namespace TopDownShooterFinal
                 destinationRectangleLaser = new Rectangle((int)originBullet.X + (int)Player.position.X, (int)originBullet.Y + (int)Player.position.Y, (int)laserDist + 3, 1);
             }
         }
-
-
-
-        int width;
-        int height;
-        int row;
-        int column;
-        Rectangle destinationRectanglePlayer;
-        Rectangle sourceRectangle;
-        float posX;
-        float posY;
-        Vector2 diff;
-        Vector2 diffVec;
 
         public void Draw(SpriteBatch spriteBatch, Vector2 location, GameTime gameTime)
         {

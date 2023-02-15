@@ -623,7 +623,7 @@ namespace TopDownShooterFinal
                 k.collisionCircle = new Circle(k.collisionRectangle.Center.ToVector2(), 5);
             }
 
-   
+            
             /*foreach(var k in pathList)
             {
                 foreach(var o in Map.rectanglesAroundHouses)

@@ -12,8 +12,6 @@ namespace TopDownShooterFinal
         public static int screenWidth;
         public static int screenHeigth;
 
-
-
         public static void SetUpTracks()
         {
             Manager.trackTextures.Add(Textures.Run0);
@@ -84,7 +82,6 @@ namespace TopDownShooterFinal
             screenWidth = graphics.PreferredBackBufferWidth;
             screenHeigth = graphics.PreferredBackBufferHeight;
             graphics.ApplyChanges();
-            
         }
 
         public static bool IntersectCircles(Circle a, Circle b)

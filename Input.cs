@@ -438,7 +438,7 @@ namespace TopDownShooterFinal
                 {
                     Utils.MakePlayerRifleMeleeattack();
                 }
-                //if (!Player.rifle_meleeAttacking && Player.rifle_ammo_loaded > 0 && !Player.rifleReloading && !Player.rifle_shooting && previousMouseState.LeftButton == ButtonState.Released && Mouse.GetState().LeftButton == ButtonState.Pressed)
+               
                 if (!Player.rifleMeleeAttacking && Player.rifleAmmoLoaded > 0 && !Player.rifleReloading && !Player.rifleShooting && Mouse.GetState().LeftButton == ButtonState.Pressed)
                 {
                     Utils.MakePlayerRifleShoot(gameTime);
@@ -518,7 +518,6 @@ namespace TopDownShooterFinal
                     if(b) Manager.zombieList.Add(z);
                 }
             }
-
             previousMouseState = Mouse.GetState();
         }
     }

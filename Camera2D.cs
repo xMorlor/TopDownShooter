@@ -11,7 +11,6 @@ namespace TopDownShooterFinal
     {
         //source: https://www.youtube.com/watch?v=ceBCDKU_mNw
 
-
         public Matrix Transform { get; private set; }
         private Matrix position;
         private Matrix offset;
