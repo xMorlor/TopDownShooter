@@ -2,7 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
-
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace TopDownShooterFinal
 {
@@ -11,19 +13,22 @@ namespace TopDownShooterFinal
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        public static Camera2D camera;
+        private static Game1 gameInstance;
+        
+        public static Camera2D camera { get; private set; }
 
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            gameInstance = this;
         }
 
         protected override void Initialize()
         {
             base.Initialize();
-            
+
             Utils.SetUpScreen(_graphics);
             camera = new Camera2D();
         }
@@ -49,7 +54,7 @@ namespace TopDownShooterFinal
                     break;
 
                 case GameState.Gameplay:
-                    UpdateGameplay(gameTime, _spriteBatch.GraphicsDevice);
+                    UpdateGameplay(gameTime, GraphicsDevice);
                     break;
 
                 case GameState.EndOfGame:
@@ -65,7 +70,7 @@ namespace TopDownShooterFinal
 
         }
 
-        void UpdateGameplay(GameTime gameTime, GraphicsDevice graphicsDevice)
+        private void UpdateGameplay(GameTime gameTime, GraphicsDevice graphicsDevice)
         {
             Map.Update(gameTime);
             Input.Update(gameTime);

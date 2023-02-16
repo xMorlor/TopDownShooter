@@ -109,18 +109,18 @@ namespace TopDownShooterFinal
                 {
                     DayNight.flashColor.R += 6;
                 }
-                if (DayNight.flashColor.R == 60 && !Player.rev)
+                else if (DayNight.flashColor.R == 60 && !Player.rev)
                 {
                     Player.rev = true;
                 }
-                if (Player.rev)
-                {
-                    DayNight.flashColor.R -= 6;
-                }
-                if (Player.rev && DayNight.flashColor.R == 0)
+                else if (Player.rev && DayNight.flashColor.R == 0)
                 {
                     Player.onHitFlash = false;
                     Player.rev = false;
+                }
+                else if (Player.rev)
+                {
+                    DayNight.flashColor.R -= 6;
                 }
             }
         }
@@ -209,13 +209,6 @@ namespace TopDownShooterFinal
                             Manager.zombieList[i].direction = Manager.zombieList[i].position - Manager.zombieList[j].position;
                             Manager.zombieList[i].position += Manager.zombieList[i].direction * 0.0001f * (float)gameTime.ElapsedGameTime.TotalSeconds;//tady a dole upravovat
                             Manager.zombieList[i].speed += 80000 * (Manager.zombieList[i].direction / (Manager.zombieList[i].direction.LengthSquared() + 1)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                            /*
-                            Manager.zombieList[i].CollisionBetweenAnotherZombie(gameTime, (int)Manager.zombieList[j].position.X, (int)Manager.zombieList[j].position.Y);
-                            Manager.zombieList[j].direction = Manager.zombieList[j].position - Manager.zombieList[i].position;
-                            Manager.zombieList[j].position += Manager.zombieList[j].direction * 0.0001f * (float)gameTime.ElapsedGameTime.TotalSeconds;//tady a dole upravovat
-                            Manager.zombieList[j].speed += 80000 * (Manager.zombieList[j].direction / (Manager.zombieList[j].direction.LengthSquared() + 1)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                            Manager.zombieList[j].CollisionBetweenAnotherZombie(gameTime, (int)Manager.zombieList[j].position.X, (int)Manager.zombieList[j].position.Y);
-                            */
                         }
                         if (Manager.zombieList[i].lured)
                         {
@@ -273,7 +266,7 @@ namespace TopDownShooterFinal
 
                             if (k.health > 0)
                             {
-                                //Blood b = new Blood(true, k.position, k, 0, graphicsDevice); //tady se doplňovat num na konci nemusí, proto 0
+                                                                             //tady se doplňovat num na konci nemusí, proto 0
                                 Manager.bloodList.Add(new Blood(true, k.position, k, 0, graphicsDevice));
                             }
                         }

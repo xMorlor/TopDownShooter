@@ -91,7 +91,6 @@ namespace TopDownShooterFinal
         public static Texture2D _1x1 { get; private set; }
 
         public static Texture2D testTile { get; private set; }
-        //pak předělat jako ostatní
         public static Texture2D tTile1 { get; private set; }
         public static Texture2D tTile2 { get; private set; }
         public static Texture2D tTile3 { get; private set; }
@@ -156,14 +155,12 @@ namespace TopDownShooterFinal
         public static Texture2D groundCrack32 { get; private set; }
         public static Texture2D groundCrack33 { get; private set; }
 
-
         public static Texture2D wall1_139 { get; private set; }
         public static Texture2D wall2_139 { get; private set; }
         public static Texture2D wall3_139 { get; private set; }
         public static Texture2D wall4_139 { get; private set; }
         public static Texture2D wall5_139 { get; private set; }
         public static Texture2D wall6_139 { get; private set; }
-
 
         public static void Load(ContentManager manager)
         {
@@ -234,7 +231,6 @@ namespace TopDownShooterFinal
             muzzleFlash3 = manager.Load<Texture2D>("Textures\\muzzleFlash3");
 
             laser = manager.Load<Texture2D>("Textures\\laserReal");
-
             exp = manager.Load<Texture2D>("Textures\\experience");
             debug = manager.Load<SpriteFont>("Fonts\\debug");
             x200x177 = manager.Load<Texture2D>("Textures\\200x177");

@@ -11,10 +11,16 @@ namespace TopDownShooterFinal
 {
     static class MuzzleFlashAnimation
     {
-        public static Texture2D texture = Textures.MuzzleFlash1;
-        public static bool draw = false;
+        public static Texture2D texture { get; set; }
+        public static bool draw { get; set; }
         private static int num = 0;
         private static Vector2 position;
+
+        static MuzzleFlashAnimation()
+        {
+            draw = false;
+            texture = Textures.MuzzleFlash1;
+        }
 
         public static void Update()
         {

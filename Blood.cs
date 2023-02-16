@@ -19,14 +19,12 @@ namespace TopDownShooterFinal
         private Color color;
         private Random rnd;
         public Texture2D texture { get; set; }
-        private Vector2 origin;
+        private Vector2 origin, position;
         private Rectangle destRectangle;
         public Zombie zombie { get; set; }
         private bool fadeOut, justHit;
         public bool update { get; set; }
-        private int posX;
-        private int posY;
-        Vector2 position;
+        private int posX, posY;
 
         public Blood(bool justHit, Vector2 position, Zombie zombie, int num, GraphicsDevice graphicsDevice)
         {

@@ -43,8 +43,7 @@ namespace TopDownShooterFinal
         public static bool shotgunReloading = false;
 
         //remaining
-        public static bool laserOn = false;
-        public static bool moving = false;
+        public static bool laserOn = false, moving = false;
         public static Vector2 position = new Vector2(Utils.screenWidth / 2, Utils.screenHeigth / 2);
         public static Texture2D texture = Textures.PlayerKnifeIdle;
         public static Circle hitboxCircle = new Circle(position, 35);
@@ -59,8 +58,6 @@ namespace TopDownShooterFinal
         public static bool onHitFlash = false;
         public static int screenFlashNum = 0;
         public static bool rev = false;
-        public static List<Rectangle> nearestWalls = new List<Rectangle>();
-        private static List<Rectangle> walls = new List<Rectangle>();
 
         public static void Update(GameTime gameTime)
         {

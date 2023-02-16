@@ -21,6 +21,8 @@ namespace TopDownShooterFinal
         private static List<Point> housePoints = new List<Point>();
         public static List<Texture2D> groundCracks = new();
         public static List<Rectangle> rectanglesAroundHouses = new List<Rectangle>();
+        private static Rectangle playerHitboxRec;
+
         public static void CreateHouses()
         {
             Point point = new Point(1200, 600);
@@ -28,7 +30,7 @@ namespace TopDownShooterFinal
             CreateHouse(1200, 600);
             
             Random rnd = new Random();
-            for(int i = 0; i < 1500; i++)
+            for(int i = 0; i < 500; i++)
             {
                 bool condition = true;
                 while (condition)
@@ -70,10 +72,6 @@ namespace TopDownShooterFinal
             tile1.CreateHitboxRectangle1((int)corePos.X, (int)corePos.Y, 28, 356);
             tile1.CreateHitboxRectangle2((int)corePos.X, (int)corePos.Y, 89, 28);
 
-            //wallsForPathFinder.Add(new Rectangle((int)tile1.position.X - 50, (int)tile1.position.Y - 50, 159, 100));
-            //wallsForPathFinder.Add(new Rectangle((int)tile1.position.X - 50, (int)tile1.position.Y - 25, 125, 406));
-            //wallsForPathFinder.Add(new Rectangle((int)tile1.position.X - 50, (int)tile1.position.Y + 306, 159, 100));
-
             Tile tile2 = new Tile(new Vector2(corePos.X, corePos.Y + Textures.tTile1.Height), Textures.tTile5);
             walls.Add(tile2);
 
@@ -88,10 +86,6 @@ namespace TopDownShooterFinal
             walls.Add(tile5);
             tile5.CreateHitboxRectangle1((int)tile5.position.X, (int)tile5.position.Y, 89, 28);
             tile5.CreateHitboxRectangle2((int)tile5.position.X + 61, (int)tile5.position.Y, 28, 356);
-
-            //wallsForPathFinder.Add(new Rectangle((int)tile5.position.X - 20, (int)tile5.position.Y - 50, 159, 100));
-            //wallsForPathFinder.Add(new Rectangle((int)tile5.position.X + 10, (int)tile5.position.Y - 25, 125, 436));
-            //wallsForPathFinder.Add(new Rectangle((int)tile5.position.X - 20, (int)tile5.position.Y + 306, 159, 100));
 
             Tile tile6 = new Tile(new Vector2(corePos.X + 224, corePos.Y + 89), Textures.tTile5);
             walls.Add(tile6);
@@ -129,8 +123,7 @@ namespace TopDownShooterFinal
             rectanglesAroundHouses.Add(new Rectangle((int)tile5.position.X, (int)tile5.position.Y + 28, 61, 160));
             rectanglesAroundHouses.Add(new Rectangle((int)tile5.position.X, (int)tile5.position.Y + 188, 61, 140));
         }
-        private static Rectangle playerHitboxRec;
-
+        
         public static bool CheckCollisionsForPlayerWithWallsLeft(GameTime gameTime)
         {
             playerHitboxRec = Player.hitboxRectangle;
@@ -188,23 +181,6 @@ namespace TopDownShooterFinal
                 }
             }
             return false;
-        }
-
-        public static void CheckCollisionsForZombieWithWallsLeft(GameTime gameTime, Zombie zombie)
-        {
-            Rectangle hitboxRec = new Rectangle((int)(zombie.hitboxCircle.Center.X - zombie.hitboxCircle.Radius), (int)(zombie.hitboxCircle.Center.Y - zombie.hitboxCircle.Radius), (int)(zombie.hitboxCircle.Radius * 2), (int)(zombie.hitboxCircle.Radius * 2));
-            hitboxRec.X += (int)(zombie.direction.X * 2 * zombie.movementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds);
-            hitboxRec.X += (int)(zombie.speed.X * 2 * (float)gameTime.ElapsedGameTime.TotalSeconds);
-            foreach (var k in walls)
-            {
-                if (hitboxRec.Intersects(k.hitboxRectangle1) || hitboxRec.Intersects(k.hitboxRectangle2))
-                {
-                    Manager.zombieList[Manager.zombieList.IndexOf(zombie)].position.X -= zombie.direction.X * zombie.movementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    Manager.zombieList[Manager.zombieList.IndexOf(zombie)].position.X -= zombie.speed.X * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                    //return true;
-                }
-            }
-            //return false;
         }
 
         private static void HandleGrassTiles(int x, int y)

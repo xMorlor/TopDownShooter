@@ -20,56 +20,40 @@ namespace TopDownShooterFinal
     class Zombie
     {
         public Vector2 position;
-        private int numberToNextChangeOfBehavior, indexToNearestBody, updateSight;
         public int health { get; set; }
         public float movementSpeed { get; set; }
-        private double radian;
         public double angle { get; set; }
         public float randomAngle { get; set; }
-        private Array behaviors;
         public NotLuredBehavior behavior { get; set; }
         public Texture2D texture { get; set; }
         public Vector2 direction, speed;
-        private Random rnd1, rnd2;
         public ZombieAnimation zombieAnimation { get; set; }
         public Circle hitboxCircle, lureCircle;
-        private bool isDead;
         public bool lured { get; set; }
         public bool attacking { get; set; }
         public bool running { get; set; }
         public bool walking { get; set; }
         public bool meleeAttacked { get; set; }
-        private Circle hitboxForPathFinder;
-        private bool sightIsBlocked;
-        private GridTile startTile = new GridTile();
-        private GridTile endTile = new GridTile();
-        private GridTile currentTile;
+
+        private int numberToNextChangeOfBehavior, indexToNearestBody, updateSight, smallest, num;
+        private double radian, radian2;
+        private Array behaviors;
+        private Random rnd1, rnd2, random;
+        private bool isDead, sightIsBlocked, condition, b2, b4, b5, b7;
+        private Circle hitboxForPathFinder, collisionCircle;
+        private GridTile startTile = new GridTile(), endTile = new GridTile(), currentTile;
+        private Rectangle rec2, rec4, rec5, rec7;
+        private float degrees, positionX, positionY;
         private List<GridTile> pathList = new List<GridTile>();
         private List<GridTile> successors = new List<GridTile>();
         private List<GridTile> path = new List<GridTile>();
         private List<GridTile> pathTilesToDelete = new List<GridTile>();
         private List<Rectangle> nearestWalls = new List<Rectangle>();
-        private List<Rectangle> walls = new List<Rectangle>();
         private List<GridTile> openList = new List<GridTile>();
         private List<GridTile> closedList = new List<GridTile>();
-        private int smallest;
-        private bool b2;
-        private bool b4;
-        private bool b5;
-        private bool b7;
-        private Rectangle rec2;
-        private Rectangle rec4;
-        private Rectangle rec5;
-        private Rectangle rec7;
-        Random random = new Random();
-        private bool condition;
-        private Circle collisionCircle;
         private List<Circle> listOfCircles = new List<Circle>();
         private List<Rectangle> listOfRectangles = new List<Rectangle>();
-        private double radian2;
-        private float degrees;
-        private float positionX;
-        private float positionY;
+        private List<Zombie> listOfBodies = new List<Zombie>();
 
         public Zombie()
         {
@@ -77,6 +61,7 @@ namespace TopDownShooterFinal
             updateSight = 10;
             rnd1 = new Random();
             rnd2 = new Random();
+            random = new Random();
             meleeAttacked = false;
             running = false;
             walking = false;
@@ -104,7 +89,6 @@ namespace TopDownShooterFinal
                 hitboxCircle.Radius += 7;
                 MakeZombieDie(graphicsDevice);
             }
-
             switch (isDead)
             {
                 case true:
@@ -197,11 +181,17 @@ namespace TopDownShooterFinal
 
             if (updateSight == 10)
             {
+                nearestWalls.Clear();
+                List<Tile> tiles = Map.walls.FindAll(x => Vector2.Distance(position, x.position) < 400);
+                foreach(var k in tiles)
+                {
+                    nearestWalls.Add(k.hitboxRectangle1);
+                    nearestWalls.Add(k.hitboxRectangle2);
+                }
                 updateSight = 0;
                 sightIsBlocked = SightIsBlocked();
             }
-            else updateSight++;
-
+            updateSight++;
 
             if (lured && !sightIsBlocked)
             {
@@ -536,8 +526,7 @@ namespace TopDownShooterFinal
             zombieAnimation.currentFrame = 0;
             zombieAnimation.totalFrames = 4 * 5;
         }
-        List<Zombie> listOfBodies = new List<Zombie>();
-        int num;
+        
         private void CheckNearestDeadBody()
         {
             indexToNearestBody = 0;
@@ -589,6 +578,14 @@ namespace TopDownShooterFinal
             direction.Normalize();
             position += direction * movementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             position += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            foreach (var k in nearestWalls)
+            {
+                if (k.Intersects(new Rectangle((int)(hitboxCircle.Center.X - hitboxCircle.Radius), (int)(hitboxCircle.Center.Y - hitboxCircle.Radius), (int)(hitboxCircle.Radius * 2), (int)(hitboxCircle.Radius * 2))))
+                {
+                    behavior = NotLuredBehavior.idle;
+                    break;
+                }
+            }
         }
 
         private void MakeZombieEat()

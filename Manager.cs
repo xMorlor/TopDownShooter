@@ -47,7 +47,7 @@ namespace TopDownShooterFinal
             {
                 k.Update();
             }
-            //opatření proti lagům
+
             mediumAndLarge.Clear();
             foreach (var k in bloodList)
             {

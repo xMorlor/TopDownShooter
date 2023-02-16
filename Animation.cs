@@ -11,43 +11,23 @@ namespace TopDownShooterFinal
         public Texture2D Texture { get; set; }
         public int Rows { get; set; }
         public int Columns { get; set; }
-        public int currentFrame;
-        public int totalFrames;
-        public bool reversed = false;
-        public double angle;
-        public Vector2 originPlayer;
-        public Vector2 originBullet;
-       
+        public int currentFrame { get; set; }
+        public int totalFrames { get; set; }
+        public bool reversed { get; set; }
+        public double angle { get; set; }
+        public double angle2 { get; set; }
+
+        public Vector2 originPlayer, originBullet;
         public Rectangle destinationRectangleLaser;
-        Circle collisionCircle = new Circle(Player.position, 1); //tady jsou hodnoty jedno
-
-
         public Circle meleeattackCircle;
-
-        private int number = 0;
-
-        public double angle2;
-        float laserDist;
-        bool laserCondition;
-        List<Circle> listOfCircles;
-
-        double radian2;
-        float degrees;
-        float positionX;
-        float positionY;
-        Rectangle testRectangle;
-        int width;
-        int height;
-        int row;
-        int column;
-        Rectangle destinationRectanglePlayer;
-        Rectangle sourceRectangle;
-        float posX;
-        float posY;
-        Vector2 diff;
-        Vector2 diffVec;
-        //test
-        List<Circle> circlesToDeleteAFter = new List<Circle>();
+        private Circle collisionCircle = new Circle(Player.position, 1); //tady je radius jedno jaký je
+        private bool laserCondition;
+        private List<Circle> listOfCircles;
+        private double radian2;
+        private float degrees, positionX, positionY, laserDist, posX, posY;
+        private int width, height, row, column, number = 0;
+        private Rectangle destinationRectanglePlayer, sourceRectangle, testRectangle;
+        private Vector2 diff, diffVec;
 
         public Animation(Texture2D texture, int rows, int columns)
         {
@@ -60,7 +40,7 @@ namespace TopDownShooterFinal
             Vector2 diff = new Vector2(Player.position.X + originBullet.X, Player.position.Y + originBullet.Y);
             var diffVec = new Vector2(Cursor.posX, Cursor.posY) - diff;
             angle = (float)Math.Atan2(diffVec.Y, diffVec.X);
-
+            reversed = false;
             angle2 = angle;
             angle2 = MathHelper.ToDegrees((float)angle2);
         }
