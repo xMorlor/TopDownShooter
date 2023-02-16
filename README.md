@@ -1,2 +1,2 @@
 # TopDownShooterFinal
-Unfinished TDS style game made using MonoGame framework
+Unfinished TDS genre game made using MonoGame framework
