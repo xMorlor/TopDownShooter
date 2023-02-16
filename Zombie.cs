@@ -21,34 +21,55 @@ namespace TopDownShooterFinal
     {
         public Vector2 position;
         private int numberToNextChangeOfBehavior, indexToNearestBody, updateSight;
-        public int health;
-        public float movementSpeed;
+        public int health { get; set; }
+        public float movementSpeed { get; set; }
         private double radian;
-        public double angle, randomAngle;
+        public double angle { get; set; }
+        public float randomAngle { get; set; }
         private Array behaviors;
-        public NotLuredBehavior behavior;
-        public Texture2D texture;
+        public NotLuredBehavior behavior { get; set; }
+        public Texture2D texture { get; set; }
         public Vector2 direction, speed;
         private Random rnd1, rnd2;
-        public ZombieAnimation zombieAnimation;
+        public ZombieAnimation zombieAnimation { get; set; }
         public Circle hitboxCircle, lureCircle;
         private bool isDead;
-        public bool lured, attacking, running, walking, meleeAttacked;
-
+        public bool lured { get; set; }
+        public bool attacking { get; set; }
+        public bool running { get; set; }
+        public bool walking { get; set; }
+        public bool meleeAttacked { get; set; }
         private Circle hitboxForPathFinder;
-        
-        bool sightIsBlocked;
-        bool followNextPoint;
-
-        GridTile startTile = new GridTile();
-        GridTile endTile = new GridTile();
-        GridTile currentTile;
-        List<GridTile> pathList = new List<GridTile>();
-        List<GridTile> successors = new List<GridTile>();
-        List<GridTile> path = new List<GridTile>();
-        List<GridTile> pathTilesToDelete = new List<GridTile>();
-        List<Rectangle> nearestWalls = new List<Rectangle>();
-        List<Rectangle> walls = new List<Rectangle>();
+        private bool sightIsBlocked;
+        private GridTile startTile = new GridTile();
+        private GridTile endTile = new GridTile();
+        private GridTile currentTile;
+        private List<GridTile> pathList = new List<GridTile>();
+        private List<GridTile> successors = new List<GridTile>();
+        private List<GridTile> path = new List<GridTile>();
+        private List<GridTile> pathTilesToDelete = new List<GridTile>();
+        private List<Rectangle> nearestWalls = new List<Rectangle>();
+        private List<Rectangle> walls = new List<Rectangle>();
+        private List<GridTile> openList = new List<GridTile>();
+        private List<GridTile> closedList = new List<GridTile>();
+        private int smallest;
+        private bool b2;
+        private bool b4;
+        private bool b5;
+        private bool b7;
+        private Rectangle rec2;
+        private Rectangle rec4;
+        private Rectangle rec5;
+        private Rectangle rec7;
+        Random random = new Random();
+        private bool condition;
+        private Circle collisionCircle;
+        private List<Circle> listOfCircles = new List<Circle>();
+        private List<Rectangle> listOfRectangles = new List<Rectangle>();
+        private double radian2;
+        private float degrees;
+        private float positionX;
+        private float positionY;
 
         public Zombie()
         {
@@ -83,19 +104,6 @@ namespace TopDownShooterFinal
                 hitboxCircle.Radius += 7;
                 MakeZombieDie(graphicsDevice);
             }
-
-
-            //udělat takovouhle optimalizaci výkonu všude kde je to možný
-            //pro bullets to udělat přes player's nearest walls
-            /*walls.Clear();
-            foreach(var k in Map.walls)
-            {
-                walls.Add(k.hitboxRectangle1);
-                walls.Add(k.hitboxRectangle2);
-            }
-            nearestWalls = walls.FindAll(x => Vector2.Distance(position, x.Center.ToVector2()) < 3000);*/
-
-
 
             switch (isDead)
             {
@@ -133,59 +141,10 @@ namespace TopDownShooterFinal
             }
         }
 
-        Vector2 pos1;
-        Vector2 pos2;
-        Vector2 pos3;
-        Vector2 pos4;
-
         private void HandleMovement(GameTime gameTime)
         {
             position += direction * movementSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             position += speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            /*foreach (var k in nearestWalls)
-            {
-                if (k.Intersects(new Rectangle((int)(hitboxCircle.Center.X - hitboxCircle.Radius), (int)(hitboxCircle.Center.Y - hitboxCircle.Radius), (int)(hitboxCircle.Radius * 2), (int)(hitboxCircle.Radius * 2))))
-                {
-                    pos1 = hitboxCircle.Center; //up
-                    pos2 = hitboxCircle.Center; //right
-                    pos3 = hitboxCircle.Center; //down
-                    pos4 = hitboxCircle.Center; //left
-
-                    for (int i = 0; i < 50; i++)
-                    {
-                        pos1.Y--;
-                        pos2.X++;
-                        pos3.Y++;
-                        pos4.X--;
-
-                        if (k.Intersects(new Rectangle((int)pos1.X, (int)pos1.Y, 5, 5)))
-                        {
-                            direction = position - pos1;
-                            position += direction * 0.15f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                            speed += 3000 * (direction / (direction.LengthSquared() + 1)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                        }
-                        if (k.Intersects(new Rectangle((int)pos2.X, (int)pos2.Y, 5, 5)))
-                        {
-                            direction = position - pos2;
-                            position += direction * 0.15f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                            speed += 3000 * (direction / (direction.LengthSquared() + 1)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                        }
-                        if (k.Intersects(new Rectangle((int)pos3.X, (int)pos3.Y, 5, 5)))
-                        {
-                            direction = position - pos3;
-                            position += direction * 0.15f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                            speed += 3000 * (direction / (direction.LengthSquared() + 1)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                        }
-                        if (k.Intersects(new Rectangle((int)pos4.X, (int)pos4.Y, 5, 5)))
-                        {
-                            direction = position - pos4;
-                            position += direction * 0.15f * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                            speed += 3000 * (direction / (direction.LengthSquared() + 1)) * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                        }
-                    }
-                }
-            }*/
 
             foreach (var k in Map.walls)
             {
@@ -232,8 +191,6 @@ namespace TopDownShooterFinal
             }
         }
 
-        Random random = new Random();
-
         private void UpdateLiveZombie(GameTime gameTime, int posX, int posY)
         {
             hitboxForPathFinder.Update(position);
@@ -256,7 +213,6 @@ namespace TopDownShooterFinal
                 direction.Normalize();
 
                 HandleMovement(gameTime);
-
 
                 if (Vector2.Distance(position, Player.position) < 70 && !attacking)
                 {
@@ -305,7 +261,6 @@ namespace TopDownShooterFinal
                         }
                         else if (behavior == NotLuredBehavior.saunter)
                         {
-                            //Random rnd = new Random();
                             angle = random.Next(1, 361);
                             MakeZombieSaunter();
                         }
@@ -354,19 +309,6 @@ namespace TopDownShooterFinal
             }
         }
 
-        List<GridTile> openList = new List<GridTile>();
-        List<GridTile> closedList = new List<GridTile>();
-        int smallest;
-        bool b2;
-        bool b4;
-        bool b5;
-        bool b7;
-        Rectangle rec2;
-        Rectangle rec4;
-        Rectangle rec5;
-        Rectangle rec7;
-
-
         private List<GridTile> MakePath()
         {
             
@@ -374,8 +316,6 @@ namespace TopDownShooterFinal
             endTile.position = Player.position;
             endTile.collisionRectangle = new Rectangle((int)endTile.position.X - 50, (int)endTile.position.Y - 50, 100, 100);
             endTile.h = 0;
-            
-            
 
             startTile = new GridTile();
             startTile.position = position;
@@ -412,72 +352,22 @@ namespace TopDownShooterFinal
 
                 successors = new List<GridTile>();
 
-                //bool b1 = true;
                 b2 = true;
-                //bool b3 = true;
-                b4 = true; //přejmenovat správně a vyhodit zbytečný //nevyhazovat, udělat všechny (movement v 8 směrech)
+                b4 = true; 
                 b5 = true;
-                //bool b6 = true;
                 b7 = true;
-                //bool b8 = true;
 
-                //Rectangle rec1 = new Rectangle((int)currentTile.position.X - 20, (int)currentTile.position.Y - 20, 20, 20);
                 rec2 = new Rectangle((int)currentTile.position.X, (int)currentTile.position.Y - 20, 20, 20);
-                //Rectangle rec3 = new Rectangle((int)currentTile.position.X + 20, (int)currentTile.position.Y - 20, 20, 20);
                 rec4 = new Rectangle((int)currentTile.position.X - 20, (int)currentTile.position.Y, 20, 20);
                 rec5 = new Rectangle((int)currentTile.position.X + 20, (int)currentTile.position.Y, 20, 20);
-                //Rectangle rec6 = new Rectangle((int)currentTile.position.X - 20, (int)currentTile.position.Y + 20, 20, 20);
                 rec7 = new Rectangle((int)currentTile.position.X, (int)currentTile.position.Y + 20, 20, 20);
-                //Rectangle rec8 = new Rectangle((int)currentTile.position.X + 20, (int)currentTile.position.Y + 20, 20, 20);
-                /*foreach (var k in nearestWalls)//pokud bude zombie při followpath chodit do zdí tak je chyba v tom že nejsou ty zdi v nearest walls
-                {
-                    //if (k.hitboxRectangle1.Intersects(rec1) || k.hitboxRectangle2.Intersects(rec1))
-                    //{
-                    //    b1 = false;
-                    //}
-                    if (k.Intersects(rec2))
-                    {
-                        b2 = false;
-                    }
-                    //if (k.hitboxRectangle1.Intersects(rec3) || k.hitboxRectangle2.Intersects(rec3))
-                    //{
-                    //    b3 = false;
-                    //}
-                    if (k.Intersects(rec4))
-                    {
-                        b4 = false;
-                    }
-                    if (k.Intersects(rec5))
-                    {
-                        b5 = false;
-                    }
-                    //if (k.hitboxRectangle1.Intersects(rec6) || k.hitboxRectangle2.Intersects(rec6))
-                    //{
-                    //    b6 = false;
-                    //}
-                    if (k.Intersects(rec7))
-                    {
-                        b7 = false;
-                    }
-                    //if (k.hitboxRectangle1.Intersects(rec8) || k.hitboxRectangle2.Intersects(rec8))
-                    //{
-                    //    b8 = false;
-                    //}
-                }*/
+
                 foreach (var k in Map.walls)
                 {
-                    /*if (k.hitboxRectangle1.Intersects(rec1) || k.hitboxRectangle2.Intersects(rec1))
-                    {
-                        b1 = false;
-                    }*/
                     if (k.hitboxRectangle1.Intersects(rec2) || k.hitboxRectangle2.Intersects(rec2))
                     {
                         b2 = false;
                     }
-                    /*if (k.hitboxRectangle1.Intersects(rec3) || k.hitboxRectangle2.Intersects(rec3))
-                    {
-                        b3 = false;
-                    }*/
                     if (k.hitboxRectangle1.Intersects(rec4) || k.hitboxRectangle2.Intersects(rec4))
                     {
                         b4 = false;
@@ -486,89 +376,49 @@ namespace TopDownShooterFinal
                     {
                         b5 = false;
                     }
-                    /*if (k.hitboxRectangle1.Intersects(rec6) || k.hitboxRectangle2.Intersects(rec6))
-                    {
-                        b6 = false;
-                    }*/
                     if (k.hitboxRectangle1.Intersects(rec7) || k.hitboxRectangle2.Intersects(rec7))
                     {
                         b7 = false;
                     }
-                    /*if (k.hitboxRectangle1.Intersects(rec8) || k.hitboxRectangle2.Intersects(rec8))
-                    {
-                        b8 = false;
-                    }*/
                 }
 
                 foreach (var k in openList)
                 {
-                    /*if (k.collisionRectangle.Intersects(rec1))
-                    {
-                        b1 = false;
-                    }*/
                     if (k.collisionRectangle.Intersects(rec2))
                     {
                         b2 = false;
                     }
-                    /*if (k.collisionRectangle.Intersects(rec3))
-                    {
-                        b3 = false;
-                    }*/
-                    if (k.collisionRectangle.Intersects(rec4))
+                    else if (k.collisionRectangle.Intersects(rec4))
                     {
                         b4 = false;
                     }
-                    if (k.collisionRectangle.Intersects(rec5))
+                    else if (k.collisionRectangle.Intersects(rec5))
                     {
                         b5 = false;
                     }
-                    /*if (k.collisionRectangle.Intersects(rec6))
-                    {
-                        b6 = false;
-                    }*/
-                    if (k.collisionRectangle.Intersects(rec7))
+                    else if (k.collisionRectangle.Intersects(rec7))
                     {
                         b7 = false;
                     }
-                    /*if (k.collisionRectangle.Intersects(rec8))
-                    {
-                        b8 = false;
-                    }*/
                 }
                 foreach (var k in closedList)
                 {
-                    /*if (k.collisionRectangle.Intersects(rec1))
-                    {
-                        b1 = false;
-                    }*/
                     if (k.collisionRectangle.Intersects(rec2))
                     {
                         b2 = false;
                     }
-                    /*if (k.collisionRectangle.Intersects(rec3))
-                    {
-                        b3 = false;
-                    }*/
-                    if (k.collisionRectangle.Intersects(rec4))
+                    else if (k.collisionRectangle.Intersects(rec4))
                     {
                         b4 = false;
                     }
-                    if (k.collisionRectangle.Intersects(rec5))
+                    else if (k.collisionRectangle.Intersects(rec5))
                     {
                         b5 = false;
                     }
-                    /*if (k.collisionRectangle.Intersects(rec6))
-                    {
-                        b6 = false;
-                    }*/
-                    if (k.collisionRectangle.Intersects(rec7))
+                    else if (k.collisionRectangle.Intersects(rec7))
                     {
                         b7 = false;
                     }
-                    /*if (k.collisionRectangle.Intersects(rec8))
-                    {
-                        b8 = false;
-                    }*/
                 }
                 if (b2)
                 {
@@ -624,22 +474,6 @@ namespace TopDownShooterFinal
                 k.collisionCircle = new Circle(k.collisionRectangle.Center.ToVector2(), 5);
             }
 
-            
-            /*foreach(var k in pathList)
-            {
-                foreach(var o in Map.rectanglesAroundHouses)
-                //foreach(var o in Map.rectanglesAroundHouses.FindAll(x => Vector2.Distance(x.Center.ToVector2(), position) < 3000))
-                {
-                    if (k.collisionRectangle.Intersects(o))
-                    {
-                        k.collisionCircle.Center = o.Center.ToVector2();
-                        Rectangle r = k.collisionRectangle;
-                        k.collisionRectangle = new Rectangle(o.Center.X, o.Center.Y, r.Width, r.Height);
-                        k.position = o.Center.ToVector2();
-                    }
-                }
-            }*/
-
             return pathList;
         }
 
@@ -659,7 +493,6 @@ namespace TopDownShooterFinal
                 if (Utils.IntersectCircles(hitboxForPathFinder, k.collisionCircle))
                 {
                     pathTilesToDelete.Add(k);
-                    followNextPoint = true;
                 }
             }
             foreach(var k in pathTilesToDelete)
@@ -674,7 +507,6 @@ namespace TopDownShooterFinal
             }
 
             radian = Math.Atan2((hitboxForPathFinder.Center.Y - path[path.Count - 1].collisionCircle.Center.Y), (hitboxForPathFinder.Center.X - path[path.Count - 1].collisionCircle.Center.X));
-            //radian = Math.Atan2((position.Y - path[path.Count - 1].position.Y), (position.X - path[path.Count - 1].position.X));
             angle = (radian * (180 / Math.PI) + 360) % 360;
             direction = new Vector2((float)-Math.Cos(MathHelper.ToRadians((float)angle)), (float)-Math.Sin(MathHelper.ToRadians((float)angle)));
             direction.Normalize();
@@ -686,7 +518,6 @@ namespace TopDownShooterFinal
         {
             movementSpeed = 80;
             attacking = true;
-            //Random rnd = new Random();
             int x = random.Next(1, 4);
             switch (x)
             {
@@ -806,7 +637,6 @@ namespace TopDownShooterFinal
                     break;
                 }
             }
-            //HandleMovement(gameTime);
         }
 
         public void MakeZombieDie(GraphicsDevice graphicsDevice)
@@ -862,23 +692,13 @@ namespace TopDownShooterFinal
                 MakeZombieWalk();
             }
         }
-
-        bool condition;
-        Circle collisionCircle;
-        List<Circle> listOfCircles = new List<Circle>();
-        List<Rectangle> listOfRectangles = new List<Rectangle>();
-        double radian2;
-        float degrees;
-        float positionX;
-        float positionY;
+        
         private bool SightIsBlocked()
         {
             condition = true;
             collisionCircle = new Circle(this.position, 1);
-
             listOfCircles.Clear();
             listOfRectangles.Clear();
-
             radian2 = Math.Atan2((position.Y - (Player.position.Y)), (position.X - (Player.position.X)));
             degrees = (float)(radian2 * 180 / Math.PI);
             positionX = ((float)(Math.Cos(degrees / 360.0 * 2 * Math.PI) * 1000));
@@ -888,8 +708,6 @@ namespace TopDownShooterFinal
             {
                 collisionCircle.Center.X -= positionX;
                 collisionCircle.Center.Y -= positionY;
-
-                //Circle c = new Circle(collisionCircle.Center, 1);
                 listOfCircles.Add(new Circle(collisionCircle.Center, 1));
             }
 
@@ -928,33 +746,7 @@ namespace TopDownShooterFinal
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //spriteBatch.Draw(Textures.ball2, hitboxCircle.Center - new Vector2(25, 25), Color.White);
             zombieAnimation.Draw(spriteBatch, angle, this);
-            /*if(path.Count > 0)
-            {
-                foreach(var k in path)
-                {
-                    spriteBatch.Draw(Textures.exp, k.collisionRectangle.Center.ToVector2(), Color.Wheat);
-                }
-            }
-            spriteBatch.Draw(Textures.exp, position, Color.White);*/
-            /*for(int i = 0; i < listOfRectangles.Count; i++)
-            {
-                spriteBatch.Draw(Textures.exp, listOfRectangles[i].Location.ToVector2(), Color.White);
-            }*/
-            //spriteBatch.DrawString(Textures.debug, Vector2.Distance(position, Player.position + Player.playerAnimation.originPlayer) + "", new Vector2(position.X + 50, position.Y + 50), Color.White);
-            /*spriteBatch.DrawString(Textures.debug, running + "", new Vector2(position.X, position.Y + 60),Color.White);
-            spriteBatch.DrawString(Textures.debug, walking + "", new Vector2(position.X, position.Y + 80), Color.White);
-            spriteBatch.DrawString(Textures.debug, attacking + "", new Vector2(position.X, position.Y + 100), Color.White);
-            spriteBatch.DrawString(Textures.debug, isDead + "", new Vector2(position.X, position.Y + 120), Color.White);*/
-            //spriteBatch.DrawString(Textures.debug, health + "", new Vector2(position.X, position.Y + 80), Color.White);
-            //spriteBatch.DrawString(Textures.debug, behavior + "", new Vector2(position.X, position.Y + 160), Color.White);
-            //spriteBatch.DrawString(Textures.debug, lured + "", new Vector2(position.X, position.Y + 180), Color.White);
-            //spriteBatch.Draw(Textures.exp, position, Color.White);
-            //spriteBatch.Draw(Textures.exp, hitboxCircle.Center, Color.White);
-            //spriteBatch.DrawString(Textures.debug, Manager.deadZombieBodies.Count + "", new Vector2(600, 600), Color.White);
-            //spriteBatch.DrawString(Textures.debug, position  + "",new Vector2(position.X + 5, position.Y + 5), Color.White);
-            //spriteBatch.DrawString(Textures.debug, hitboxCircle.Center + "", new Vector2(position.X + 5, position.Y + 25), Color.White);
         }
     }
 }
